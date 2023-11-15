@@ -5,7 +5,7 @@ const Fonts = () => {
     <Global
       styles={`
         body {
-          background: #FAFAFA;
+          background: #f2f2f2;
           font-family: 'Inter', sans-serif !important;
         }
 
