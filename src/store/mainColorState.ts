@@ -6,7 +6,7 @@ interface ColorStore {
 }
 
 const useMainColorStore = create<ColorStore>(set => ({
-  color: '#f2f2f2',
+  color: '#eff5fa',
   setColor: newColor =>
     set(() => ({
       color: newColor,

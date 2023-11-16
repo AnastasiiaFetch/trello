@@ -7,7 +7,7 @@ const App = () => {
   return (
     <BrowserRouter basename="/trello">
       <Routes>
-        <Route path="/*" element={<Box bgColor="gray.lightGray">оберіть робочу область</Box>} />
+        <Route path="/*" element={<Box>оберіть робочу область</Box>} />
         <Route element={<WorkSpaceLayout />}>
           <Route path="/:workSpaceId" element={<Box bgColor="gray.lightGray">!ssss</Box>} />
           <Route
