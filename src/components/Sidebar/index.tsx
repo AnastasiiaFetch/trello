@@ -1,4 +1,4 @@
-import { Box, HStack, Text, VStack } from '@chakra-ui/react';
+import { Box, Text, VStack } from '@chakra-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useSidebarStore from '../../store/sidebarState';
 import Button from '../../elements/button/Button';
@@ -6,7 +6,7 @@ import ChevronRight from '../../elements/icons/ChevronRight';
 import X from '../../elements/icons/X';
 import IconButton from '../../elements/button/IconButton';
 import { useMainColor } from '../../utils/useMainColor';
-import useMainColorStore from '../../store/mainColorState';
+import useMainColorStore from '../../store/colorState';
 
 const sidebarVariants = {
   open: {
@@ -25,8 +25,7 @@ const sidebarContentVariants = {
 const Sidebar = () => {
   const { isOpen: isSidebarOpen, setSidebarOpen: setSidebarOpen } = useSidebarStore.getState();
   const mainColor = useMainColorStore(state => state.color);
-  const generatedColor = useMainColor();
-  const { backgroundColor, textColor } = generatedColor(mainColor);
+  const { textColor, sideBarColor } = useMainColor(mainColor);
 
   return (
     <Box display={{ base: 'none', md: 'flex' }} zIndex="1000" userSelect="none" position="fixed">
@@ -34,29 +33,27 @@ const Sidebar = () => {
         <VStack
           position="relative"
           p="4"
-          bg={backgroundColor}
+          bg={sideBarColor}
           h="100vh"
           maxW="2rem"
           alignItems="center"
           borderRight="1px solid"
-          borderColor="main.white"
+          borderColor={textColor}
         >
-          <Button
-            border="1px solid"
-            borderColor="main.white"
+          <IconButton
+            aria-label="open-sidebar-btn"
+            size="sm"
+            variant="primary"
             position="absolute"
-            color={backgroundColor}
             right={-3}
-            borderRadius="xl"
             onClick={() => setSidebarOpen(!isSidebarOpen)}
-          >
-            <ChevronRight color={textColor} />
-          </Button>
+            icon={<ChevronRight color={textColor} />}
+          />
         </VStack>
       )}
       <AnimatePresence>
         <Box
-          bg={backgroundColor}
+          bg={sideBarColor}
           borderRight="1px solid"
           borderColor="main.white"
           as={motion.div}
@@ -71,6 +68,9 @@ const Sidebar = () => {
           position="relative"
         >
           <IconButton
+            size="sm"
+            aria-label="close-sidebar-btn"
+            variant="secondary"
             position="absolute"
             top={2}
             right={2}
@@ -83,10 +83,12 @@ const Sidebar = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              style={{ height: '100%', marginTop: '1rem' }}
+              style={{ height: '100%', marginTop: '2rem' }}
             >
               <VStack w="100%" height="100%">
-                <Text color={textColor}>ddd</Text>
+                <Button variant="secondary">
+                  <Text>user workspace</Text>
+                </Button>
               </VStack>
             </motion.div>
           </AnimatePresence>

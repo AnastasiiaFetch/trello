@@ -6,7 +6,6 @@ const Fonts = () => {
       styles={`
         body {
           background: #eff5fa;
-          color: var(--chakra-colors-gray-600);
           font-family: 'Inter', sans-serif !important;
         }
 

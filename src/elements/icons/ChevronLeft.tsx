@@ -15,9 +15,9 @@ const ChevronLeft = forwardRef(({ color = 'white', size = 24, ...rest }: IconPro
     viewBox="0 0 24 24"
     fill="none"
     stroke={color}
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     {...rest}
   >
     <polyline points="15 18 9 12 15 6"></polyline>

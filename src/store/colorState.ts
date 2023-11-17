@@ -5,7 +5,7 @@ interface ColorStore {
   setColor: (color: string) => void;
 }
 
-const useMainColorStore = create<ColorStore>(set => ({
+const useColorStore = create<ColorStore>(set => ({
   color: '#eff5fa',
   setColor: newColor =>
     set(() => ({
@@ -13,4 +13,4 @@ const useMainColorStore = create<ColorStore>(set => ({
     })),
 }));
 
-export default useMainColorStore;
+export default useColorStore;

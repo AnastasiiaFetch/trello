@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import useSidebarStore from '../store/sidebarState';
-import useMainColorStore from '../store/mainColorState';
+import useMainColorStore from '../store/colorState';
 
 const WorkSpaceLayout = () => {
   const isSidebarOpen = useSidebarStore(state => state.isOpen);
