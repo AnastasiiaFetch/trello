@@ -28,7 +28,7 @@ const Sidebar = () => {
   const { textColor, sideBarColor } = useMainColor(mainColor);
 
   return (
-    <Box display={{ base: 'none', md: 'flex' }} zIndex="1000" userSelect="none" position="fixed">
+    <Box display="flex" zIndex="9" userSelect="none" position="fixed">
       {!isSidebarOpen && (
         <VStack
           position="relative"
@@ -64,7 +64,7 @@ const Sidebar = () => {
           w="20rem"
           minHeight="100vh"
           p="4"
-          zIndex="100"
+          zIndex="9"
           position="relative"
         >
           <IconButton

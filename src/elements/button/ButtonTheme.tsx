@@ -46,7 +46,7 @@ const primaryVariant = defineStyle(() => {
 
 const secondaryVariant = defineStyle(() => {
   const mainColor = useMainColorStore(state => state.color);
-  const { textColor, oppositeTextColor, hoveredBackground } = useMainColor(mainColor);
+  const { textColor, lightBg } = useMainColor(mainColor);
 
   return {
     w: '100%',
@@ -57,7 +57,7 @@ const secondaryVariant = defineStyle(() => {
     borderRadius: 'none',
     bg: 'transparent',
     _hover: {
-      bg: hoveredBackground,
+      bg: lightBg,
       color: textColor,
       _disabled: {
         bg: 'initial',

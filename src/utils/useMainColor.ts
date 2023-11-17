@@ -9,7 +9,8 @@ interface MainColor {
   textColor: string;
   colorWithNoOpacity: string;
   oppositeTextColor: string;
-  hoveredBackground: string;
+  lightBg: string;
+  darkBg: string;
 }
 
 export const useMainColor = (bodyColor: string): MainColor => {
@@ -29,7 +30,6 @@ export const useMainColor = (bodyColor: string): MainColor => {
   // Колір при наведенні
   const lightBg: string = color(LIGHT_TEXT_COLOR).lightness(100).alpha(0.2).rgb().string();
   const darkBg: string = color('#171923').lightness(80).alpha(0.2).rgb().string();
-  const hoveredBackground: string = color(bodyColor).luminosity() > 0.5 ? darkBg : lightBg;
 
-  return { sideBarColor, textColor, colorWithNoOpacity, oppositeTextColor, hoveredBackground };
+  return { sideBarColor, textColor, colorWithNoOpacity, oppositeTextColor, lightBg, darkBg };
 };

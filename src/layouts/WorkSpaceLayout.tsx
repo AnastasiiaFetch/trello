@@ -1,22 +1,27 @@
 import { Box } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/sidebar';
 import useSidebarStore from '../store/sidebarState';
 import useMainColorStore from '../store/colorState';
+import { useMainColor } from '../utils/useMainColor';
 
 const WorkSpaceLayout = () => {
   const isSidebarOpen = useSidebarStore(state => state.isOpen);
   const mainColor = useMainColorStore(state => state.color);
+  const { textColor } = useMainColor(mainColor);
   return (
-    <Box display="flex" width="100%" minHeight="100vh">
-      <Sidebar />
+    <Box display="flex" width="100%" overflow="hidden" h="calc(100% - 4rem)">
+      <aside>
+        <Sidebar />
+      </aside>
       <Box
+        as="section"
         flex="1"
-        width={{ base: '100%', md: isSidebarOpen ? 'calc(100% - 20rem)' : 'calc(100% - 2rem)' }}
-        maxW={{ base: '100%', md: isSidebarOpen ? 'calc(100% - 20rem)' : 'calc(100% - 2rem)' }}
-        marginLeft={{ base: 'none', md: isSidebarOpen ? '20rem' : '2rem' }}
+        width={isSidebarOpen ? 'calc(100% - 20rem)' : 'calc(100% - 2rem)'}
+        maxW={isSidebarOpen ? 'calc(100% - 20rem)' : 'calc(100% - 2rem)'}
+        marginLeft={isSidebarOpen ? '20rem' : '2rem'}
       >
-        <Box py="4" px="5" bg={mainColor} minHeight="100vh" width="100%">
+        <Box py="4" px="8" bg={mainColor} width="100%" color={textColor} h="100%">
           <Outlet />
         </Box>
       </Box>
