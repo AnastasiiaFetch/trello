@@ -1,12 +1,12 @@
-import { Box, Text, VStack } from '@chakra-ui/react';
+import { Box, VStack } from '@chakra-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useSidebarStore from '../../store/sidebarState';
-import Button from '../../elements/button/Button';
 import ChevronRight from '../../elements/icons/ChevronRight';
 import X from '../../elements/icons/X';
 import IconButton from '../../elements/button/IconButton';
 import { useMainColor } from '../../utils/useMainColor';
 import useMainColorStore from '../../store/colorState';
+import BasicSelectItem from '../../elements/select/BasicSelectItem';
 
 const sidebarVariants = {
   open: {
@@ -25,7 +25,7 @@ const sidebarContentVariants = {
 const Sidebar = () => {
   const { isOpen: isSidebarOpen, setSidebarOpen: setSidebarOpen } = useSidebarStore.getState();
   const mainColor = useMainColorStore(state => state.color);
-  const { textColor, sideBarColor } = useMainColor(mainColor);
+  const { textColor, sideBarColor, borderColor } = useMainColor(mainColor);
 
   return (
     <Box display="flex" zIndex="9" userSelect="none" position="fixed">
@@ -38,13 +38,14 @@ const Sidebar = () => {
           maxW="2rem"
           alignItems="center"
           borderRight="1px solid"
-          borderColor={textColor}
+          borderColor={borderColor}
         >
           <IconButton
             aria-label="open-sidebar-btn"
             size="sm"
             variant="primary"
             position="absolute"
+            borderColor={borderColor}
             right={-3}
             onClick={() => setSidebarOpen(!isSidebarOpen)}
             icon={<ChevronRight color={textColor} />}
@@ -55,7 +56,7 @@ const Sidebar = () => {
         <Box
           bg={sideBarColor}
           borderRight="1px solid"
-          borderColor="main.white"
+          borderColor={borderColor}
           as={motion.div}
           initial={{ display: 'none' }}
           animate={isSidebarOpen ? sidebarVariants.open : sidebarVariants.closed}
@@ -63,7 +64,6 @@ const Sidebar = () => {
           justifyContent="space-between"
           w="20rem"
           minHeight="100vh"
-          p="4"
           zIndex="9"
           position="relative"
         >
@@ -83,12 +83,10 @@ const Sidebar = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              style={{ height: '100%', marginTop: '2rem' }}
+              style={{ height: '100%', marginTop: '4rem' }}
             >
-              <VStack w="100%" height="100%">
-                <Button variant="secondary">
-                  <Text>user workspace</Text>
-                </Button>
+              <VStack maxW="100%" w="100%" height="100%">
+                {/* <BasicSelectItem /> */}
               </VStack>
             </motion.div>
           </AnimatePresence>

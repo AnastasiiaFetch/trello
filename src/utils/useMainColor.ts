@@ -1,8 +1,9 @@
 import color from 'color';
 
 // Кольорова схема
-const DARK_TEXT_COLOR: string = '#172b4d';
-const LIGHT_TEXT_COLOR: string = '#FAFAFA';
+const DARK_COLOR: string = '#172b4d';
+const LIGHT_COLOR: string = '#FAFAFA';
+const GRAY_COLOR: string = '#A0AEC0';
 
 interface MainColor {
   sideBarColor: string;
@@ -11,6 +12,7 @@ interface MainColor {
   oppositeTextColor: string;
   lightBg: string;
   darkBg: string;
+  borderColor: string;
 }
 
 export const useMainColor = (bodyColor: string): MainColor => {
@@ -20,16 +22,29 @@ export const useMainColor = (bodyColor: string): MainColor => {
   // Колір бічної панелі
   const sideBarColor: string = color(bodyColor).darken(0.2).alpha(0.6).rgb().string();
 
+  // Кольори
+  const grayColor: string = color(GRAY_COLOR).lightness(70).alpha(0.8).rgb().string();
+  const darkColor: string = color(DARK_COLOR).lightness(10).alpha(0.8).rgb().string();
+  const lightColor: string = color(LIGHT_COLOR).lightness(100).alpha(0.8).rgb().string();
+
   // Текстовий колір
-  const darkTextColor: string = color(DARK_TEXT_COLOR).lightness(10).alpha(0.8).rgb().string();
-  const lightTextColor: string = color(LIGHT_TEXT_COLOR).lightness(100).alpha(0.8).rgb().string();
-  const textColor: string = color(sideBarColor).luminosity() > 0.5 ? darkTextColor : lightTextColor;
-  const oppositeTextColor: string =
-    color(sideBarColor).luminosity() > 0.5 ? lightTextColor : darkTextColor;
+  const textColor: string = color(sideBarColor).luminosity() > 0.5 ? darkColor : lightColor;
+  const oppositeTextColor: string = color(sideBarColor).luminosity() > 0.5 ? lightColor : darkColor;
 
   // Колір при наведенні
-  const lightBg: string = color(LIGHT_TEXT_COLOR).lightness(100).alpha(0.2).rgb().string();
+  const lightBg: string = color(LIGHT_COLOR).lightness(100).alpha(0.2).rgb().string();
   const darkBg: string = color('#171923').lightness(80).alpha(0.2).rgb().string();
 
-  return { sideBarColor, textColor, colorWithNoOpacity, oppositeTextColor, lightBg, darkBg };
+  // Колір бордерів
+  const borderColor: string = color(sideBarColor).luminosity() > 0.5 ? grayColor : lightColor;
+
+  return {
+    sideBarColor,
+    textColor,
+    colorWithNoOpacity,
+    oppositeTextColor,
+    lightBg,
+    darkBg,
+    borderColor,
+  };
 };

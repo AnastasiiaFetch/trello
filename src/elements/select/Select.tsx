@@ -1,5 +1,6 @@
 import {
   Box,
+  Flex,
   Grid,
   GridItem,
   Popover,
@@ -11,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import Button from '../button/Button';
 import { CustomSelectProps } from '../../types/select';
+import BasicSelectItem from './BasicSelectItem';
 
 const Select: React.FC<CustomSelectProps> = ({ elements, title }) => {
   return (
@@ -24,11 +26,15 @@ const Select: React.FC<CustomSelectProps> = ({ elements, title }) => {
       </PopoverTrigger>
       <Portal>
         <PopoverContent>
-          {/* <PopoverArrow /> */}
+          <PopoverArrow />
           <PopoverBody>
             <Grid templateColumns="repeat(1, 1fr)">
               {elements.map((element, index) => {
-                return <GridItem key={`${element.contentTitle}-${index}`}></GridItem>;
+                return (
+                  <GridItem key={`${element.contentTitle}-${index}`} maxW="100%" overflowX="hidden">
+                    {/* <BasicSelectItem /> */}
+                  </GridItem>
+                );
               })}
             </Grid>
           </PopoverBody>

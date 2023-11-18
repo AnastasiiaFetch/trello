@@ -2,7 +2,6 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import WorkSpaceLayout from './layouts/WorkSpaceLayout';
 import { Box, Text } from '@chakra-ui/react';
-import Button from './elements/button/Button';
 import RootLayout from './layouts/RootLayout';
 
 const App = () => {
@@ -26,9 +25,6 @@ const App = () => {
               path="/w/:workSpaceId"
               element={
                 <Box fontSize="text-lg">
-                  <Button variant="secondary">
-                    <Text>user workspace</Text>
-                  </Button>
                   <Text color="main.dark">user workspace</Text>
                 </Box>
               }

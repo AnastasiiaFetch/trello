@@ -6,7 +6,7 @@ import TrelloHeader from '../components/header';
 
 const RootLayout = () => {
   const mainColor = useColorStore(state => state.color);
-  const { textColor, sideBarColor } = useMainColor(mainColor);
+  const { textColor, sideBarColor, borderColor } = useMainColor(mainColor);
   return (
     <Box h="100vh" maxH="100vh">
       <header>
@@ -18,7 +18,7 @@ const RootLayout = () => {
           fontSize="text-lg"
           bgColor={sideBarColor}
           border="1px solid transparent"
-          borderBottomColor={textColor}
+          borderBottomColor={borderColor}
         >
           <TrelloHeader />
         </HStack>

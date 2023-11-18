@@ -1,0 +1,95 @@
+import { Box, Flex, Text } from '@chakra-ui/react';
+import Star from '../icons/Star';
+import List from '../icons/List';
+
+interface BasicSelectItemProps {
+  mode: 'sidebar' | 'nav';
+  contentTitle: string;
+  content?: string;
+}
+
+const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
+  mode = 'sidebar',
+  contentTitle,
+  content,
+  ...rest
+}) => {
+  return (
+    <Flex
+      cursor="pointer"
+      align="center"
+      color="main.dark"
+      borderRadius={mode === 'sidebar' ? 'none' : 'md'}
+      py={1}
+      px={2}
+      gap={2}
+      minW="100%"
+      maxW="100%"
+      _hover={{
+        bgColor: 'gray.200',
+        '& > .star_btn': {
+          display: 'flex',
+        },
+      }}
+      {...rest}
+    >
+      <Flex flex={1} overflowX="hidden" align="center" gap={2}>
+        <Flex bg="red" minW="3rem" maxW="3rem" minH="2rem" flex={1} borderRadius="md"></Flex>
+        <Flex flexDir="column">
+          <Box w="100%">
+            <Text w="100%" whiteSpace="nowrap" fontSize="text-sm" fontWeight="semibold">
+              {'Project Managementu111uuusss55555'.length > 25
+                ? `${'Project Managementu111uuusss55555'.slice(0, 25)}...`
+                : 'Project Managementu111uuusss55555'}
+            </Text>
+          </Box>
+          {mode === 'nav' && (
+            <Box w="100%">
+              <Text
+                w="100%"
+                whiteSpace="nowrap"
+                fontSize="text-xs"
+                fontWeight="semibold"
+                color="gray.500"
+              >
+                {'Робочий простір'.length > 25
+                  ? `${'Робочий простір'.slice(0, 25)}...`
+                  : 'Робочий простір'}
+              </Text>
+            </Box>
+          )}
+        </Flex>
+      </Flex>
+      {mode === 'sidebar' && (
+        <Box
+          bgColor="inherit"
+          display="none"
+          alignItems="center"
+          justifyContent="center"
+          height="100%"
+          className="star_btn"
+          position="relative"
+          right={0}
+          top={0}
+        >
+          <List size={18} />
+        </Box>
+      )}
+      <Box
+        bgColor="inherit"
+        display="none"
+        alignItems="center"
+        justifyContent="center"
+        height="100%"
+        className="star_btn"
+        position="relative"
+        right={0}
+        top={0}
+      >
+        <Star size={18} />
+      </Box>
+    </Flex>
+  );
+};
+
+export default BasicSelectItem;
