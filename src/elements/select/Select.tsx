@@ -13,6 +13,7 @@ import {
 import Button from '../button/Button';
 import { CustomSelectProps } from '../../types/select';
 import BasicSelectItem from './BasicSelectItem';
+import CreateSelectItem from './CreateSelectItem';
 
 const Select: React.FC<CustomSelectProps> = ({ elements, title }) => {
   return (
@@ -33,6 +34,7 @@ const Select: React.FC<CustomSelectProps> = ({ elements, title }) => {
                 return (
                   <GridItem key={`${element.contentTitle}-${index}`} maxW="100%" overflowX="hidden">
                     {/* <BasicSelectItem /> */}
+                    <CreateSelectItem />
                   </GridItem>
                 );
               })}

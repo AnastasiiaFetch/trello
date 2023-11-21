@@ -25,7 +25,7 @@ const App = () => {
               path="/w/:workSpaceId"
               element={
                 <Box fontSize="text-lg">
-                  <Text color="main.dark">user workspace</Text>
+                  <Text color="main.dark">user workspace still have main color</Text>
                 </Box>
               }
             />
@@ -33,7 +33,7 @@ const App = () => {
               path="/:userId/b/:boardId"
               element={
                 <Box fontSize="text-lg">
-                  <Text>board</Text>
+                  <Text>board has custom color</Text>
                 </Box>
               }
             />

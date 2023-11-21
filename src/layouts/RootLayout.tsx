@@ -1,14 +1,26 @@
-import { Box, HStack, Text } from '@chakra-ui/react';
-import { Outlet } from 'react-router-dom';
+import { Box, HStack } from '@chakra-ui/react';
+import { Outlet, useParams } from 'react-router-dom';
 import useColorStore from '../store/colorState';
 import { useMainColor } from '../utils/useMainColor';
 import TrelloHeader from '../components/header';
+import { useEffect } from 'react';
+import theme from '../theme';
 
 const RootLayout = () => {
-  const mainColor = useColorStore(state => state.color);
+  const { boardId } = useParams();
+  const { color: mainColor, setColor } = useColorStore();
+
+  useEffect(() => {
+    if (!boardId && mainColor !== theme.colors.basic) {
+      setColor(theme.colors.basic);
+      console.log('change color');
+    }
+  }, [boardId]);
+
   const { textColor, sideBarColor, borderColor } = useMainColor(mainColor);
+
   return (
-    <Box h="100vh" maxH="100vh">
+    <Box h="100vh" maxH="100vh" overflow="hidden">
       <header>
         <HStack
           h="4rem"

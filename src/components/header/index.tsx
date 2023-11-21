@@ -14,8 +14,8 @@ const TrelloHeader = () => {
   ] as CustomSelectProps[];
 
   return (
-    <Flex align="center" justify="space-between">
-      <Flex gap={8}>
+    <Flex alignItems="center" justify="space-between">
+      <Flex gap={8} alignItems="center">
         <Flex align="center" justify="center" gap={1}>
           <TrelloLogo size={30} />
           <Text fontSize="display-xs" fontWeight="bold">
