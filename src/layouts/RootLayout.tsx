@@ -1,7 +1,7 @@
 import { Box, HStack } from '@chakra-ui/react';
 import { Outlet, useParams } from 'react-router-dom';
 import useColorStore from '../store/colorState';
-import { useMainColor } from '../utils/useMainColor';
+import { useMainColor } from '../composable/useMainColor';
 import TrelloHeader from '../components/header';
 import { useEffect } from 'react';
 import theme from '../theme';

@@ -4,7 +4,7 @@ import useSidebarStore from '../../store/sidebarState';
 import ChevronRight from '../../elements/icons/ChevronRight';
 import X from '../../elements/icons/X';
 import IconButton from '../../elements/button/IconButton';
-import { useMainColor } from '../../utils/useMainColor';
+import { useMainColor } from '../../composable/useMainColor';
 import useMainColorStore from '../../store/colorState';
 import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
 

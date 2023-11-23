@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/sidebar';
 import useSidebarStore from '../store/sidebarState';
 import useMainColorStore from '../store/colorState';
-import { useMainColor } from '../utils/useMainColor';
+import { useMainColor } from '../composable/useMainColor';
 
 const WorkSpaceLayout = () => {
   const isSidebarOpen = useSidebarStore(state => state.isOpen);

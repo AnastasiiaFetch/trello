@@ -1,6 +1,6 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
 import useMainColorStore from '../../store/colorState';
-import { useMainColor } from '../../utils/useMainColor';
+import { useMainColor } from '../../composable/useMainColor';
 
 const sm = defineStyle({
   fontSize: 'text-sm',
