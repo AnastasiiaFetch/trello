@@ -3,7 +3,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import useColorStore from '../store/colorState';
 import { useMainColor } from '../composable/useMainColor';
 import TrelloHeader from '../components/header';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import theme from '../theme';
 
 const RootLayout = () => {
@@ -15,6 +15,13 @@ const RootLayout = () => {
       setColor(theme.colors.basic);
     }
   }, [boardId]);
+
+  // const { error } = useQuery({
+  //   queryFn: () => getAllBoards(),
+  //   queryKey: ['accounts'],
+  //   onSuccess: data => console.log(data),
+  //   onError: (error: any) => console.log(error.message),
+  // });
 
   const { textColor, sideBarColor, borderColor } = useMainColor(mainColor);
 

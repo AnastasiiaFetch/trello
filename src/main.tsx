@@ -1,11 +1,10 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
 import theme from './theme';
 
 import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Fonts from './assets/fonts/Fonts.tsx';
+import Router from './router.tsx';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,14 +15,12 @@ export const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
-        <Fonts />
-        <App />
-      </ChakraProvider>
-    </QueryClientProvider>
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <ChakraProvider theme={theme}>
+      <Fonts />
+      <Router />
+    </ChakraProvider>
+  </QueryClientProvider>
 );
 
 if (window.location.pathname === '/') {

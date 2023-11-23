@@ -3,14 +3,19 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import WorkSpaceLayout from './layouts/WorkSpaceLayout';
 import { Box, Text } from '@chakra-ui/react';
 import RootLayout from './layouts/RootLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 
-const App = () => {
+const useProtectedRoute = (children: React.ReactNode) => {
+  return <ProtectedRoute>{children}</ProtectedRoute>;
+};
+
+const Router = () => {
   return (
     <BrowserRouter basename="/trello">
       <Routes>
         <Route path="/sign-in" element={<Box>Логін</Box>} />
         <Route path="/sign-up" element={<Box>Реєстрація</Box>} />
-        <Route element={<RootLayout />}>
+        <Route element={useProtectedRoute(<RootLayout />)}>
           <Route
             path="/auth/:userId"
             element={
@@ -22,7 +27,7 @@ const App = () => {
 
           <Route element={<WorkSpaceLayout />}>
             <Route
-              path="/w/:workSpaceId"
+              path="/:userId/w/:workSpaceId"
               element={
                 <Box fontSize="text-lg">
                   <Text color="main.dark">user workspace still have main color</Text>
@@ -47,4 +52,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Router;

@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import theme from '../theme';
 
 interface ColorStore {
   color: string;
@@ -7,7 +6,7 @@ interface ColorStore {
 }
 
 const useColorStore = create<ColorStore>(set => ({
-  color: theme.colors.basic,
+  color: '#eff5fa',
   setColor: newColor =>
     set(() => ({
       color: newColor,
