@@ -6,7 +6,7 @@ type IconProps = {
   [key: string]: any;
 };
 
-const X = forwardRef(({ color = 'currentColor', size = 24, ...rest }: IconProps, ref: any) => (
+const Board = forwardRef(({ color = 'currentColor', size = 24, ...rest }: IconProps, ref: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     ref={ref}
@@ -20,9 +20,9 @@ const X = forwardRef(({ color = 'currentColor', size = 24, ...rest }: IconProps,
     strokeLinejoin="round"
     {...rest}
   >
-    <line x1="18" y1="6" x2="6" y2="18"></line>
-    <line x1="6" y1="6" x2="18" y2="18"></line>
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
   </svg>
 ));
 
-export default X;
+export default Board;

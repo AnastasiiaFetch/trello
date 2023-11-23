@@ -6,7 +6,7 @@ import X from '../../elements/icons/X';
 import IconButton from '../../elements/button/IconButton';
 import { useMainColor } from '../../utils/useMainColor';
 import useMainColorStore from '../../store/colorState';
-import BasicSelectItem from '../../elements/select/BasicSelectItem';
+import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
 
 const sidebarVariants = {
   open: {
@@ -86,7 +86,7 @@ const Sidebar = () => {
               style={{ height: '100%', marginTop: '4rem' }}
             >
               <VStack maxW="100%" w="100%" height="100%">
-                {/* <BasicSelectItem /> */}
+                {/* <BasicSelectItem color="red" mode="sidebar" /> */}
               </VStack>
             </motion.div>
           </AnimatePresence>

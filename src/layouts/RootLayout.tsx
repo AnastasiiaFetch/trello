@@ -13,7 +13,6 @@ const RootLayout = () => {
   useEffect(() => {
     if (!boardId && mainColor !== theme.colors.basic) {
       setColor(theme.colors.basic);
-      console.log('change color');
     }
   }, [boardId]);
 

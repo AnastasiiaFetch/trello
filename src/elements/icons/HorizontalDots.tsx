@@ -6,7 +6,7 @@ type IconProps = {
   [key: string]: any;
 };
 
-const ChevronRight = forwardRef(
+const HorizontalDots = forwardRef(
   ({ color = 'currentColor', size = 24, ...rest }: IconProps, ref: any) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,9 +21,11 @@ const ChevronRight = forwardRef(
       strokeLinejoin="round"
       {...rest}
     >
-      <polyline points="9 18 15 12 9 6"></polyline>
+      <circle cx="12" cy="12" r="1"></circle>
+      <circle cx="19" cy="12" r="1"></circle>
+      <circle cx="5" cy="12" r="1"></circle>
     </svg>
   )
 );
 
-export default ChevronRight;
+export default HorizontalDots;

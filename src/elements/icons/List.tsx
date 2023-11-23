@@ -6,7 +6,7 @@ type IconProps = {
   [key: string]: any;
 };
 
-const List = forwardRef(({ color = 'white', size = 24, ...rest }: IconProps, ref: any) => (
+const List = forwardRef(({ color = 'currentColor', size = 24, ...rest }: IconProps, ref: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     ref={ref}
@@ -14,8 +14,8 @@ const List = forwardRef(({ color = 'white', size = 24, ...rest }: IconProps, ref
     height={size}
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
+    stroke={color}
+    strokeWidth="1.5"
     strokeLinecap="round"
     strokeLinejoin="round"
     {...rest}

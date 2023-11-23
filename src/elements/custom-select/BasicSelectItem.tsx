@@ -1,30 +1,23 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import Star from '../icons/Star';
-import List from '../icons/List';
+import { CustomSelectItemProps } from '../../types/select';
+import HorizontalDots from '../icons/HorizontalDots';
+import SelectItemWrapper from './SelectItemWrapper';
 
-interface BasicSelectItemProps {
-  mode: 'sidebar' | 'nav';
-  contentTitle: string;
-  content?: string;
-}
+type BasicSelectItemProps = CustomSelectItemProps & {
+  mode?: 'sidebar' | 'nav';
+  [key: string]: any;
+};
 
 const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
-  mode = 'sidebar',
+  mode = 'nav',
   contentTitle,
   content,
   ...rest
 }) => {
   return (
-    <Flex
-      cursor="pointer"
-      align="center"
-      color="main.dark"
+    <SelectItemWrapper
       borderRadius={mode === 'sidebar' ? 'none' : 'md'}
-      py={1}
-      px={2}
-      gap={2}
-      minW="100%"
-      maxW="100%"
       _hover={{
         bgColor: 'gray.200',
         '& > .star_btn': {
@@ -72,7 +65,7 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
           right={0}
           top={0}
         >
-          <List size={18} />
+          <HorizontalDots size={18} />
         </Box>
       )}
       <Box
@@ -88,7 +81,7 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
       >
         <Star size={18} />
       </Box>
-    </Flex>
+    </SelectItemWrapper>
   );
 };
 
