@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getAllBoards, getAllWorkSpaces } from '../api';
-import { AxiosResponse } from 'axios';
+import useColorStore from '../store/colorState';
+import { useEffect } from 'react';
+import theme from '../theme';
 
 type Props = {
   children: React.ReactNode;
@@ -9,6 +11,15 @@ type Props = {
 
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
   const navigate = useNavigate();
+
+  const { boardId } = useParams();
+  const { color: mainColor, setColor } = useColorStore();
+
+  useEffect(() => {
+    if (!boardId && mainColor !== theme.colors.basic) {
+      setColor(theme.colors.basic);
+    }
+  }, [boardId]);
 
   const { data: boards = null, isLoading: isBoardsLoading } = useQuery({
     queryFn: () => getAllBoards(),

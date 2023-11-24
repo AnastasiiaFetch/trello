@@ -1,5 +1,4 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
-import useMainColorStore from '../../store/colorState';
 import { useMainColor } from '../../composable/useMainColor';
 
 const sm = defineStyle({
@@ -23,8 +22,7 @@ const lg = defineStyle({
 });
 
 const primaryVariant = defineStyle(() => {
-  const mainColor = useMainColorStore(state => state.color);
-  const { textColor } = useMainColor(mainColor);
+  const { textColor } = useMainColor();
 
   return {
     border: '1px solid transparent',
@@ -45,8 +43,7 @@ const primaryVariant = defineStyle(() => {
 });
 
 const secondaryVariant = defineStyle(() => {
-  const mainColor = useMainColorStore(state => state.color);
-  const { textColor, lightBg } = useMainColor(mainColor);
+  const { textColor, lightBg } = useMainColor();
 
   return {
     w: '100%',
@@ -110,8 +107,7 @@ const iconLg = defineStyle({
 });
 
 const primaryIconVariant = defineStyle(() => {
-  const mainColor = useMainColorStore(state => state.color);
-  const { textColor, colorWithNoOpacity } = useMainColor(mainColor);
+  const { textColor, colorWithNoOpacity } = useMainColor();
 
   return {
     border: '1px solid',
@@ -137,8 +133,7 @@ const primaryIconVariant = defineStyle(() => {
 });
 
 const secondaryIconVariant = defineStyle(() => {
-  const mainColor = useMainColorStore(state => state.color);
-  const { textColor } = useMainColor(mainColor);
+  const { textColor } = useMainColor();
 
   return {
     border: '1px solid transparent',

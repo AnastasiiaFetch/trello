@@ -4,6 +4,7 @@ import WorkSpaceLayout from './layouts/WorkSpaceLayout';
 import { Box, Text } from '@chakra-ui/react';
 import RootLayout from './layouts/RootLayout';
 import ProtectedRoute from './components/ProtectedRoute';
+import Input from './elements/input/Input';
 
 const useProtectedRoute = (children: React.ReactNode) => {
   return <ProtectedRoute>{children}</ProtectedRoute>;
@@ -39,6 +40,7 @@ const Router = () => {
               element={
                 <Box fontSize="text-lg">
                   <Text>board has custom color</Text>
+                  <Input type="" />
                 </Box>
               }
             />

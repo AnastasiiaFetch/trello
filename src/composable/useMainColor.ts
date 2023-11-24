@@ -1,4 +1,5 @@
 import color from 'color';
+import useColorStore from '../store/colorState';
 
 // Кольорова схема
 const DARK_COLOR: string = '#172b4d';
@@ -6,6 +7,8 @@ const LIGHT_COLOR: string = '#FAFAFA';
 const GRAY_COLOR: string = '#A0AEC0';
 
 interface MainColor {
+  bodyColor: string;
+  darkColor: string;
   sideBarColor: string;
   textColor: string;
   colorWithNoOpacity: string;
@@ -15,7 +18,9 @@ interface MainColor {
   borderColor: string;
 }
 
-export const useMainColor = (bodyColor: string): MainColor => {
+export const useMainColor = (): MainColor => {
+  const { color: bodyColor } = useColorStore();
+
   // Колір без прозорості
   const colorWithNoOpacity: string = color(bodyColor).darken(0.2).alpha(1).rgb().string();
 
@@ -39,6 +44,8 @@ export const useMainColor = (bodyColor: string): MainColor => {
   const borderColor: string = color(sideBarColor).luminosity() > 0.5 ? grayColor : lightColor;
 
   return {
+    bodyColor,
+    darkColor,
     sideBarColor,
     textColor,
     colorWithNoOpacity,

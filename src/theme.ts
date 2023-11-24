@@ -1,30 +1,8 @@
 import { extendTheme } from '@chakra-ui/react';
-import { ButtonTheme, IconButtonTheme } from './elements/button/ButtonTheme';
 import color from 'color';
 
-const componentsThemes = {
-  Button: ButtonTheme,
-  IconButton: IconButtonTheme,
-  // Input: InputTheme,
-  // FormLabel: FormLabelTheme,
-  // FormHelperText: FormHelpTextTheme,
-  // FormErrorMessage: FormErrorTextTheme,
-  // Textarea: TextAreaTheme,
-  // Switch: SwitchTheme,
-  // Menu: MenuTheme,
-  // Link: LinkTheme,
-  // Container: containerTheme,
-  // PinInput: PinInputTheme,
-  // Avatar: AvatarTheme,
-  // Breadcrumb: BreadcrumbTheme,
-  // Tabs: TabsTheme,
-  // Radio: RadioTheme,
-  // Tag: TagTheme,
-  // Checkbox: CheckboxTheme,
-  // Popover: PopoverTheme,
-
-  // Select: SelectTheme,
-};
+import { ButtonTheme, IconButtonTheme } from './elements/button/ButtonTheme';
+import { InputTheme } from './elements/input/InputTheme';
 
 const darkColor = color('#172b4d').lightness(10).alpha(0.8).rgb().string();
 const lightColor = color('#FAFAFA').lightness(100).alpha(0.8).rgb().string();
@@ -100,7 +78,11 @@ const theme = extendTheme({
     semibold: 600,
     bold: 700,
   },
-  components: componentsThemes,
+  components: {
+    Button: ButtonTheme,
+    IconButton: IconButtonTheme,
+    Input: InputTheme,
+  },
 });
 
 export default theme;
