@@ -7,7 +7,7 @@ const RootLayout = () => {
   const { textColor, sideBarColor, borderColor } = useMainColor();
 
   return (
-    <Box h="100vh" maxH="100vh" overflow="hidden">
+    <Box h="100vh" maxH="100vh">
       <header>
         <HStack
           h="4rem"

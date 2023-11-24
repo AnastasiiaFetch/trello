@@ -17,7 +17,7 @@ import InfoPopover from '../common/InfoPopover';
 
 const Input: React.FC<InputProps> = (props, ref) => {
   const {
-    size = 'sm',
+    size = 'xs',
     type = 'text',
     label,
     helpText,

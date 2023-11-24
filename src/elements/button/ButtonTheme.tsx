@@ -10,13 +10,14 @@ const sm = defineStyle({
 });
 const md = defineStyle({
   ...sm,
+  fontSize: 'text-md',
   px: '4',
   py: '2.5',
 });
 
 const lg = defineStyle({
   ...md,
-  fontSize: 'text-md',
+  fontSize: 'text-lg',
   px: '4.5',
   py: '2.5',
 });

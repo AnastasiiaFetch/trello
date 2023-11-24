@@ -8,6 +8,7 @@ const Fonts = () => {
 
         body {
           background: #eff5fa;
+          overflow: hidden;
           font-family: 'Inter', sans-serif !important;
         }
       `}

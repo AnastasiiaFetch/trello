@@ -45,10 +45,10 @@ export const useMainColor = (): MainColor => {
 
   return {
     bodyColor,
+    colorWithNoOpacity,
     darkColor,
     sideBarColor,
     textColor,
-    colorWithNoOpacity,
     oppositeTextColor,
     lightBg,
     darkBg,

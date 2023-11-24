@@ -24,11 +24,11 @@ const sidebarContentVariants = {
 
 const Sidebar = () => {
   const { isOpen: isSidebarOpen, setSidebarOpen: setSidebarOpen } = useSidebarStore.getState();
-  const mainColor = useMainColorStore(state => state.color);
-  const { textColor, sideBarColor, borderColor } = useMainColor(mainColor);
+
+  const { textColor, sideBarColor, borderColor } = useMainColor();
 
   return (
-    <Box display="flex" zIndex="9" userSelect="none" position="fixed">
+    <Box display="flex" zIndex="9" userSelect="none">
       {!isSidebarOpen && (
         <VStack
           position="relative"

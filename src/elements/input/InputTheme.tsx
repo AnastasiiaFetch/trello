@@ -10,7 +10,8 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   field: {
     width: '100%',
-    outline: 'none',
+    outline: '1px solid',
+    outlineColor: 'transparent',
   },
 });
 
@@ -143,7 +144,6 @@ const variantDefaultPin = defineStyle(() => {
       borderColor: 'primary.300',
       boxShadow: 'xs-primary-focus',
     },
-
     height: undefined,
   };
 });

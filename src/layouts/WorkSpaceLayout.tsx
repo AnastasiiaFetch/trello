@@ -8,7 +8,7 @@ const WorkSpaceLayout = () => {
   const isSidebarOpen = useSidebarStore(state => state.isOpen);
   const { textColor, bodyColor, darkColor } = useMainColor();
   return (
-    <Box display="flex" width="100%" overflow="hidden" h="calc(100% - 4rem)">
+    <Box display="flex" width="100%" h="calc(100% - 4rem)">
       <aside>
         <Sidebar />
       </aside>

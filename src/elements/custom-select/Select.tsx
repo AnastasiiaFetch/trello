@@ -15,7 +15,7 @@ const Select: React.FC<{ title: string; children: React.ReactNode }> = ({ title,
     <Popover>
       <PopoverTrigger>
         <Box w="fit-content">
-          <Button variant="secondary" borderRadius="md">
+          <Button variant="secondary" borderRadius="md" size="md">
             {title}
           </Button>
         </Box>
