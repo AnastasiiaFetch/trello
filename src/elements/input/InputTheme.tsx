@@ -1,4 +1,4 @@
-import { createMultiStyleConfigHelpers, defineStyle, defineStyleConfig } from '@chakra-ui/react';
+import { createMultiStyleConfigHelpers, defineStyleConfig } from '@chakra-ui/react';
 
 import { inputAnatomy } from '@chakra-ui/anatomy';
 import { useMainColor } from '../../composable/useMainColor';
@@ -103,19 +103,18 @@ export const InputTheme = defineMultiStyleConfig({
   variants: { default: variantDefault },
 });
 
-export const FormLabelTheme = defineStyleConfig({
+export const InputLabelTheme = defineStyleConfig({
   baseStyle: {
-    color: 'gray.700',
     fontWeight: 'semibold',
-    fontSize: 'text-sm',
+    fontSize: 'text-md',
     lineHeight: 'text-sm',
-    marginBottom: '1.5',
+    marginBottom: '2',
   },
 });
 
-export const FormHelpTextTheme = defineStyleConfig({
+export const InputHelpTextTheme = defineStyleConfig({
   baseStyle: {
-    color: 'gray.600',
+    color: 'var(--chakra-colors-gray-400) !important',
     fontWeight: 'regular',
     fontSize: 'text-sm',
     lineHeight: 'text-sm',
@@ -123,65 +122,9 @@ export const FormHelpTextTheme = defineStyleConfig({
   },
 });
 
-export const FormErrorTextTheme = defineStyleConfig({
+export const InputErrorTextTheme = defineStyleConfig({
   baseStyle: {
-    ...FormHelpTextTheme.baseStyle,
-    color: 'error.500',
-  },
-});
-
-const baseStylePin = defineStyle({
-  ...baseStyle.field,
-  color: 'primary.600',
-});
-const variantDefaultPin = defineStyle(() => {
-  const defaultVariant = variantDefault();
-  return {
-    ...defaultVariant.field,
-    color: 'primary.600',
-    _focusVisible: {
-      color: 'primary.600',
-      borderColor: 'primary.300',
-      boxShadow: 'xs-primary-focus',
-    },
-    height: undefined,
-  };
-});
-
-const smPin = defineStyle({
-  fontSize: 'display-md',
-  lineHeight: 'display-md',
-  px: '2',
-  py: '0.5',
-  fontWeight: 'medium',
-  borderRadius: '0.5rem',
-  w: 'var(--chakra-sizes-16)',
-  h: 'var(--chakra-sizes-16)',
-});
-const mdPin = defineStyle({
-  fontSize: 'display-lg',
-  lineHeight: 'display-lg',
-  px: '2',
-  py: '2.5',
-  fontWeight: 'medium',
-  w: 'var(--chakra-sizes-20)',
-  h: 'var(--chakra-sizes-20)',
-});
-const lgPin = defineStyle({
-  fontSize: 'display-xl',
-  lineHeight: 'display-xl',
-  px: '2',
-  py: '3',
-  fontWeight: 'medium',
-  w: 'var(--chakra-sizes-24)',
-  h: 'var(--chakra-sizes-24)',
-});
-export const PinInputTheme = defineStyleConfig({
-  baseStyle: baseStylePin,
-  sizes: { sm: smPin, md: mdPin, lg: lgPin },
-  variants: { default: variantDefaultPin },
-  defaultProps: {
-    variant: 'default',
-    size: 'sm',
+    ...InputHelpTextTheme.baseStyle,
+    color: 'red.500',
   },
 });

@@ -40,7 +40,7 @@ const Router = () => {
               element={
                 <Box fontSize="text-lg">
                   <Text>board has custom color</Text>
-                  <Input type="" />
+                  <Input type="text" label="gjgjgj" />
                 </Box>
               }
             />

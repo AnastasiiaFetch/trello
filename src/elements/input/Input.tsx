@@ -7,7 +7,6 @@ import {
   InputGroup as ChakraInputGroup,
   InputLeftElement as ChakraInputLeftElement,
   InputRightElement as ChakraInputRightElement,
-  HStack,
   useMultiStyleConfig,
   useStyleConfig,
 } from '@chakra-ui/react';
@@ -19,7 +18,7 @@ const Input: React.FC<InputProps> = (props, ref) => {
   const {
     size = 'xs',
     type = 'text',
-    label,
+    label = '',
     helpText,
     isError,
     leftElement,
@@ -31,18 +30,16 @@ const Input: React.FC<InputProps> = (props, ref) => {
   } = props;
 
   const inputStyles = useMultiStyleConfig('Input', { size, isError });
-  const formLabelStyles = useMultiStyleConfig('FormLabel');
-  const formHelpTextStyles = useStyleConfig('FormHelperText');
-  const formErrorMessageStyles = useStyleConfig('FormErrorMessage');
+  const inputLabelStyles = useStyleConfig('FormLabel');
+  const inputHelpTextStyles = useStyleConfig('FormHelperText');
+  const inputErrorMessageStyles = useStyleConfig('FormErrorMessage');
 
   return (
     <ChakraFormControl isInvalid={isError} zIndex={1} {...containerProps}>
       {label && (
-        <ChakraFormLabel __css={formLabelStyles} size={size} userSelect="none">
-          <HStack alignItems="center">
-            <span> {label}</span>
-            {infoPopover && <InfoPopover trigger="hover">{infoPopover}</InfoPopover>}
-          </HStack>
+        <ChakraFormLabel size={size} userSelect="none" __css={inputLabelStyles}>
+          <span>{label}</span>
+          {infoPopover && <InfoPopover trigger="hover">{infoPopover}</InfoPopover>}
         </ChakraFormLabel>
       )}
 
@@ -74,11 +71,11 @@ const Input: React.FC<InputProps> = (props, ref) => {
         )}
       </ChakraInputGroup>
       {!isError && helpText ? (
-        <ChakraFormHelpText __css={formHelpTextStyles} mt="1.5" textAlign="left">
+        <ChakraFormHelpText __css={inputHelpTextStyles} mt="1.5" textAlign="left">
           {helpText}
         </ChakraFormHelpText>
       ) : (
-        <ChakraFormErrorMessage mt="1.5" __css={formErrorMessageStyles} textAlign="left">
+        <ChakraFormErrorMessage mt="1.5" __css={inputErrorMessageStyles} textAlign="left">
           {helpText}
         </ChakraFormErrorMessage>
       )}

@@ -2,7 +2,12 @@ import { extendTheme } from '@chakra-ui/react';
 import color from 'color';
 
 import { ButtonTheme, IconButtonTheme } from './elements/button/ButtonTheme';
-import { InputTheme } from './elements/input/InputTheme';
+import {
+  InputErrorTextTheme,
+  InputHelpTextTheme,
+  InputLabelTheme,
+  InputTheme,
+} from './elements/input/InputTheme';
 
 const darkColor = color('#172b4d').lightness(10).alpha(0.8).rgb().string();
 const lightColor = color('#FAFAFA').lightness(100).alpha(0.8).rgb().string();
@@ -16,15 +21,6 @@ const theme = extendTheme({
     main: {
       light: lightColor,
       dark: darkColor,
-    },
-    red: {
-      light: '#FEF3F2',
-      medium: '#FDA29B',
-      strong: '#F04438',
-    },
-    green: {
-      light: '#ECFDF3',
-      strong: '#12B76A',
     },
   },
   fontSizes: {
@@ -82,6 +78,9 @@ const theme = extendTheme({
     Button: ButtonTheme,
     IconButton: IconButtonTheme,
     Input: InputTheme,
+    FormLabel: InputLabelTheme,
+    FormHelperText: InputHelpTextTheme,
+    FormErrorMessage: InputErrorTextTheme,
   },
 });
 

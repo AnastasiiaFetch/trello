@@ -24,18 +24,21 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
   const { data: boards = null, isLoading: isBoardsLoading } = useQuery({
     queryFn: () => getAllBoards(),
     queryKey: ['get-all-boards'],
+    staleTime: Infinity,
     select: data => data.data,
   });
 
   const { data: workspaces = null, isLoading: isWorkspacesLoading } = useQuery({
     queryFn: () => getAllWorkSpaces(),
     queryKey: ['get-all-workspaces'],
-    enabled: false,
+    staleTime: Infinity,
     select: data => data.data,
   });
 
-  console.log(boards);
-  console.log(workspaces);
+  useEffect(() => {
+    console.log(boards);
+    console.log(workspaces);
+  }, [boards, workspaces]);
 
   return <>{children}</>;
 };
