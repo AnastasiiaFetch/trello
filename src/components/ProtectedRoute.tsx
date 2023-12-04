@@ -4,6 +4,9 @@ import { getAllBoards, getAllWorkSpaces } from '../api';
 import useColorStore from '../store/colorState';
 import { useEffect } from 'react';
 import theme from '../theme';
+import useWorkspacesStore from '../store/workspacesState';
+import useBoardsStore from '../store/boardsState';
+import { equals } from 'ramda';
 
 type Props = {
   children: React.ReactNode;
@@ -14,6 +17,8 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
 
   const { boardId } = useParams();
   const { color: mainColor, setColor } = useColorStore();
+  const { workspaces: userWorkspaces, setWorkspaces } = useWorkspacesStore();
+  const { boards: userBoards, setBoards } = useBoardsStore();
 
   useEffect(() => {
     if (!boardId && mainColor !== theme.colors.basic) {
@@ -21,14 +26,14 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
     }
   }, [boardId]);
 
-  const { data: boards = null, isLoading: isBoardsLoading } = useQuery({
+  const { data: { boards } = { boards: null }, isLoading: isBoardsLoading } = useQuery({
     queryFn: () => getAllBoards(),
     queryKey: ['get-all-boards'],
     staleTime: Infinity,
     select: data => data.data,
   });
 
-  const { data: workspaces = null, isLoading: isWorkspacesLoading } = useQuery({
+  const { data: { workspaces } = { workspaces: null }, isLoading: isWorkspacesLoading } = useQuery({
     queryFn: () => getAllWorkSpaces(),
     queryKey: ['get-all-workspaces'],
     staleTime: Infinity,
@@ -36,9 +41,13 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
   });
 
   useEffect(() => {
-    console.log(boards);
-    console.log(workspaces);
-  }, [boards, workspaces]);
+    if (!equals(userBoards, boards) && boards && !isBoardsLoading) {
+      setBoards(boards);
+    }
+    if (!equals(userWorkspaces, workspaces) && workspaces && !isWorkspacesLoading) {
+      setWorkspaces(workspaces);
+    }
+  }, [userBoards, boards, userWorkspaces, workspaces]);
 
   return <>{children}</>;
 };

@@ -1,0 +1,9 @@
+export interface Board {
+  id: number;
+  name: string;
+  description: string;
+  workspaceId: number;
+  isSelected: boolean;
+  createdAt: string;
+  color: string;
+}
