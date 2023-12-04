@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getAllBoards, getAllWorkSpaces } from '../api';
+import { getAllBoards, getAllWorkSpaces, getUser } from '../api';
 import useColorStore from '../store/colorState';
 import { useEffect } from 'react';
 import theme from '../theme';
 import useWorkspacesStore from '../store/workspacesState';
 import useBoardsStore from '../store/boardsState';
 import { equals } from 'ramda';
+import useUserStore from '../store/userState';
 
 type Props = {
   children: React.ReactNode;
@@ -18,7 +19,10 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
   const { boardId } = useParams();
   const { color: mainColor, setColor } = useColorStore();
   const { workspaces: userWorkspaces, setWorkspaces } = useWorkspacesStore();
+  const { currentUser, setUser, isLoggedIn, getUserToken, setUserToken } = useUserStore();
   const { boards: userBoards, setBoards } = useBoardsStore();
+
+  const userToken = getUserToken();
 
   useEffect(() => {
     if (!boardId && mainColor !== theme.colors.basic) {
@@ -26,17 +30,41 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
     }
   }, [boardId]);
 
+  const {
+    data: { user } = { user: null },
+    status,
+    isLoading: isUserLoading,
+  } = useQuery({
+    queryFn: () => getUser(),
+    queryKey: ['userToken', userToken],
+    enabled: !!userToken && (!isLoggedIn || !currentUser),
+    select: data => data.data,
+  });
+
+  useEffect(() => {
+    if (!userToken) {
+      navigate('/sign-in');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user && status === 'success') {
+      setUser(user);
+    } else if (status === 'error') {
+      setUserToken('');
+      navigate('/sign-in');
+    }
+  }, [status]);
+
   const { data: { boards } = { boards: null }, isLoading: isBoardsLoading } = useQuery({
     queryFn: () => getAllBoards(),
     queryKey: ['get-all-boards'],
-    staleTime: Infinity,
     select: data => data.data,
   });
 
   const { data: { workspaces } = { workspaces: null }, isLoading: isWorkspacesLoading } = useQuery({
     queryFn: () => getAllWorkSpaces(),
     queryKey: ['get-all-workspaces'],
-    staleTime: Infinity,
     select: data => data.data,
   });
 

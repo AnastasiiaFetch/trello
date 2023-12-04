@@ -1,5 +1,19 @@
 import axios from 'axios';
 
+export const getUser = () => {
+  return {
+    data: {
+      user: {
+        id: 'ssdsdsdf',
+        firstName: 'Anastasiia',
+        lastName: 'Fetch',
+        email: 'fetch.ana22@gmail.com',
+        userPhoto: null,
+      },
+    },
+  };
+};
+
 export const getAllWorkSpaces = () => {
   return {
     data: {

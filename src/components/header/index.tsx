@@ -13,10 +13,12 @@ import useBoardsStore from '../../store/boardsState';
 import { useEffect, useState } from 'react';
 import { equals } from 'ramda';
 import Avatar from '../../elements/avatar/Avatar';
+import { useNavigate } from 'react-router-dom';
 
 const TrelloHeader = () => {
   const { workspaces: userWorkspaces } = useWorkspacesStore();
   const { boards: userBoards } = useBoardsStore();
+  const navigate = useNavigate();
 
   const [headerSelects, setHeaderSelects] = useState<CustomSelectProps[]>([]);
 
@@ -81,12 +83,16 @@ const TrelloHeader = () => {
     setHeaderSelects(prevItems => (equals(prevItems, items) ? prevItems : items));
   }, [userWorkspaces, userBoards]);
 
-  console.log();
-
   return (
     <Flex alignItems="center" justify="space-between">
       <Flex gap={8} alignItems="center">
-        <Flex align="center" justify="center" gap={1}>
+        <Flex
+          align="center"
+          justify="center"
+          gap={1}
+          cursor="pointer"
+          onClick={() => navigate('/auth/5')}
+        >
           <TrelloLogo size={35} />
           <Text fontSize="display-sm" fontWeight="bold">
             Trello
