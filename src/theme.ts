@@ -8,6 +8,7 @@ import {
   InputLabelTheme,
   InputTheme,
 } from './elements/input/InputTheme';
+import { AvatarTheme } from './elements/avatar/AvatarTheme';
 
 const darkColor = color('#172b4d').lightness(10).alpha(0.8).rgb().string();
 const lightColor = color('#FAFAFA').lightness(100).alpha(0.8).rgb().string();
@@ -81,6 +82,7 @@ const theme = extendTheme({
     FormLabel: InputLabelTheme,
     FormHelperText: InputHelpTextTheme,
     FormErrorMessage: InputErrorTextTheme,
+    Avatar: AvatarTheme,
   },
 });
 

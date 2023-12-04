@@ -3,6 +3,7 @@ export interface CustomSelectItemProps {
   rightIcon?: any;
   content?: string;
   contentTitle: string;
+  isSelected?: boolean;
   onClick: () => void;
 }
 

@@ -11,8 +11,10 @@ type BasicSelectItemProps = CustomSelectItemProps & {
 
 const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
   mode = 'nav',
-  contentTitle,
-  content,
+  contentTitle = '',
+  content = '',
+  leftIcon = '',
+  isSelected = false,
   ...rest
 }) => {
   return (
@@ -27,13 +29,11 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
       {...rest}
     >
       <Flex flex={1} overflowX="hidden" align="center" gap={2}>
-        <Flex bg="red" minW="3rem" maxW="3rem" minH="2rem" flex={1} borderRadius="md"></Flex>
+        <Flex bg={leftIcon} minW="3rem" maxW="3rem" minH="2rem" flex={1} borderRadius="md" />
         <Flex flexDir="column">
           <Box w="100%">
             <Text w="100%" whiteSpace="nowrap" fontSize="text-sm" fontWeight="semibold">
-              {'Project Managementu111uuusss55555'.length > 25
-                ? `${'Project Managementu111uuusss55555'.slice(0, 25)}...`
-                : 'Project Managementu111uuusss55555'}
+              {contentTitle.length > 25 ? `${contentTitle.slice(0, 25)}...` : contentTitle}
             </Text>
           </Box>
           {mode === 'nav' && (
@@ -45,9 +45,7 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
                 fontWeight="semibold"
                 color="gray.500"
               >
-                {'Робочий простір'.length > 25
-                  ? `${'Робочий простір'.slice(0, 25)}...`
-                  : 'Робочий простір'}
+                {`Робочий простір: ${content.length > 15 ? content.slice(0, 15) + '...' : content}`}
               </Text>
             </Box>
           )}
@@ -70,7 +68,7 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
       )}
       <Box
         bgColor="inherit"
-        display="none"
+        display={isSelected ? 'flex' : 'none'}
         alignItems="center"
         justifyContent="center"
         height="100%"
@@ -79,7 +77,7 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
         right={0}
         top={0}
       >
-        <Star size={18} />
+        <Star size={18} isFilled={isSelected} />
       </Box>
     </SelectItemWrapper>
   );

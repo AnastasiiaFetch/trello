@@ -8,42 +8,80 @@ import Users from '../../elements/icons/Users';
 import CreateSelectItem from '../../elements/custom-select/CreateSelectItem';
 import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
 import WorkSpaceSelectItem from '../../elements/custom-select/WorkSpaceSelectItem';
+import useWorkspacesStore from '../../store/workspacesState';
+import useBoardsStore from '../../store/boardsState';
+import { useEffect, useState } from 'react';
+import { equals } from 'ramda';
+import Avatar from '../../elements/avatar/Avatar';
 
 const TrelloHeader = () => {
-  const headerSelects = [
-    {
-      title: 'Робочі області',
-      mode: 'work-space',
-      elements: [{ leftIcon: '', contentTitle: 'Робоча зона 1', onClick: () => console.log('1') }],
-    },
-    { title: 'Важливе', mode: 'selected', elements: [{}] },
-    {
-      title: 'Створити',
-      mode: 'create',
-      elements: [
-        {
-          contentTitle: 'Створити дошку',
-          leftIcon: Board,
-          onClick: () => {},
-          content:
-            'Дошка зроблена з карток, що згруповані в списки. Використовуйте її для управління проектами, відстеження інформації або організації інших процесів.',
-        },
-        {
-          contentTitle: 'Шаблони',
-          leftIcon: Grid,
-          onClick: () => {},
-          content: 'Скористуйтеся шаблоном дошки, щоб оптимізувати робочий процес.',
-        },
-        {
-          contentTitle: 'Створити робочу область',
-          leftIcon: Users,
-          onClick: () => {},
-          content:
-            'Робоча область — це група дощок і людей. Використовуйте її, щоб організувати роботу вашої команди, компанії або інше.',
-        },
-      ],
-    },
-  ] as CustomSelectProps[];
+  const { workspaces: userWorkspaces } = useWorkspacesStore();
+  const { boards: userBoards } = useBoardsStore();
+
+  const [headerSelects, setHeaderSelects] = useState<CustomSelectProps[]>([]);
+
+  useEffect(() => {
+    const items = [
+      {
+        title: 'Робочі області',
+        mode: 'work-space',
+        elements: userWorkspaces
+          ? userWorkspaces.map(workspace => ({
+              leftIcon: <Avatar size="md" name={workspace.name || ''} borderRadius="md" />,
+              contentTitle: workspace.name,
+              onClick: () => console.log(workspace.id),
+            }))
+          : [],
+      },
+      {
+        title: 'Важливе',
+        mode: 'selected',
+        elements: userBoards
+          ? userBoards
+              .filter(board => board.isSelected)
+              .map(selectedBoard => ({
+                leftIcon: selectedBoard.color,
+                contentTitle: selectedBoard.name,
+                content: userWorkspaces?.find(
+                  workspace => workspace.id === selectedBoard.workspaceId
+                )?.name,
+                isSelected: true,
+                onClick: () => console.log(selectedBoard.id),
+              }))
+          : [],
+      },
+      {
+        title: 'Створити',
+        mode: 'create',
+        elements: [
+          {
+            contentTitle: 'Створити дошку',
+            leftIcon: Board,
+            onClick: () => {},
+            content:
+              'Дошка зроблена з карток, що згруповані в списки. Використовуйте її для управління проектами, відстеження інформації або організації інших процесів.',
+          },
+          {
+            contentTitle: 'Шаблони',
+            leftIcon: Grid,
+            onClick: () => {},
+            content: 'Скористуйтеся шаблоном дошки, щоб оптимізувати робочий процес.',
+          },
+          {
+            contentTitle: 'Створити робочу область',
+            leftIcon: Users,
+            onClick: () => {},
+            content:
+              'Робоча область — це група дощок і людей. Використовуйте її, щоб організувати роботу вашої команди, компанії або інше.',
+          },
+        ],
+      },
+    ];
+
+    setHeaderSelects(prevItems => (equals(prevItems, items) ? prevItems : items));
+  }, [userWorkspaces, userBoards]);
+
+  console.log();
 
   return (
     <Flex alignItems="center" justify="space-between">
