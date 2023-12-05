@@ -5,10 +5,13 @@ import { Box, Text } from '@chakra-ui/react';
 import RootLayout from './layouts/RootLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Input from './elements/input/Input';
+import loadable from '@loadable/component';
 
 const useProtectedRoute = (children: React.ReactNode) => {
   return <ProtectedRoute>{children}</ProtectedRoute>;
 };
+
+const MainPage = loadable(() => import('./pages/main/MainPage'));
 
 const Router = () => {
   return (
@@ -17,14 +20,7 @@ const Router = () => {
         <Route path="/sign-in" element={<Box>Логін</Box>} />
         <Route path="/sign-up" element={<Box>Реєстрація</Box>} />
         <Route element={useProtectedRoute(<RootLayout />)}>
-          <Route
-            path="/auth/:userId"
-            element={
-              <Box fontSize="text-lg">
-                <Text>user workspaces and boards</Text>
-              </Box>
-            }
-          />
+          <Route path="/auth/:userId" element={<MainPage />} />
 
           <Route element={<WorkSpaceLayout />}>
             <Route

@@ -4,30 +4,27 @@ import { User } from '../types/user';
 interface UserState {
   isLoggedIn: boolean;
   currentUser: User | null;
-  userToken?: string | null;
   setUserToken: (token: string) => void;
-  getUserToken: () => string | null | undefined;
+  getUserToken: () => string | null;
   setUser: (user: User) => void;
   setLoggedInUser: (isLoggedIn: boolean | undefined) => void;
   removeUser: () => void;
   setUserPhoto: (userPhoto: string) => void;
-  mutateUser: (user: User) => void;
+  updateUser: (user: User) => void;
 }
 
 export const useUserStore = create<UserState>((set, get) => ({
   isLoggedIn: false,
-  userToken: '555555555555555555555555555555555',
   currentUser: null,
-  setUserToken: (token: string) =>
-    set(() => {
+  setUserToken: (token: string) => {
+    if (token) {
       localStorage.setItem('userToken', token);
-      return { userToken: token };
-    }),
+    }
+  },
   getUserToken: () => {
-    const token = get().userToken;
-    if (token) return token;
     const tokenLS = localStorage.getItem('userToken');
-    return tokenLS;
+    return 'dddddddddd';
+    // return tokenLS || null;
   },
   setUser: (user: User) => set(() => ({ isLoggedIn: true, currentUser: user })),
   setLoggedInUser: (isLoggedIn: boolean | undefined) =>
@@ -40,7 +37,7 @@ export const useUserStore = create<UserState>((set, get) => ({
       set(() => ({ currentUser: user }));
     }
   },
-  mutateUser: (user: User) =>
+  updateUser: (user: User) =>
     set(() => ({
       currentUser: {
         ...(get().currentUser || {}),

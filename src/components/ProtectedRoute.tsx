@@ -18,8 +18,9 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
 
   const { boardId } = useParams();
   const { color: mainColor, setColor } = useColorStore();
-  const { workspaces: userWorkspaces, setWorkspaces } = useWorkspacesStore();
   const { currentUser, setUser, isLoggedIn, getUserToken, setUserToken } = useUserStore();
+
+  const { workspaces: userWorkspaces, setWorkspaces } = useWorkspacesStore();
   const { boards: userBoards, setBoards } = useBoardsStore();
 
   const userToken = getUserToken();
@@ -59,12 +60,14 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
   const { data: { boards } = { boards: null }, isLoading: isBoardsLoading } = useQuery({
     queryFn: () => getAllBoards(),
     queryKey: ['get-all-boards'],
+    enabled: !!userToken && (!isLoggedIn || !userBoards),
     select: data => data.data,
   });
 
   const { data: { workspaces } = { workspaces: null }, isLoading: isWorkspacesLoading } = useQuery({
     queryFn: () => getAllWorkSpaces(),
     queryKey: ['get-all-workspaces'],
+    enabled: !!userToken && (!isLoggedIn || !userWorkspaces),
     select: data => data.data,
   });
 
