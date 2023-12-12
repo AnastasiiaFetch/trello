@@ -5,6 +5,7 @@ export interface CustomSelectItemProps {
   contentTitle: string;
   isSelected?: boolean;
   onClick: () => void;
+  [key: string]: any;
 }
 
 export interface CustomSelectProps {

@@ -6,8 +6,8 @@ import Board from '../../elements/icons/Board';
 import Grid from '../../elements/icons/Grid';
 import Users from '../../elements/icons/Users';
 import ExpandedSelectItem from '../../elements/custom-select/ExpandedSelectItem';
+import BoardSelectItem from '../../elements/custom-select/BoardSelectItem';
 import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
-import WorkSpaceSelectItem from '../../elements/custom-select/WorkSpaceSelectItem';
 import useWorkspacesStore from '../../store/workspacesState';
 import useBoardsStore from '../../store/boardsState';
 import { useEffect, useState } from 'react';
@@ -26,7 +26,7 @@ const TrelloHeader = () => {
     const items = [
       {
         title: 'Робочі області',
-        mode: 'work-space',
+        mode: 'work-spaces',
         elements: userWorkspaces
           ? userWorkspaces.map(workspace => ({
               leftIcon: <Avatar size="md" name={workspace.name || ''} borderRadius="md" />,
@@ -37,7 +37,7 @@ const TrelloHeader = () => {
       },
       {
         title: 'Важливе',
-        mode: 'selected',
+        mode: 'selected-boards',
         elements: userBoards
           ? userBoards
               .filter(board => board.isSelected)
@@ -105,8 +105,10 @@ const TrelloHeader = () => {
                 elements.map((element, elementIndex) => (
                   <GridItem key={`${title}-item-${elementIndex}`} maxW="100%" overflowX="hidden">
                     {mode === 'create' && <ExpandedSelectItem {...element} />}
-                    {mode === 'selected' && <BasicSelectItem {...element} />}
-                    {mode === 'work-space' && <WorkSpaceSelectItem {...element} />}
+                    {mode === 'selected-boards' && <BoardSelectItem {...element} />}
+                    {mode === 'work-spaces' && (
+                      <BasicSelectItem {...element} fontSize="text-sm" fontWeight="semibold" />
+                    )}
                   </GridItem>
                 ))
               ) : (

@@ -21,6 +21,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
   const { getWorkspace } = useWorkspacesStore();
   const { currentUser } = useUserStore();
   const workSpace = getWorkspace(workspaceId)?.name;
+  
   const accessElements = [
     {
       contentTitle: 'Приватна',
@@ -57,7 +58,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
         height="auto"
         position="relative"
         flexWrap="wrap"
-        gap={1}
+        gap={2}
         px={8}
         py={2}
         w="100%"
@@ -79,7 +80,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
           >
             {name}
           </Text>
-          <Flex>
+          <Flex gap={1}>
             <Button variant="secondary" borderRadius="md" size="md">
               <ToolTip label={isSelected ? 'Видалити з важливого' : 'Додати до важливого'}>
                 <Star color={textColor} isFilled={isSelected} size="18" />

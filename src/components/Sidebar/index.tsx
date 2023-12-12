@@ -6,7 +6,7 @@ import X from '../../elements/icons/X';
 import IconButton from '../../elements/button/IconButton';
 import { useMainColor } from '../../composable/useMainColor';
 import useMainColorStore from '../../store/colorState';
-import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
+import BasicSelectItem from '../../elements/custom-select/BoardSelectItem';
 
 const sidebarVariants = {
   open: {
