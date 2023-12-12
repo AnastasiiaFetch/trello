@@ -5,7 +5,7 @@ import Select from '../../elements/custom-select/Select';
 import Board from '../../elements/icons/Board';
 import Grid from '../../elements/icons/Grid';
 import Users from '../../elements/icons/Users';
-import CreateSelectItem from '../../elements/custom-select/CreateSelectItem';
+import ExpandedSelectItem from '../../elements/custom-select/ExpandedSelectItem';
 import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
 import WorkSpaceSelectItem from '../../elements/custom-select/WorkSpaceSelectItem';
 import useWorkspacesStore from '../../store/workspacesState';
@@ -100,13 +100,19 @@ const TrelloHeader = () => {
         </Flex>
         {headerSelects.map(({ title, mode, elements }, index) => (
           <Select key={`${title}-${index}`} title={title}>
-            {elements.map((element, elementIndex) => (
-              <GridItem key={`${title}-item-${elementIndex}`} maxW="100%" overflowX="hidden">
-                {mode === 'create' && <CreateSelectItem {...element} />}
-                {mode === 'selected' && <BasicSelectItem {...element} />}
-                {mode === 'work-space' && <WorkSpaceSelectItem {...element} />}
-              </GridItem>
-            ))}
+            <>
+              {elements.length > 0 ? (
+                elements.map((element, elementIndex) => (
+                  <GridItem key={`${title}-item-${elementIndex}`} maxW="100%" overflowX="hidden">
+                    {mode === 'create' && <ExpandedSelectItem {...element} />}
+                    {mode === 'selected' && <BasicSelectItem {...element} />}
+                    {mode === 'work-space' && <WorkSpaceSelectItem {...element} />}
+                  </GridItem>
+                ))
+              ) : (
+                <Text textAlign="center">Цей список поки порожній...</Text>
+              )}
+            </>
           </Select>
         ))}
       </Flex>

@@ -26,10 +26,11 @@ const InfoPopover = ({
       strategy="absolute"
     >
       <PopoverTrigger>
+        <>Trigger</>
         {/* <InfoCircle color="var(--chakra-colors-gray-600)" size="18" /> */}
       </PopoverTrigger>
       <Portal>
-        <PopoverContent zIndex="100000">
+        <PopoverContent zIndex="10">
           <PopoverArrow />
           <PopoverBody fontSize="text-sm">{children}</PopoverBody>
         </PopoverContent>

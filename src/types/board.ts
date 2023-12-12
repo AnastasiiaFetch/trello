@@ -5,5 +5,5 @@ export interface Board {
   workspaceId: number;
   isSelected: boolean;
   createdAt: string;
-  color: string;
+  color: string | null;
 }

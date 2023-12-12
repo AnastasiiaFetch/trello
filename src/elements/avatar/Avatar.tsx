@@ -21,7 +21,7 @@ const Avatar: React.FC<ButtonProps> = (props: ButtonProps) => {
   const { darkColor } = useMainColor();
 
   return (
-    <Box as="span" display="inline-flex">
+    <Box as="span" display="inline-flex" cursor="pointer">
       <ChakraAvatar
         __css={styles}
         border="2px solid #FAFAFA"

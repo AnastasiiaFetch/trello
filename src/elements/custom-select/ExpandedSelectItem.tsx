@@ -2,7 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { CustomSelectItemProps } from '../../types/select';
 import SelectItemWrapper from './SelectItemWrapper';
 
-const CreateSelectItem: React.FC<CustomSelectItemProps> = ({
+const ExpandedSelectItem: React.FC<CustomSelectItemProps> = ({
   contentTitle,
   content,
   leftIcon,
@@ -35,4 +35,4 @@ const CreateSelectItem: React.FC<CustomSelectItemProps> = ({
   );
 };
 
-export default CreateSelectItem;
+export default ExpandedSelectItem;

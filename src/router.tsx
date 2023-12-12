@@ -6,12 +6,14 @@ import RootLayout from './layouts/RootLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Input from './elements/input/Input';
 import loadable from '@loadable/component';
+import List from './components/List/List';
 
 const useProtectedRoute = (children: React.ReactNode) => {
   return <ProtectedRoute>{children}</ProtectedRoute>;
 };
 
 const MainPage = loadable(() => import('./pages/main/MainPage'));
+const UserBoardPage = loadable(() => import('./pages/board/UserBoardPage'));
 
 const Router = () => {
   return (
@@ -31,15 +33,7 @@ const Router = () => {
                 </Box>
               }
             />
-            <Route
-              path="/:userId/b/:boardId"
-              element={
-                <Box fontSize="text-lg">
-                  <Text>board has custom color</Text>
-                  <Input type="text" label="gjgjgj" />
-                </Box>
-              }
-            />
+            <Route path="/:userId/b/:boardId" element={<UserBoardPage />} />
           </Route>
         </Route>
 

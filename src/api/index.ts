@@ -5,6 +5,7 @@ export const getUser = () => {
     data: {
       user: {
         id: 'ssdsdsdf',
+        accountType: 'admin',
         firstName: 'Anastasiia',
         lastName: 'Fetch',
         email: 'fetch.ana22@gmail.com',
@@ -89,6 +90,20 @@ export const getAllBoards = () => {
           color: '#2ecc71',
         },
       ],
+    },
+  };
+};
+
+export const getBoard = (id: string) => {
+  return {
+    data: {
+      id: 1,
+      name: 'Основна дошка',
+      description: 'Основна дошка для головного проекту',
+      workspaceId: 1,
+      isSelected: true,
+      createdAt: '2023-01-15T10:30:00',
+      color: '#3498db',
     },
   };
 };

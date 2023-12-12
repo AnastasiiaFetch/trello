@@ -29,6 +29,8 @@ const primaryVariant = defineStyle(() => {
     border: '1px solid transparent',
     outline: 'none',
     bg: 'gray.200',
+    p: 2,
+    w: '100%',
     color: textColor,
     boxShadow: 'xs',
     _hover: {
@@ -48,8 +50,9 @@ const secondaryVariant = defineStyle(() => {
 
   return {
     w: '100%',
-    justifyContent: 'start',
+    justifyContent: 'center',
     border: '1px solid transparent',
+    p: 2,
     outline: 'none',
     color: textColor,
     borderRadius: 'none',

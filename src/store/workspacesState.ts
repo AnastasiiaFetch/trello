@@ -4,14 +4,22 @@ import { Workspace } from '../types/workspace';
 interface WorkspacesState {
   workspaces: Workspace[] | null;
   setWorkspaces: (workSpaces: Workspace[]) => void;
+  getWorkspace: (id: number) => Workspace | null;
 }
 
-const useWorkspacesStore = create<WorkspacesState>(set => ({
+const useWorkspacesStore = create<WorkspacesState>((set, get) => ({
   workspaces: null,
   setWorkspaces: (workspaces: Workspace[]) =>
     set({
       workspaces,
     }),
+  getWorkspace: (id: number) => {
+    if (id && get().workspaces) {
+      const workspace = get()?.workspaces?.find(w => w.id === id);
+      return workspace || null;
+    }
+    return null;
+  },
 }));
 
 export default useWorkspacesStore;

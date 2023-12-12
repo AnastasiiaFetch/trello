@@ -36,7 +36,7 @@ const getSize = (size: string, fontSize: string) => {
   });
 };
 
-const sm = getSize('8', 'text-md');
+const sm = getSize('8', 'text-sm');
 const md = getSize('12', 'text-xl');
 
 export const AvatarTheme = defineMultiStyleConfig({

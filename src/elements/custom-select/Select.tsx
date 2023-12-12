@@ -10,26 +10,33 @@ import {
 } from '@chakra-ui/react';
 import Button from '../button/Button';
 
-const Select: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => {
+const Select: React.FC<{
+  title: string | any;
+  children?: React.ReactNode;
+  variant?: string;
+  [key: string]: any;
+}> = ({ title, children, variant = 'secondary' }) => {
   return (
     <Popover>
       <PopoverTrigger>
         <Box w="fit-content">
-          <Button variant="secondary" borderRadius="md" size="md">
-            {title}
+          <Button variant={variant as 'secondary' | 'primary'} borderRadius="md" size="md">
+            {title as string}
           </Button>
         </Box>
       </PopoverTrigger>
-      <Portal>
-        <PopoverContent width="21rem">
-          <PopoverArrow />
-          <PopoverBody>
-            <Grid templateColumns="repeat(1, 1fr)" gap={2}>
-              {children}
-            </Grid>
-          </PopoverBody>
-        </PopoverContent>
-      </Portal>
+      {children && (
+        <Portal>
+          <PopoverContent width="21rem">
+            <PopoverArrow />
+            <PopoverBody>
+              <Grid templateColumns="repeat(1, 1fr)" gap={2}>
+                {children}
+              </Grid>
+            </PopoverBody>
+          </PopoverContent>
+        </Portal>
+      )}
     </Popover>
   );
 };
