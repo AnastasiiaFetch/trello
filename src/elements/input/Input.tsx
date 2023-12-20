@@ -45,37 +45,37 @@ const Input: React.FC<InputProps> = (props, ref) => {
 
       <ChakraInputGroup variant="default">
         {leftElement && (
-          <ChakraInputLeftElement top="50%" left="3">
+          <ChakraInputLeftElement top="50%" left="5">
             {leftElement}
           </ChakraInputLeftElement>
         )}
 
         <ChakraInput
-          ref={ref}
+          variant="default"
           bg="base.white"
+          whiteSpace="nowrap"
+          ref={ref}
           size={size}
           type={type}
-          whiteSpace="nowrap"
           isInvalid={isError}
-          variant="default"
           __css={inputStyles}
           placeholder={placeholder}
           {...rest}
-          paddingStart={leftElement ? '11' : undefined}
-          paddingEnd={rightElement ? '11' : undefined}
+          paddingStart={leftElement ? '4rem' : undefined}
+          paddingEnd={rightElement ? '4rem' : undefined}
         />
         {rightElement && (
-          <ChakraInputRightElement top="50%" right="3">
+          <ChakraInputRightElement top="50%" right="5">
             {rightElement}
           </ChakraInputRightElement>
         )}
       </ChakraInputGroup>
       {!isError && helpText ? (
-        <ChakraFormHelpText __css={inputHelpTextStyles} mt="1.5" textAlign="left">
+        <ChakraFormHelpText __css={inputHelpTextStyles} mt="2" textAlign="left">
           {helpText}
         </ChakraFormHelpText>
       ) : (
-        <ChakraFormErrorMessage mt="1.5" __css={inputErrorMessageStyles} textAlign="left">
+        <ChakraFormErrorMessage mt="2" __css={inputErrorMessageStyles} textAlign="left">
           {helpText}
         </ChakraFormErrorMessage>
       )}
