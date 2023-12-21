@@ -26,6 +26,7 @@ export const SideNavBoard: React.FC<{
       onClick={onClick}
       position="relative"
       cursor="pointer"
+      _hover={{ filter: 'drop-shadow(5px 5px 5px gray)' }}
     >
       {isDefault ? (
         <Box alignSelf="center" textAlign="center" w="100%">

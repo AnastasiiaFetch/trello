@@ -5,12 +5,12 @@ import HorizontalDots from '../icons/HorizontalDots';
 import SelectItemWrapper from './SelectItemWrapper';
 import { useState } from 'react';
 
-type BasicSelectItemProps = CustomSelectItemProps & {
+type BoardSelectItemProps = CustomSelectItemProps & {
   mode?: 'sidebar' | 'nav';
   [key: string]: any;
 };
 
-const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
+const BoardSelectItem: React.FC<BoardSelectItemProps> = ({
   mode = 'nav',
   contentTitle = '',
   content = '',
@@ -23,8 +23,8 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
     <SelectItemWrapper
       borderRadius={mode === 'sidebar' ? 'none' : 'md'}
       _hover={{
-        bgColor: 'gray.200',
-        '& > .star_btn': {
+        bgColor: 'gray.300',
+        '& > .additional_btn': {
           display: 'flex',
         },
       }}
@@ -34,8 +34,15 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
         <Flex bg={leftIcon} minW="3rem" maxW="3rem" minH="2rem" flex={1} borderRadius="md" />
         <Flex flexDir="column">
           <Box w="100%">
-            <Text w="100%" whiteSpace="nowrap" fontSize="text-sm" fontWeight="semibold">
-              {contentTitle.length > 25 ? `${contentTitle.slice(0, 25)}...` : contentTitle}
+            <Text
+              w="100%"
+              whiteSpace="nowrap"
+              fontSize="text-sm"
+              fontWeight={mode === 'nav' ? 'semibold' : 'normal'}
+            >
+              {contentTitle.length > (mode === 'nav' ? 23 : 20)
+                ? `${contentTitle.slice(0, mode === 'nav' ? 23 : 20)}...`
+                : contentTitle}
             </Text>
           </Box>
           {mode === 'nav' && (
@@ -47,7 +54,7 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
                 fontWeight="semibold"
                 color="gray.500"
               >
-                {`Робочий простір: ${content.length > 15 ? content.slice(0, 15) + '...' : content}`}
+                {`Робочий простір: ${content.length > 14 ? content.slice(0, 14) + '...' : content}`}
               </Text>
             </Box>
           )}
@@ -60,10 +67,14 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
           alignItems="center"
           justifyContent="center"
           height="100%"
-          className="star_btn"
+          className="additional_btn"
           position="relative"
           right={0}
           top={0}
+          border="1px solid transparent"
+          borderRadius="md"
+          px="0.5rem"
+          _hover={{ borderColor: 'currentColor' }}
         >
           <HorizontalDots size={18} />
         </Box>
@@ -74,7 +85,7 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
         alignItems="center"
         justifyContent="center"
         height="100%"
-        className="star_btn"
+        className="additional_btn"
         position="relative"
         right={0}
         top={0}
@@ -90,4 +101,4 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
   );
 };
 
-export default BasicSelectItem;
+export default BoardSelectItem;

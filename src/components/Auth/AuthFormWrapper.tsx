@@ -14,7 +14,7 @@ export const AuthFormWrapper: React.FC<AuthFormProps> = ({ children }) => {
       h="100vh"
       w="100vw"
       maxW="100vw"
-      p={10}
+      px={10}
       overflow="hidden"
     >
       {children}
@@ -24,7 +24,7 @@ export const AuthFormWrapper: React.FC<AuthFormProps> = ({ children }) => {
 
 export const AuthFormItem: React.FC<AuthFormProps> = ({ children, ...rest }) => {
   return (
-    <GridItem w="100%" h="100%" {...rest}>
+    <GridItem w="100%" h="100%" p={5} {...rest}>
       {children}
     </GridItem>
   );

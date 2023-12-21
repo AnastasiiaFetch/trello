@@ -2,15 +2,11 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { CustomSelectItemProps } from '../../types/select';
 import SelectItemWrapper from './SelectItemWrapper';
 
-const WorkSpaceSelectItem: React.FC<CustomSelectItemProps> = ({
-  leftIcon,
-  contentTitle,
-  ...rest
-}) => {
+const BasicSelectItem: React.FC<CustomSelectItemProps> = ({ leftIcon, contentTitle, ...rest }) => {
   return (
     <SelectItemWrapper
       _hover={{
-        bgColor: 'gray.200',
+        bgColor: 'gray.300',
       }}
       flexDir="column"
       borderRadius="md"
@@ -31,4 +27,4 @@ const WorkSpaceSelectItem: React.FC<CustomSelectItemProps> = ({
   );
 };
 
-export default WorkSpaceSelectItem;
+export default BasicSelectItem;

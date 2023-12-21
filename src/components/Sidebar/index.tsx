@@ -1,12 +1,18 @@
-import { Box, VStack } from '@chakra-ui/react';
+import { Box, HStack, Text, VStack } from '@chakra-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useSidebarStore from '../../store/sidebarState';
 import ChevronRight from '../../elements/icons/ChevronRight';
 import X from '../../elements/icons/X';
 import IconButton from '../../elements/button/IconButton';
 import { useMainColor } from '../../composable/useMainColor';
-import useMainColorStore from '../../store/colorState';
-import BasicSelectItem from '../../elements/custom-select/BoardSelectItem';
+import Avatar from '../../elements/avatar/Avatar';
+import useWorkspacesStore from '../../store/workspacesState';
+import { useParams } from 'react-router-dom';
+import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
+import TrelloLogo from '../../elements/icons/TrelloLogo';
+import User from '../../elements/icons/User';
+import useBoardsStore from '../../store/boardsState';
+import BoardSelectItem from '../../elements/custom-select/BoardSelectItem';
 
 const sidebarVariants = {
   open: {
@@ -22,10 +28,20 @@ const sidebarContentVariants = {
   open: { opacity: 1, transition: { duration: 0.15 } },
 };
 
+const sidebarMenuItems = [
+  { id: 'boards', leftIcon: TrelloLogo, contentTitle: 'Дошки', onClick: () => {} },
+  { id: 'members', leftIcon: User, contentTitle: 'Учасники', onClick: () => {} },
+];
+
 const Sidebar = () => {
   const { isOpen: isSidebarOpen, setSidebarOpen: setSidebarOpen } = useSidebarStore.getState();
-
   const { textColor, sideBarColor, borderColor } = useMainColor();
+  const { getWorkspace } = useWorkspacesStore();
+  const { getBoards } = useBoardsStore();
+  const { workspaceId } = useParams();
+
+  const workSpace = workspaceId ? getWorkspace(workspaceId) : null;
+  const boards = workspaceId ? getBoards(workspaceId) : null;
 
   return (
     <Box display="flex" zIndex="9" userSelect="none">
@@ -83,10 +99,62 @@ const Sidebar = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              style={{ height: '100%', marginTop: '4rem' }}
+              style={{ height: '100%', marginTop: '1rem' }}
             >
               <VStack maxW="100%" w="100%" height="100%">
-                {/* <BasicSelectItem color="red" mode="sidebar" /> */}
+                <HStack w="100%" px={4}>
+                  <Avatar size="md" borderRadius="md" name={`${workSpace?.name} ` || ''} />
+                  <Text
+                    fontSize="text-sm"
+                    fontWeight="semibold"
+                    pr="2rem"
+                    wordBreak="break-word"
+                    color={textColor}
+                  >
+                    {workSpace?.name}
+                  </Text>
+                </HStack>
+                <Box border="1px solid transparent" borderTopColor={borderColor} w="100%" my={2} />
+                <VStack w="100%" gap={1} mb={4}>
+                  {sidebarMenuItems.map(({ id, leftIcon, contentTitle, onClick }) => {
+                    const Icon = leftIcon;
+                    return (
+                      <BasicSelectItem
+                        borderRadius="none"
+                        px="1rem"
+                        py="0.5rem"
+                        fontSize="text-sm"
+                        color={textColor}
+                        key={id}
+                        leftIcon={<Icon />}
+                        contentTitle={contentTitle}
+                        onClick={onClick}
+                      />
+                    );
+                  })}
+                </VStack>
+                <HStack w="100%" px={4}>
+                  <Text color={textColor} fontSize="text-sm" fontWeight="semibold">
+                    Ваші дошки
+                  </Text>
+                </HStack>
+                <VStack w="100%" gap={1}>
+                  {boards?.map((board, index) => {
+                    return (
+                      <BoardSelectItem
+                        key={`${board.id}-${index}`}
+                        mode="sidebar"
+                        px="1rem"
+                        py="0.5rem"
+                        color={textColor}
+                        leftIcon={board.color}
+                        contentTitle={board.name}
+                        isSelected={board.isSelected}
+                        onClick={() => {}}
+                      />
+                    );
+                  })}
+                </VStack>
               </VStack>
             </motion.div>
           </AnimatePresence>

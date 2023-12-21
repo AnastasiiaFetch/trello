@@ -12,7 +12,7 @@ const ExpandedSelectItem: React.FC<CustomSelectItemProps> = ({
   return (
     <SelectItemWrapper
       _hover={{
-        bgColor: 'gray.200',
+        bgColor: 'gray.300',
       }}
       flexDir="column"
       borderRadius="md"

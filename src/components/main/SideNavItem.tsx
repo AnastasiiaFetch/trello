@@ -8,7 +8,8 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
   const { getBoards } = useBoardsStore();
   const navigate = useNavigate();
 
-  const handleOnBoardClick = (id: string) => navigate(`/b/${id}`);
+  const handleOnBoardClick = (boardId: string, workspaceId: string) =>
+    navigate(`/${workspaceId}/b/${boardId}`);
 
   const boards = useMemo(() => (itemId ? getBoards(itemId) : null), [itemId]);
   const selectedBoards = useMemo(
@@ -31,7 +32,7 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
                   <SideNavBoard
                     title={selectedBoard.name}
                     bg={selectedBoard.color}
-                    onClick={() => handleOnBoardClick(selectedBoard.id)}
+                    onClick={() => handleOnBoardClick(selectedBoard.id, selectedBoard.workspaceId)}
                   />
                 </GridItem>
               );
@@ -60,7 +61,7 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
                     title={board.name}
                     bg={board.color}
                     isSelected={board.isSelected}
-                    onClick={() => handleOnBoardClick(board.id)}
+                    onClick={() => handleOnBoardClick(board.id, board.workspaceId)}
                   />
                 </GridItem>
               );

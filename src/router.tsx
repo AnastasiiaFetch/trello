@@ -25,14 +25,14 @@ const Router = () => {
 
           <Route element={<WorkSpaceLayout />}>
             <Route
-              path="/w/:workSpaceId"
+              path="/w/:workspaceId"
               element={
                 <Box fontSize="text-lg">
                   <Text color="main.dark">user workspace still have main color</Text>
                 </Box>
               }
             />
-            <Route path="/b/:boardId" element={<UserBoardPage />} />
+            <Route path="/:workspaceId/b/:boardId" element={<UserBoardPage />} />
           </Route>
         </Route>
 

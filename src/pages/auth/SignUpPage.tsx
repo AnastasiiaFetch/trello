@@ -11,9 +11,9 @@ const SignUpPage = () => {
         <title>Trello | Реєстрація</title>
       </Helmet>
       <AuthFormWrapper>
-        <AuthFormItem position="relative">
+        <AuthFormItem position="relative" mt={5}>
           <chakra.img src={signUp} />
-          <Box position="absolute" bottom="15%" left="25%">
+          <Box position="absolute" bottom="18%" left="24%">
             <Text fontSize="text-xs" fontWeight="bold" color="main.dark">
               <a href="https://storyset.com/user">User illustrations by Storyset</a>
             </Text>

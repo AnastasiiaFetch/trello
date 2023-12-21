@@ -3,8 +3,8 @@ import { Board } from '../types/board';
 
 interface BoardsState {
   boards: Board[] | null;
-  setBoards: (workSpaces: Board[]) => void;
-  getBoards: (id: string) => Board[] | null;
+  setBoards: (boards: Board[]) => void;
+  getBoards: (workspaceId: string) => Board[] | null;
 }
 
 const useBoardsStore = create<BoardsState>((set, get) => ({
@@ -13,9 +13,9 @@ const useBoardsStore = create<BoardsState>((set, get) => ({
     set({
       boards,
     }),
-  getBoards: id => {
-    if (id && get().boards) {
-      const workSpaceBoards = get()?.boards?.filter(b => b.workspaceId === id);
+  getBoards: workspaceId => {
+    if (workspaceId && get().boards) {
+      const workSpaceBoards = get()?.boards?.filter(b => b.workspaceId === workspaceId);
       return workSpaceBoards || null;
     }
     return null;

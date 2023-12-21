@@ -78,7 +78,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
             whiteSpace="nowrap"
             color={textColor}
           >
-            {name}
+            {name?.length > 40 ? name?.slice(0, 40) + '...' : name}
           </Text>
           <Flex gap={1}>
             <Button variant="secondary" borderRadius="md" size="md">
@@ -105,7 +105,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
           minHeight="2rem"
           flexWrap="nowrap"
           marginLeft="auto"
-          gap={2}
+          gap={4}
         >
           <Button variant="secondary" borderRadius="md" size="md" onClick={() => {}}>
             <ToolTip label="Фільтрувати картки">

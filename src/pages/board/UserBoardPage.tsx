@@ -28,12 +28,18 @@ const UserBoardPage = () => {
   }, [board]);
 
   return (
-    <BoardWrapper>
-      <BoardHeader {...(board as Board)} />
-      <BoardContentWrapper>
-        <List />
-      </BoardContentWrapper>
-    </BoardWrapper>
+    <>
+      {board && !isLoading ? (
+        <BoardWrapper>
+          <BoardHeader {...(board as Board)} />
+          <BoardContentWrapper>
+            <List />
+          </BoardContentWrapper>
+        </BoardWrapper>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 
