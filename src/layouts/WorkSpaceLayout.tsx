@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/sidebar';
 import useSidebarStore from '../store/sidebarState';
 import { useMainColor } from '../composable/useMainColor';
 

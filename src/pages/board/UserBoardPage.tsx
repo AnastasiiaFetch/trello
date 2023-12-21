@@ -3,10 +3,10 @@ import { AxiosResponse } from 'axios';
 import { useParams } from 'react-router-dom';
 import { Board } from '../../types/board';
 import { getBoard } from '../../api';
-import BoardWrapper from '../../components/Board/BoardWrapper';
-import BoardContentWrapper from '../../components/Board/BoardContentWrapper';
-import List from '../../components/List/List';
-import BoardHeader from '../../components/Board/BoardHeader';
+import BoardWrapper from '../../components/board/BoardWrapper';
+import BoardContentWrapper from '../../components/board/BoardContentWrapper';
+import List from '../../components/list/List';
+import BoardHeader from '../../components/board/BoardHeader';
 import useColorStore from '../../store/colorState';
 import { useEffect } from 'react';
 

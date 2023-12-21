@@ -1,11 +1,11 @@
 export interface WorkspaceMember {
-  id: number;
+  id: string;
   name: string;
   role: string;
 }
 
 export interface Workspace {
-  id: number;
+  id: string;
   name: string;
   description: string;
   members: WorkspaceMember[];

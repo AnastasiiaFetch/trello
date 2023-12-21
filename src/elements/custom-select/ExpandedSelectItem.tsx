@@ -29,7 +29,7 @@ const ExpandedSelectItem: React.FC<CustomSelectItemProps> = ({
       </Flex>
 
       <Flex>
-        <Text fontSize="text-sm" whiteSpace="break-spaces">
+        <Text fontSize="text-xs" whiteSpace="break-spaces">
           {content}
         </Text>
       </Flex>

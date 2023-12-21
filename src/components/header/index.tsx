@@ -91,7 +91,7 @@ const TrelloHeader = () => {
           justify="center"
           gap={1}
           cursor="pointer"
-          onClick={() => navigate('/auth/5')}
+          onClick={() => navigate('/auth/main')}
         >
           <TrelloLogo size={35} />
           <Text fontSize="display-sm" fontWeight="bold">

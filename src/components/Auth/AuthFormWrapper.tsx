@@ -15,6 +15,7 @@ export const AuthFormWrapper: React.FC<AuthFormProps> = ({ children }) => {
       w="100vw"
       maxW="100vw"
       p={10}
+      overflow="hidden"
     >
       {children}
     </Grid>

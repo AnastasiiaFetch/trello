@@ -21,7 +21,7 @@ const SignInForm = () => {
 
   const onSubmit = (data: LoginSchema) => {
     console.log(data);
-    navigate('/auth/true');
+    navigate('/auth/main');
   };
   return (
     <VStack

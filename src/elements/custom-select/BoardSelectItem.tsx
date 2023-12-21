@@ -3,6 +3,7 @@ import Star from '../icons/Star';
 import { CustomSelectItemProps } from '../../types/select';
 import HorizontalDots from '../icons/HorizontalDots';
 import SelectItemWrapper from './SelectItemWrapper';
+import { useState } from 'react';
 
 type BasicSelectItemProps = CustomSelectItemProps & {
   mode?: 'sidebar' | 'nav';
@@ -17,6 +18,7 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
   isSelected = false,
   ...rest
 }) => {
+  const [hovered, setHovered] = useState<boolean>(false);
   return (
     <SelectItemWrapper
       borderRadius={mode === 'sidebar' ? 'none' : 'md'}
@@ -76,8 +78,13 @@ const BasicSelectItem: React.FC<BasicSelectItemProps> = ({
         position="relative"
         right={0}
         top={0}
+        onClick={e => {
+          e.stopPropagation();
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
-        <Star size={18} isFilled={isSelected} />
+        <Star size={18} isFilled={isSelected ? !hovered : hovered} />
       </Box>
     </SelectItemWrapper>
   );

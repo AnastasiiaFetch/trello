@@ -8,11 +8,25 @@ const Fonts = () => {
 
         body {
           background: #eff5fa;
-          overflow: hidden;
           padding: 0;
           margin: 0;
           font-family: 'Inter', sans-serif !important;
         }
+
+        ::-webkit-scrollbar {
+	        width: 5px;
+          height: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+	        background-color: #e8e8e8;
+	        border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+	      background-color: #f8f9fa;
+        }
+
       `}
     />
   );

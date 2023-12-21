@@ -21,7 +21,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
   const { getWorkspace } = useWorkspacesStore();
   const { currentUser } = useUserStore();
   const workSpace = getWorkspace(workspaceId)?.name;
-  
+
   const accessElements = [
     {
       contentTitle: 'Приватна',
@@ -107,18 +107,20 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
           marginLeft="auto"
           gap={2}
         >
-          <Button variant="secondary" borderRadius="md" size="md">
+          <Button variant="secondary" borderRadius="md" size="md" onClick={() => {}}>
             <ToolTip label="Фільтрувати картки">
               <Flex align="center" justify="center" gap={1}>
-                <Filter color={textColor} size="18" /> <Text>Фільтри</Text>
+                <Filter color={textColor} size="18" /> <Text fontSize="text-sm">Фільтри</Text>
               </Flex>
             </ToolTip>
           </Button>
           <Avatar size="sm" name={`${currentUser?.firstName} ${currentUser?.lastName}` || ''} />
           <Button variant="primary" borderRadius="md" size="md" px={4}>
-            <Flex gap={2}>
+            <Flex gap={2} px={1}>
               <User color={darkColor} size="18" />
-              <Text color={darkColor}>Поділитися</Text>
+              <Text color={darkColor} fontSize="text-sm">
+                Поділитися
+              </Text>
             </Flex>
           </Button>
           <Button variant="secondary" borderRadius="md" size="md" w="fit-content">

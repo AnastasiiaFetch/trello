@@ -1,7 +1,7 @@
 import { Box, HStack } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 import { useMainColor } from '../composable/useMainColor';
-import TrelloHeader from '../components/Header/index';
+import TrelloHeader from '../components/header/index';
 
 const RootLayout = () => {
   const { textColor, sideBarColor, borderColor } = useMainColor();

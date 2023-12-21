@@ -21,18 +21,18 @@ const Router = () => {
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route element={useProtectedRoute(<RootLayout />)}>
-          <Route path="/auth/:userId" element={<MainPage />} />
+          <Route path="/auth/main" element={<MainPage />} />
 
           <Route element={<WorkSpaceLayout />}>
             <Route
-              path="/:userId/w/:workSpaceId"
+              path="/w/:workSpaceId"
               element={
                 <Box fontSize="text-lg">
                   <Text color="main.dark">user workspace still have main color</Text>
                 </Box>
               }
             />
-            <Route path="/:userId/b/:boardId" element={<UserBoardPage />} />
+            <Route path="/b/:boardId" element={<UserBoardPage />} />
           </Route>
         </Route>
 

@@ -51,7 +51,6 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     if (user && status === 'success') {
       setUser(user);
-      navigate(`/auth/${user?.id}`);
     } else if (status === 'error') {
       setUserToken('');
       navigate('/sign-in');

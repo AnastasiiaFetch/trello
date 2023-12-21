@@ -3,7 +3,7 @@ import TrelloLogo from '../../elements/icons/TrelloLogo';
 import { useForm } from 'react-hook-form';
 import { cloneElement, useEffect, useState } from 'react';
 import Button from '../../elements/button/Button';
-import { EmailInput, PasswordInputs, PersonalInformationInputs } from './helpers';
+import { EmailInput, PasswordInputs, PersonalInformationInputs } from './common';
 import { SubmitButton } from '../../elements/button/SubmitButton';
 import { RegisterSchema, registerSchema } from '../../utils/schemas';
 import { yupResolver } from '@hookform/resolvers/yup';
