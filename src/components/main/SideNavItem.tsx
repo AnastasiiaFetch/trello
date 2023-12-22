@@ -37,9 +37,6 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
                 </GridItem>
               );
             })}
-            <GridItem w="100%">
-              <SideNavBoard isDefault onClick={() => {}} />
-            </GridItem>
           </SideNavBoardsWrapper>
         ) : (
           <HStack justify="center" my={25} w="100%">
@@ -52,9 +49,10 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
           Всі дошки
         </Text>
         <Box my="1" border="1px solid transparent" w="100%" borderTopColor="gray.400" />
-        {boards ? (
-          <SideNavBoardsWrapper>
-            {boards?.map(board => {
+
+        <SideNavBoardsWrapper>
+          {boards &&
+            boards?.map(board => {
               return (
                 <GridItem key={board.id} w="100%">
                   <SideNavBoard
@@ -66,15 +64,10 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
                 </GridItem>
               );
             })}
-            <GridItem w="100%">
-              <SideNavBoard isDefault onClick={() => {}} />
-            </GridItem>
-          </SideNavBoardsWrapper>
-        ) : (
-          <HStack justify="center" my={25} w="100%">
-            <Text>Список дошок поки пустий</Text>
-          </HStack>
-        )}
+          <GridItem w="100%">
+            <SideNavBoard isDefault onClick={() => {}} />
+          </GridItem>
+        </SideNavBoardsWrapper>
       </VStack>
     </VStack>
   );

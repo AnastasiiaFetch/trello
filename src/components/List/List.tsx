@@ -16,14 +16,6 @@ const List = () => {
       <ListWrapper>
         <>header</>
         <ListContentWrapper>
-          <p>dksglsflddddddddddddddd</p>
-          <p>dksglsfld</p> <p>dksglsfld</p>
-          <p>dksglsfld</p> <p>dksglsfld</p>
-          <p>dksglsfld</p> <p>dksglsfld</p>
-          <p>dksglsfld</p> <p>dksglsfld</p>
-          <p>dksglsfld</p> <p>dksglsfld</p>
-          <p>dksglsfld</p> <p>dksglsfld</p>
-          <p>dksglsfld</p> <p>dksglsfld</p> <p>dksglsfld</p> <p>dksglsfld</p> <p>dksglsfld</p>{' '}
           <p>dksglsfld</p> <p>dksglsfld</p>
         </ListContentWrapper>
         <>footer</>

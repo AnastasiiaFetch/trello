@@ -10,7 +10,7 @@ export const SideNavBoard: React.FC<{
   onClick: () => void;
 }> = ({
   title = 'Створити нову дошку',
-  bg = 'gray.300',
+  bg = 'gray.200',
   isSelected = true,
   onClick = () => {},
   isDefault = false,
@@ -19,11 +19,12 @@ export const SideNavBoard: React.FC<{
   const handleStarButtonClick = () => {};
   return (
     <Flex
-      bg={bg || 'gray.300'}
+      bg={bg || 'gray.200'}
       w="100%"
       h="6rem"
       p={2}
       onClick={onClick}
+      borderRadius="md"
       position="relative"
       cursor="pointer"
       _hover={{

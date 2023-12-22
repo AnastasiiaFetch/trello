@@ -3,6 +3,9 @@ import useUserStore from '../../store/userState';
 import Avatar from '../../elements/avatar/Avatar';
 import React, { useState } from 'react';
 import ChevronRight from '../../elements/icons/ChevronRight';
+import Button from '../../elements/button/Button';
+import ToolTip from '../../elements/tooltip';
+import Plus from '../../elements/icons/Plus';
 
 interface SideNavProps {
   items: { id: string; icon: React.ReactElement; title: string }[] | null;
@@ -27,10 +30,26 @@ const SideNav: React.FC<SideNavProps> = ({
         >{`${currentUser?.firstName} ${currentUser?.lastName}`}</Text>
       </HStack>
       <Box my="6" border="1px solid transparent" w="100%" borderTopColor="gray.400" />
-      <VStack w="100%" alignItems="flex-start" gap={4}>
-        <Text fontWeight="semibold" fontSize="text-md">
-          Робочі області
-        </Text>
+      <VStack minW="max-content" w="100%" alignItems="flex-start" gap={4}>
+        <HStack w="100%" justify="space-between" pl={2} align="center">
+          <Text fontWeight="semibold" fontSize="text-md">
+            Робочі області
+          </Text>
+          <Button
+            variant="secondary"
+            w="fit-content"
+            borderRadius="md"
+            size="md"
+            _hover={{
+              bgColor: 'rgba(0, 0, 0, 0.1)',
+            }}
+            onClick={() => {}}
+          >
+            <ToolTip label="Створити робочу область">
+              <Plus size="20" />
+            </ToolTip>
+          </Button>
+        </HStack>
         {items ? (
           items.map(({ id, title, icon }) => (
             <HStack

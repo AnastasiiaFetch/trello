@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
 import { useMainColor } from '../../composable/useMainColor';
 import { Helmet } from 'react-helmet-async';
 import SideNav from '../../components/main/SideNav';
