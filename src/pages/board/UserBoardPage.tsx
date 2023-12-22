@@ -34,10 +34,6 @@ const UserBoardPage = () => {
           <BoardHeader {...(board as Board)} />
           <BoardContentWrapper>
             <List />
-            <List />
-            <List />
-            <List />
-            <List />
           </BoardContentWrapper>
         </BoardWrapper>
       ) : (

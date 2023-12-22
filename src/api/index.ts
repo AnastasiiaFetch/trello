@@ -105,14 +105,6 @@ export const getAllBoards = () => {
 
 export const getBoard = (id: string) => {
   return {
-    data: {
-      id: '1',
-      name: 'Основна дошка',
-      description: 'Основна дошка для головного проекту',
-      workspaceId: '1',
-      isSelected: true,
-      createdAt: '2023-01-15T10:30:00',
-      color: 'white',
-    },
+    data: getAllBoards().data.boards.find(board => board.id === id),
   };
 };

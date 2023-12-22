@@ -31,7 +31,7 @@ const TrelloHeader = () => {
           ? userWorkspaces.map(workspace => ({
               leftIcon: <Avatar size="md" name={workspace.name || ''} borderRadius="md" />,
               contentTitle: workspace.name,
-              onClick: () => console.log(workspace.id),
+              onClick: () => navigate(`/w/${workspace.id}`),
             }))
           : [],
       },
@@ -41,15 +41,18 @@ const TrelloHeader = () => {
         elements: userBoards
           ? userBoards
               .filter(board => board.isSelected)
-              .map(selectedBoard => ({
-                leftIcon: selectedBoard.color,
-                contentTitle: selectedBoard.name,
-                content: userWorkspaces?.find(
+              .map(selectedBoard => {
+                const currentWorkspace = userWorkspaces?.find(
                   workspace => workspace.id === selectedBoard.workspaceId
-                )?.name,
-                isSelected: true,
-                onClick: () => console.log(selectedBoard.id),
-              }))
+                );
+                return {
+                  leftIcon: selectedBoard.color,
+                  contentTitle: selectedBoard.name,
+                  content: currentWorkspace?.name,
+                  isSelected: true,
+                  onClick: () => navigate(`/${currentWorkspace?.id}/b/${selectedBoard.id}`),
+                };
+              })
           : [],
       },
       {

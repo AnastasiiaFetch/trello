@@ -14,9 +14,9 @@ const BoardContentWrapper: React.FC<BoardContentWrapper> = ({ children, ...rest 
         bottom={0}
         left={0}
         px={2}
-        pt={2}
-        pb={4}
+        py={4}
         mb={4}
+        gap={4}
         position="absolute"
         userSelect="none"
         whiteSpace="nowrap"
@@ -36,6 +36,7 @@ const BoardContentWrapper: React.FC<BoardContentWrapper> = ({ children, ...rest 
             backgroundColor: 'rgba(0, 0, 0, 0.1)',
             borderRadius: '4px',
             marginInlineStart: '1rem',
+            marginInlineEnd: '1rem',
           },
         }}
       >

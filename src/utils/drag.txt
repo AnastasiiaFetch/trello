@@ -5,22 +5,17 @@ const lists = [
   {
     id: 'list1',
     title: 'To Do',
-    workspaceId: 'workspace1',
+    boardId: '1',
   },
   {
     id: 'list2',
     title: 'In Progress',
-    workspaceId: 'workspace1',
+    boardId: '1',
   },
   {
     id: 'list3',
     title: 'Done',
-    workspaceId: 'workspace1',
-  },
-  {
-    id: 'list4',
-    title: 'Backlog',
-    workspaceId: 'workspace2',
+    boardId: '1',
   },
 ];
 

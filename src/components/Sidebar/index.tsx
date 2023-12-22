@@ -7,7 +7,7 @@ import IconButton from '../../elements/button/IconButton';
 import { useMainColor } from '../../composable/useMainColor';
 import Avatar from '../../elements/avatar/Avatar';
 import useWorkspacesStore from '../../store/workspacesState';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
 import TrelloLogo from '../../elements/icons/TrelloLogo';
 import User from '../../elements/icons/User';
@@ -28,20 +28,26 @@ const sidebarContentVariants = {
   open: { opacity: 1, transition: { duration: 0.15 } },
 };
 
-const sidebarMenuItems = [
-  { id: 'boards', leftIcon: TrelloLogo, contentTitle: 'Дошки', onClick: () => {} },
-  { id: 'members', leftIcon: User, contentTitle: 'Учасники', onClick: () => {} },
-];
-
 const Sidebar = () => {
   const { isOpen: isSidebarOpen, setSidebarOpen: setSidebarOpen } = useSidebarStore.getState();
   const { textColor, sideBarColor, borderColor } = useMainColor();
   const { getWorkspace } = useWorkspacesStore();
   const { getBoards } = useBoardsStore();
   const { workspaceId } = useParams();
+  const navigate = useNavigate();
 
-  const workSpace = workspaceId ? getWorkspace(workspaceId) : null;
+  const workspace = workspaceId ? getWorkspace(workspaceId) : null;
   const boards = workspaceId ? getBoards(workspaceId) : null;
+
+  const sidebarMenuItems = [
+    {
+      id: 'boards',
+      leftIcon: TrelloLogo,
+      contentTitle: 'Дошки',
+      onClick: () => navigate(`/w/${workspaceId}`),
+    },
+    { id: 'members', leftIcon: User, contentTitle: 'Учасники', onClick: () => {} },
+  ];
 
   return (
     <Box display="flex" zIndex="9" userSelect="none">
@@ -103,7 +109,7 @@ const Sidebar = () => {
             >
               <VStack maxW="100%" w="100%" height="100%">
                 <HStack w="100%" px={4}>
-                  <Avatar size="md" borderRadius="md" name={`${workSpace?.name} ` || ''} />
+                  <Avatar size="md" borderRadius="md" name={`${workspace?.name} ` || ''} />
                   <Text
                     fontSize="text-sm"
                     fontWeight="semibold"
@@ -111,7 +117,7 @@ const Sidebar = () => {
                     wordBreak="break-word"
                     color={textColor}
                   >
-                    {workSpace?.name}
+                    {workspace?.name}
                   </Text>
                 </HStack>
                 <Box border="1px solid transparent" borderTopColor={borderColor} w="100%" my={2} />
@@ -139,18 +145,18 @@ const Sidebar = () => {
                   </Text>
                 </HStack>
                 <VStack w="100%" gap={1}>
-                  {boards?.map((board, index) => {
+                  {boards?.map(({ id, color, name, isSelected }, index) => {
                     return (
                       <BoardSelectItem
-                        key={`${board.id}-${index}`}
+                        key={`${id}-${index}`}
                         mode="sidebar"
                         px="1rem"
                         py="0.5rem"
                         color={textColor}
-                        leftIcon={board.color}
-                        contentTitle={board.name}
-                        isSelected={board.isSelected}
-                        onClick={() => {}}
+                        leftIcon={color}
+                        contentTitle={name}
+                        isSelected={isSelected}
+                        onClick={() => navigate(`/${workspaceId}/b/${id}`)}
                       />
                     );
                   })}

@@ -23,7 +23,7 @@ const BoardSelectItem: React.FC<BoardSelectItemProps> = ({
     <SelectItemWrapper
       borderRadius={mode === 'sidebar' ? 'none' : 'md'}
       _hover={{
-        bgColor: 'gray.300',
+        bgColor: 'rgba(0, 0, 0, 0.1)',
         '& > .additional_btn': {
           display: 'flex',
         },
@@ -62,7 +62,7 @@ const BoardSelectItem: React.FC<BoardSelectItemProps> = ({
       </Flex>
       {mode === 'sidebar' && (
         <Box
-          bgColor="inherit"
+          bgColor="transparent"
           display="none"
           alignItems="center"
           justifyContent="center"
@@ -71,16 +71,15 @@ const BoardSelectItem: React.FC<BoardSelectItemProps> = ({
           position="relative"
           right={0}
           top={0}
-          border="1px solid transparent"
           borderRadius="md"
           px="0.5rem"
-          _hover={{ borderColor: 'currentColor' }}
+          _hover={{ bgColor: 'inherit' }}
         >
           <HorizontalDots size={18} />
         </Box>
       )}
       <Box
-        bgColor="inherit"
+        bgColor="transparent"
         display={isSelected ? 'flex' : 'none'}
         alignItems="center"
         justifyContent="center"
@@ -95,7 +94,11 @@ const BoardSelectItem: React.FC<BoardSelectItemProps> = ({
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <Star size={18} isFilled={isSelected ? !hovered : hovered} />
+        <Star
+          size={18}
+          color={mode === 'nav' ? '#ECC94B' : 'currentColor'}
+          isFilled={isSelected ? !hovered : hovered}
+        />
       </Box>
     </SelectItemWrapper>
   );

@@ -17,7 +17,7 @@ const ListWrapper: React.FC<ListWrapperProps> = ({ children, ...rest }) => {
       boxShadow="0px 1px 1px #091E4240, 0px 0px 1px #091E424F"
       pb={1}
       overflowY="auto"
-      borderRadius="md"
+      borderRadius="xl"
       position="relative"
       scrollMargin="0.5rem"
       whiteSpace="normal"
@@ -26,6 +26,7 @@ const ListWrapper: React.FC<ListWrapperProps> = ({ children, ...rest }) => {
       fontSize="1rem"
       fontWeight="400"
       lineHeight="1.5rem"
+      w="20rem"
       {...rest}
     >
       {children}
