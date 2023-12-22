@@ -26,7 +26,11 @@ export const SideNavBoard: React.FC<{
       onClick={onClick}
       position="relative"
       cursor="pointer"
-      _hover={{ filter: 'drop-shadow(5px 5px 5px gray)' }}
+      _hover={{
+        WebkitBoxShadow: '5px 5px 10px 0px rgba(161,161,161,1)',
+        MozBoxShadow: '5px 5px 10px 0px rgba(161,161,161,1)',
+        boxShadow: '5px 5px 10px 0px rgba(161,161,161,1)',
+      }}
     >
       {isDefault ? (
         <Box alignSelf="center" textAlign="center" w="100%">

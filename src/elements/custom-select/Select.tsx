@@ -27,7 +27,7 @@ const Select: React.FC<{
       </PopoverTrigger>
       {children && (
         <Portal>
-          <PopoverContent width="22rem" maxH="25rem" overflow="auto">
+          <PopoverContent width="22rem" maxH="60vh" overflow="auto">
             <PopoverArrow />
             <PopoverBody>
               <Grid templateColumns="repeat(1, 1fr)" gap={2}>

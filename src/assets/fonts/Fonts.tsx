@@ -20,12 +20,16 @@ const Fonts = () => {
 
         ::-webkit-scrollbar-thumb {
 	        background-color: #e8e8e8;
-	        border-radius: 5px;
+	        border-radius: 4px;
         }
 
         ::-webkit-scrollbar-track {
-	      background-color: #f8f9fa;
+	        background-color: #f8f9fa;
+          border-radius: 60px;
         }
+
+        scrollbar-color: #e8e8e8 #f8f9fa;
+        scrollbar-width: thin;
 
       `}
     />

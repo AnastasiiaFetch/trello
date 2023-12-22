@@ -31,7 +31,6 @@ const MainPage = () => {
         <title>Trello | Головна</title>
       </Helmet>
       <Grid
-        gap={4}
         py="4rem"
         px="4rem"
         alignItems="center"

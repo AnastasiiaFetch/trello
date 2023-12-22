@@ -7,20 +7,37 @@ interface BoardContentWrapper {
 
 const BoardContentWrapper: React.FC<BoardContentWrapper> = ({ children, ...rest }) => {
   return (
-    <Box flexGrow="1" marginTop={2} position="relative" {...rest}>
+    <Box position="relative" flexGrow={1} {...rest}>
       <Flex
         right={0}
         top={0}
         bottom={0}
         left={0}
-        marginBottom={2}
-        px={4}
-        overflowX="auto"
-        overflowY="hidden"
-        paddingBottom={2}
+        px={2}
+        pt={2}
+        pb={4}
+        mb={4}
         position="absolute"
         userSelect="none"
         whiteSpace="nowrap"
+        overflowX="auto"
+        scrollSnapType="x mandatory"
+        css={{
+          scrollbarColor: 'rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.1)',
+          scrollbarWidth: 'thin',
+          '&::-webkit-scrollbar': {
+            height: '10px',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            borderRadius: '4px',
+          },
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            borderRadius: '4px',
+            marginInlineStart: '1rem',
+          },
+        }}
       >
         {children}
       </Flex>
