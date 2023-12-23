@@ -1,6 +1,19 @@
-export interface List {}
+export interface List {
+  id: string;
+  title: string;
+  boardId: string;
+  order: number;
+}
 
-export interface Card {}
+export interface Card {
+  id: string;
+  title: string;
+  description: string;
+  assignedTo: string;
+  dueDate: string;
+  listId: string;
+  order: number;
+}
 
 export interface Board {
   id: string;
@@ -10,6 +23,12 @@ export interface Board {
   isSelected: boolean;
   createdAt: string;
   color: string | null;
-  lists: any;
-  cards: any;
+  lists: List[] | null;
+  cards: Card[] | null;
+}
+
+export interface BoardItem {
+  id: string;
+  name: string;
+  cards: Card[] | null;
 }

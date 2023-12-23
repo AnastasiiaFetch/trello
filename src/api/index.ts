@@ -105,6 +105,81 @@ export const getAllBoards = () => {
 
 export const getBoard = (id: string) => {
   return {
-    data: getAllBoards().data.boards.find(board => board.id === id),
+    data: {
+      id: '1',
+      name: 'Основна дошка',
+      description: 'Основна дошка для головного проекту',
+      workspaceId: '1',
+      isSelected: true,
+      createdAt: '2023-01-15T10:30:00',
+      color: '#3498db',
+      lists: [
+        {
+          id: 'list1',
+          title: 'To Do',
+          boardId: '1',
+          order: 1,
+        },
+        {
+          id: 'list2',
+          title: 'In Progress',
+          boardId: '1',
+          order: 2,
+        },
+        {
+          id: 'list3',
+          title: 'Done',
+          boardId: '1',
+          order: 3,
+        },
+      ],
+      cards: [
+        {
+          id: 'card1',
+          title: 'Task 1',
+          description: 'Complete task 1 by the end of the week.',
+          assignedTo: 'John Doe',
+          dueDate: '2023-11-30',
+          listId: 'list1',
+          order: 1,
+        },
+        {
+          id: 'card2',
+          title: 'Task 2',
+          description: 'Review documentation for Task 2.',
+          assignedTo: 'Jane Smith',
+          dueDate: '2023-12-05',
+          listId: 'list1',
+          order: 2,
+        },
+        {
+          id: 'card3',
+          title: 'Task 3',
+          description: 'Implement feature X in the application.',
+          assignedTo: 'Alex Johnson',
+          dueDate: '2023-12-10',
+          listId: 'list2',
+          order: 1,
+        },
+        {
+          id: 'card4',
+          title: 'Task 4',
+          description: 'Prepare final report for Project A.',
+          assignedTo: 'Emily Brown',
+          dueDate: '2023-12-15',
+          listId: 'list3',
+          order: 1,
+        },
+        {
+          id: 'card5',
+          title: 'Task 5',
+          description: 'Prioritize tasks for the upcoming sprint.',
+          assignedTo: 'Bob Wilson',
+          dueDate: '2023-12-08',
+          listId: 'list1',
+          order: 3,
+        },
+      ],
+    },
   };
 };

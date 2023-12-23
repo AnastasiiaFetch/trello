@@ -1,14 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useParams } from 'react-router-dom';
-import { Board } from '../../types/board';
+import { Board, BoardItem, Card } from '../../types/board';
 import { getBoard } from '../../api';
 import BoardWrapper from '../../components/board/BoardWrapper';
 import BoardContentWrapper from '../../components/board/BoardContentWrapper';
 import List from '../../components/list/List';
 import BoardHeader from '../../components/board/BoardHeader';
 import useColorStore from '../../store/colorState';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 const UserBoardPage = () => {
   const { boardId } = useParams();
@@ -20,12 +21,95 @@ const UserBoardPage = () => {
   });
 
   const { setColor } = useColorStore();
+  const [boardItems, setBoardItems] = useState<BoardItem[] | null>(null);
 
   useEffect(() => {
-    if (board && !!board.color) {
+    if (!board) return;
+
+    if (!!board.color) {
       setColor(board.color);
     }
+
+    const { lists, cards } = board;
+
+    if (!lists) return;
+
+    const cardsByList = cards
+      ? cards.reduce((acc, card) => {
+          if (!acc[card.listId]) {
+            acc[card.listId] = [];
+          }
+          acc[card.listId].push(card);
+          return acc;
+        }, {} as Record<string, Card[]>)
+      : null;
+
+    const initialColumns = lists.map(list => ({
+      id: list.id,
+      name: list.title,
+      cards: cardsByList ? cardsByList[list.id] : null,
+    }));
+
+    setBoardItems(initialColumns);
   }, [board]);
+
+  const onDragEnd = (result: any) => {
+    if (!result.destination) return;
+
+    const { source, destination } = result;
+
+    setBoardItems(prevBoardItems => {
+      const newBoardItems = [...(prevBoardItems as BoardItem[])] as BoardItem[];
+
+      if (source.droppableId !== destination.droppableId) {
+        const sourceColumnIndex = newBoardItems.findIndex(item => item.id === source.droppableId);
+        const destColumnIndex = newBoardItems.findIndex(
+          item => item.id === destination.droppableId
+        );
+
+        const sourceColumn = { ...newBoardItems[sourceColumnIndex] };
+        const destColumn = { ...newBoardItems[destColumnIndex] };
+
+        const sourceItems = [...(sourceColumn.cards as Card[])] as Card[];
+        const destItems = [...(destColumn.cards as Card[])] as Card[];
+
+        const [removed] = sourceItems.splice(source.index, 1);
+        destItems.splice(destination.index, 0, removed);
+
+        sourceColumn.cards = sourceItems.map((card, index) => ({
+          ...card,
+          listId: sourceColumn.id,
+          order: index + 1,
+        }));
+
+        destColumn.cards = destItems.map((card, index) => ({
+          ...card,
+          listId: destColumn.id,
+          order: index + 1,
+        }));
+
+        newBoardItems[sourceColumnIndex] = sourceColumn;
+        newBoardItems[destColumnIndex] = destColumn;
+      } else {
+        const boardItemIndex = newBoardItems.findIndex(item => item.id === source.droppableId);
+        const boardItem = { ...newBoardItems[boardItemIndex] };
+        const copiedItems = [...(boardItem.cards as Card[])] as Card[];
+
+        const [removed] = copiedItems.splice(source.index, 1);
+        copiedItems.splice(destination.index, 0, removed);
+
+        boardItem.cards = copiedItems.map((card, index) => ({
+          ...card,
+          listId: boardItem.id,
+          order: index + 1,
+        }));
+
+        newBoardItems[boardItemIndex] = boardItem;
+      }
+
+      return newBoardItems;
+    });
+  };
 
   return (
     <>
@@ -33,7 +117,11 @@ const UserBoardPage = () => {
         <BoardWrapper>
           <BoardHeader {...(board as Board)} />
           <BoardContentWrapper>
-            <List />
+            <DragDropContext onDragEnd={onDragEnd}>
+              {boardItems?.map(boardItem => {
+                return <List key={boardItem.id} item={boardItem} />;
+              })}
+            </DragDropContext>
           </BoardContentWrapper>
         </BoardWrapper>
       ) : (
