@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { Box, Text } from '@chakra-ui/react';
 import loadable from '@loadable/component';
 import WorkSpaceLayout from './layouts/WorkSpaceLayout';
 import RootLayout from './layouts/RootLayout';
@@ -13,6 +12,7 @@ const SignInPage = loadable(() => import('./pages/auth/SignInPage'));
 const SignUpPage = loadable(() => import('./pages/auth/SignUpPage'));
 const MainPage = loadable(() => import('./pages/main/MainPage'));
 const UserBoardPage = loadable(() => import('./pages/board/UserBoardPage'));
+const UserWorkspacePage = loadable(() => import('./pages/workspace/UserWorkspacePage'));
 
 const Router = () => {
   return (
@@ -24,14 +24,7 @@ const Router = () => {
           <Route path="/auth/main" element={<MainPage />} />
 
           <Route element={<WorkSpaceLayout />}>
-            <Route
-              path="/w/:workspaceId"
-              element={
-                <Box fontSize="text-lg">
-                  <Text color="main.dark">user workspace still have main color</Text>
-                </Box>
-              }
-            />
+            <Route path="/w/:workspaceId" element={<UserWorkspacePage />} />
             <Route path="/:workspaceId/b/:boardId" element={<UserBoardPage />} />
           </Route>
         </Route>

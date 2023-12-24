@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Tooltip } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { useMainColor } from '../../composable/useMainColor';
 import Star from '../../elements/icons/Star';
 import Select from '../../elements/custom-select/Select';
@@ -14,8 +14,8 @@ import ToolTip from '../../elements/tooltip';
 import useUserStore from '../../store/userState';
 import Avatar from '../../elements/avatar/Avatar';
 import Filter from '../../elements/icons/Filter';
-import User from '../../elements/icons/User';
 import HorizontalDots from '../../elements/icons/HorizontalDots';
+import UserPlus from '../../elements/icons/UserPlus';
 
 const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
   const { getWorkspace } = useWorkspacesStore();
@@ -116,8 +116,8 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
           </Button>
           <Avatar size="sm" name={`${currentUser?.firstName} ${currentUser?.lastName}` || ''} />
           <Button variant="primary" borderRadius="md" size="md" px={4}>
-            <Flex gap={2} px={1}>
-              <User color={darkColor} size="18" />
+            <Flex gap={2} px={1} align="center">
+              <UserPlus color={darkColor} size="20" />
               <Text color={darkColor} fontSize="text-sm">
                 Поділитися
               </Text>

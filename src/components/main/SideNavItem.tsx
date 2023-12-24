@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import useBoardsStore from '../../store/boardsState';
 import { Box, GridItem, HStack, Text, VStack } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { SideNavBoard, SideNavBoardsWrapper } from './common';
+import { BoardsMenuItem, BoardsMenuWrapper } from '../common';
 
 const SideNavItem = ({ itemId }: { itemId: string | null }) => {
   const { getBoards } = useBoardsStore();
@@ -25,11 +25,11 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
         </Text>
         <Box my="1" border="1px solid transparent" w="100%" borderTopColor="gray.400" />
         {selectedBoards && selectedBoards.length > 0 ? (
-          <SideNavBoardsWrapper>
+          <BoardsMenuWrapper>
             {selectedBoards?.map(selectedBoard => {
               return (
                 <GridItem key={selectedBoard.id} w="100%">
-                  <SideNavBoard
+                  <BoardsMenuItem
                     title={selectedBoard.name}
                     bg={selectedBoard.color}
                     onClick={() => handleOnBoardClick(selectedBoard.id, selectedBoard.workspaceId)}
@@ -37,7 +37,7 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
                 </GridItem>
               );
             })}
-          </SideNavBoardsWrapper>
+          </BoardsMenuWrapper>
         ) : (
           <HStack justify="center" my={25} w="100%">
             <Text>Список важливих дошок поки пустий</Text>
@@ -50,12 +50,12 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
         </Text>
         <Box my="1" border="1px solid transparent" w="100%" borderTopColor="gray.400" />
 
-        <SideNavBoardsWrapper>
+        <BoardsMenuWrapper>
           {boards &&
             boards?.map(board => {
               return (
                 <GridItem key={board.id} w="100%">
-                  <SideNavBoard
+                  <BoardsMenuItem
                     title={board.name}
                     bg={board.color}
                     isSelected={board.isSelected}
@@ -65,9 +65,9 @@ const SideNavItem = ({ itemId }: { itemId: string | null }) => {
               );
             })}
           <GridItem w="100%">
-            <SideNavBoard isDefault onClick={() => {}} />
+            <BoardsMenuItem isDefault onClick={() => {}} />
           </GridItem>
-        </SideNavBoardsWrapper>
+        </BoardsMenuWrapper>
       </VStack>
     </VStack>
   );

@@ -1,8 +1,8 @@
 import { Box, Flex, Grid, Text } from '@chakra-ui/react';
-import Star from '../../../elements/icons/Star';
+import Star from '../../elements/icons/Star';
 import { useState } from 'react';
 
-export const SideNavBoard: React.FC<{
+export const BoardsMenuItem: React.FC<{
   title?: string;
   bg?: string | null;
   isSelected?: boolean;
@@ -22,6 +22,8 @@ export const SideNavBoard: React.FC<{
       bg={bg || 'gray.200'}
       w="100%"
       h="6rem"
+      whiteSpace="break-spaces"
+      overflow="auto"
       p={2}
       onClick={onClick}
       borderRadius="md"
@@ -62,8 +64,14 @@ export const SideNavBoard: React.FC<{
   );
 };
 
-export const SideNavBoardsWrapper = ({ children }: { children: React.ReactNode }) => (
-  <Grid templateColumns="repeat(auto-fill, minmax(30%, 1fr))" w="100%" gap={4}>
+export const BoardsMenuWrapper = ({
+  children,
+  ...rest
+}: {
+  children: React.ReactNode;
+  [key: string]: any;
+}) => (
+  <Grid templateColumns="repeat(auto-fill, minmax(15vw, 1fr))" w="100%" gap={4} {...rest}>
     {children}
   </Grid>
 );

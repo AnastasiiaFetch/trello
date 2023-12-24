@@ -16,7 +16,7 @@ const TrelloLogo = forwardRef(
       viewBox="0 0 24 24"
       fill="none"
       stroke={color}
-      strokeWidth="1.5"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       {...rest}

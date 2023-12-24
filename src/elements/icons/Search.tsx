@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 
-type IconProps = {
+type Props = {
   color: string;
   size: number;
   [key: string]: any;
 };
 
-const Grid = forwardRef(({ color = 'currentColor', size = 24, ...rest }: IconProps, ref: any) => (
+const Search = forwardRef(({ color = 'currentColor', size = 24, ...rest }: Props, ref: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     ref={ref}
@@ -20,11 +20,9 @@ const Grid = forwardRef(({ color = 'currentColor', size = 24, ...rest }: IconPro
     strokeLinejoin="round"
     {...rest}
   >
-    <rect x="3" y="3" width="7" height="7"></rect>
-    <rect x="14" y="3" width="7" height="7"></rect>
-    <rect x="14" y="14" width="7" height="7"></rect>
-    <rect x="3" y="14" width="7" height="7"></rect>
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
   </svg>
 ));
 
-export default Grid;
+export default Search;
