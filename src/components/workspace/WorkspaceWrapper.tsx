@@ -12,7 +12,6 @@ const WorkspaceWrapper: React.FC<WorkspaceWrapperProps> = ({ children, ...rest }
       justify="center"
       align="center"
       gap={4}
-      mt="2rem"
       w="100%"
       h="90%"
       maxH="90%"

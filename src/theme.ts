@@ -9,6 +9,7 @@ import {
   InputTheme,
 } from './elements/input/InputTheme';
 import { AvatarTheme } from './elements/avatar/AvatarTheme';
+import { SelectTheme } from './elements/select/SelectTheme';
 
 const darkColor = color('#172b4d').lightness(10).alpha(0.8).rgb().string();
 const lightColor = color('#FAFAFA').lightness(100).alpha(0.8).rgb().string();
@@ -84,6 +85,7 @@ const theme = extendTheme({
     FormHelperText: InputHelpTextTheme,
     FormErrorMessage: InputErrorTextTheme,
     Avatar: AvatarTheme,
+    Select: SelectTheme,
   },
 });
 

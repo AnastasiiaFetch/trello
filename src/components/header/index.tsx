@@ -1,7 +1,6 @@
 import { Flex, GridItem, Text } from '@chakra-ui/react';
 import TrelloLogo from '../../elements/icons/TrelloLogo';
 import { CustomSelectProps } from '../../types/select';
-import Select from '../../elements/custom-select/Select';
 import Board from '../../elements/icons/Board';
 import Grid from '../../elements/icons/Grid';
 import Users from '../../elements/icons/Users';
@@ -14,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { equals } from 'ramda';
 import Avatar from '../../elements/avatar/Avatar';
 import { useNavigate } from 'react-router-dom';
+import CustomSelect from '../../elements/custom-select/CustomSelect';
 
 const TrelloHeader = () => {
   const { workspaces: userWorkspaces } = useWorkspacesStore();
@@ -102,7 +102,7 @@ const TrelloHeader = () => {
           </Text>
         </Flex>
         {headerSelects.map(({ title, mode, elements }, index) => (
-          <Select key={`${title}-${index}`} title={title}>
+          <CustomSelect key={`${title}-${index}`} title={title}>
             <>
               {elements.length > 0 ? (
                 elements.map((element, elementIndex) => (
@@ -118,7 +118,7 @@ const TrelloHeader = () => {
                 <Text textAlign="center">Цей список поки порожній...</Text>
               )}
             </>
-          </Select>
+          </CustomSelect>
         ))}
       </Flex>
       <Flex></Flex>

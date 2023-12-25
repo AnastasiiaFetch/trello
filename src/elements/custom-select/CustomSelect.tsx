@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import Button from '../button/Button';
 
-const Select: React.FC<{
+const CustomSelect: React.FC<{
   title: string | any;
   children?: React.ReactNode;
   variant?: string;
@@ -41,4 +41,4 @@ const Select: React.FC<{
   );
 };
 
-export default Select;
+export default CustomSelect;

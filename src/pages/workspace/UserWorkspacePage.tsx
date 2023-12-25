@@ -27,7 +27,16 @@ const UserWorkspacePage = () => {
   const workspace = useMemo(() => (workspaceId ? getWorkspace(workspaceId) : null), [workspaceId]);
   return (
     <WorkspaceWrapper>
-      <VStack w="100%" height="fit-content" align="center" justify="center" gap={4}>
+      <VStack
+        w="100%"
+        height="fit-content"
+        maxH="100%"
+        align="center"
+        justify="start"
+        gap={4}
+        py="4rem"
+        overflow="auto"
+      >
         <HStack gap={4} w="60%" justify="space-between">
           <Flex gap={3}>
             <Avatar size="md" borderRadius="md" name={`${workspace?.name}` || ''} />
@@ -67,9 +76,9 @@ const UserWorkspacePage = () => {
         height="100%"
         align="start"
         justify="start"
-        overflowY="auto"
         px="4rem"
         py="2rem"
+        overflow="auto"
       >
         <HStack w="100%" align="center" justify="space-between">
           <Text fontSize="text-lg" fontWeight="semibold">

@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { useMainColor } from '../../composable/useMainColor';
 import Star from '../../elements/icons/Star';
-import Select from '../../elements/custom-select/Select';
+import CustomSelect from '../../elements/custom-select/CustomSelect';
 import ExpandedSelectItem from '../../elements/custom-select/ExpandedSelectItem';
 import Users from '../../elements/icons/Users';
 import Button from '../../elements/button/Button';
@@ -86,7 +86,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
                 <Star color={textColor} isFilled={isSelected} size="18" />
               </ToolTip>
             </Button>
-            <Select
+            <CustomSelect
               title={
                 <ToolTip label="Налаштувати доступ">
                   <Access color={textColor} size="18" />
@@ -96,7 +96,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
               {accessElements.map((element, index) => (
                 <ExpandedSelectItem key={index} {...element} />
               ))}
-            </Select>
+            </CustomSelect>
           </Flex>
         </Flex>
         <Flex

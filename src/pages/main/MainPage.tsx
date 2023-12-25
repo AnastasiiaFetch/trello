@@ -25,6 +25,7 @@ const MainPage = () => {
   }, [workspaces]);
 
   const [selectedItem, setSelectedItem] = useState(menuItems?.[0].id || null);
+
   return (
     <>
       <Helmet>

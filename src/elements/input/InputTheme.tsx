@@ -20,45 +20,43 @@ const variantDefault = definePartsStyle(() => {
   return {
     field: {
       border: '1px solid',
-      borderColor: 'gray.300',
-      bg: 'inherit',
       boxShadow: 'xs',
+      borderColor: 'var(--chakra-colors-gray-300)',
+      bg: 'inherit',
       borderRadius: '0.5rem',
       height: 'auto',
       color: darkColor,
       _placeholder: {
-        color: 'gray.500',
+        color: 'var(--chakra-colors-gray-500)',
       },
       _hover: {
         _disabled: {
           _placeholder: {
-            color: 'gray.500',
+            color: 'var(--chakra-colors-gray-500)',
           },
         },
       },
-      _focusVisible: {
-        color: 'gray.900',
-        borderColor: 'primary.300',
-        boxShadow: 'xs-primary-focus',
-      },
       _readOnly: {
         boxShadow: 'none',
-        bg: 'gray.50',
-        borderColor: 'gray.300',
+        bg: 'var(--chakra-colors-gray-50)',
+        borderColor: 'var(--chakra-colors-gray-300)',
         userSelect: 'all',
+      },
+      _focusVisible: {
+        color: 'var(--chakra-colors-gray-900)',
       },
       _disabled: {
         boxShadow: 'none',
-        bg: 'gray.50',
-        borderColor: 'gray.300',
+        bg: 'var(--chakra-colors-gray-50)',
+        borderColor: 'var(--chakra-colors-gray-300)',
         userSelect: 'none',
         cursor: 'not-allowed',
-        color: 'gray.500',
+        color: 'var(--chakra-colors-gray-500)',
       },
       _invalid: {
-        borderColor: 'error.300',
+        borderColor: 'var(--chakra-colors-error-300)',
         _focusVisible: {
-          borderColor: 'error.300',
+          borderColor: 'var(--chakra-colors-error-300)',
           boxShadow: 'xs-error-focus',
         },
       },
@@ -73,26 +71,26 @@ const variantDefault = definePartsStyle(() => {
 const sizes = {
   xs: definePartsStyle({
     field: {
-      px: '2.5',
       py: '1.5',
-      fontSize: 'text-sm',
+      px: '2.5',
       lineHeight: 'text-sm',
+      fontSize: 'text-sm',
     },
   }),
   sm: definePartsStyle({
     field: {
-      px: '3',
       py: '2',
-      fontSize: 'text-md',
+      px: '3',
       lineHeight: 'text-md',
+      fontSize: 'text-md',
     },
   }),
   md: definePartsStyle({
     field: {
-      px: '3.5',
       py: '2.5',
-      fontSize: 'text-md',
+      px: '3.5',
       lineHeight: 'text-md',
+      fontSize: 'text-md',
     },
   }),
 };
@@ -114,10 +112,10 @@ export const InputLabelTheme = defineStyleConfig({
 
 export const InputHelpTextTheme = defineStyleConfig({
   baseStyle: {
-    color: 'var(--chakra-colors-gray-400) !important',
     fontWeight: 'regular',
     fontSize: 'text-sm',
     lineHeight: 'text-sm',
+    color: 'var(--chakra-colors-gray-400) !important',
     mt: 'var(--chakra-space-1-5) !important',
   },
 });

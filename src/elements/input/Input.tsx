@@ -10,9 +10,9 @@ import {
   useMultiStyleConfig,
   useStyleConfig,
 } from '@chakra-ui/react';
-import { forwardRef } from 'react';
+import { ForwardRefRenderFunction, forwardRef } from 'react';
 import { InputProps } from '../../types/input';
-import InfoPopover from '../common/InfoPopover';
+import InfoPopover from '../popover/InfoPopover';
 
 const Input: React.FC<InputProps> = (props, ref) => {
   const {
@@ -83,4 +83,4 @@ const Input: React.FC<InputProps> = (props, ref) => {
   );
 };
 
-export default forwardRef(Input);
+export default forwardRef(Input as ForwardRefRenderFunction<unknown, InputProps>);
