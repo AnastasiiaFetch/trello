@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, Text } from '@chakra-ui/react';
-import Star from '../../elements/icons/Star';
+import Star from '../../../elements/icons/Star';
 import { useState } from 'react';
 
 export const BoardsMenuItem: React.FC<{

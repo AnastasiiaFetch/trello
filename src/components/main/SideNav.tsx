@@ -21,7 +21,7 @@ const SideNav: React.FC<SideNavProps> = ({
   const [hovered, setHovered] = useState<string | null>(null);
   const { currentUser } = useUserStore();
   return (
-    <VStack maxH="100%" w="100%">
+    <VStack maxH="100%" w="100%" px="4rem">
       <HStack gap={2}>
         <Avatar size="md" name={`${currentUser?.firstName} ${currentUser?.lastName}` || ''} />
         <Text

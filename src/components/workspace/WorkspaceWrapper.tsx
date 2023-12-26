@@ -9,12 +9,13 @@ const WorkspaceWrapper: React.FC<WorkspaceWrapperProps> = ({ children, ...rest }
   return (
     <Flex
       flexDir="column"
-      justify="center"
+      maxH="90vh"
+      overflowY="auto"
+      justify="start"
       align="center"
       gap={4}
       w="100%"
-      h="90%"
-      maxH="90%"
+      py="2rem"
       {...rest}
     >
       {children}

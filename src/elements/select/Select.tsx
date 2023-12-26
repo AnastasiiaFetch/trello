@@ -49,7 +49,7 @@ const Select: React.FC<SelectProps> = (props: SelectProps, ref) => {
     label = '',
     helpText = '',
     isError,
-    isCreatable = true,
+    isCreatable = false,
     isMulti = false,
     isAsync = false,
     components = {},
@@ -77,19 +77,19 @@ const Select: React.FC<SelectProps> = (props: SelectProps, ref) => {
   const sizesStyles = {
     xs: {
       px: '2',
-      py: '2',
+      py: '1',
       fontSize: 'text-sm',
       lineHeight: 'text-sm',
     },
     sm: {
       px: '2',
-      py: '2',
+      py: '1',
       fontSize: 'text-md',
       lineHeight: 'text-md',
     },
     md: {
       px: '2',
-      py: '2',
+      py: '1',
       fontSize: 'text-lg',
       lineHeight: 'text-lg',
     },
@@ -146,7 +146,7 @@ const Select: React.FC<SelectProps> = (props: SelectProps, ref) => {
           chakraStyles={{
             input: base => ({
               ...base,
-              py: '2',
+              py: '1',
               paddingLeft: 0,
             }),
             placeholder: base => ({
@@ -159,6 +159,7 @@ const Select: React.FC<SelectProps> = (props: SelectProps, ref) => {
             menuList: base => ({
               ...base,
               opacity: 1,
+              padding: '2',
             }),
             menu: base => ({
               ...base,
@@ -211,7 +212,7 @@ const Select: React.FC<SelectProps> = (props: SelectProps, ref) => {
               mx: '1',
               bgColor: state.data.bgColor || 'basic',
               color: state.data.color || darkColor,
-              py: '1',
+              py: '0.5',
             }),
             multiValueRemove: base => ({
               ...base,
@@ -224,18 +225,29 @@ const Select: React.FC<SelectProps> = (props: SelectProps, ref) => {
               color: 'gray.400',
               w: '100%',
               h: '100%',
+              cursor: 'pointer',
             }),
             crossIcon: base => ({
               ...base,
               fontSize: '0.8rem',
               color: 'gray.400',
+              '&:hover': {
+                backgroundColor: 'main.light',
+              },
             }),
             option: (base, state) => ({
               ...base,
               zIndex: 100,
-              background: state.isFocused ? 'basic' : 'main.light',
+              background: state.isFocused ? 'basic' : 'transparent',
               color: darkColor,
               fontWeight: 'normal',
+              borderRadius: 'md',
+              marginTop: '1',
+              ...sizesStyles[size],
+              py: '2',
+            }),
+            noOptionsMessage: base => ({
+              ...base,
               ...sizesStyles[size],
             }),
           }}

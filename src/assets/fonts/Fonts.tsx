@@ -14,8 +14,8 @@ const Fonts = () => {
         }
 
         ::-webkit-scrollbar {
-	        width: 5px;
-          height: 5px;
+	        width: 10px;
+          height: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
@@ -25,7 +25,7 @@ const Fonts = () => {
 
         ::-webkit-scrollbar-track {
 	        background-color: #f8f9fa;
-          border-radius: 60px;
+          border-radius: 4px;
         }
 
         scrollbar-color: #e8e8e8 #f8f9fa;

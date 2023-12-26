@@ -104,7 +104,7 @@ export const InputTheme = defineMultiStyleConfig({
 export const InputLabelTheme = defineStyleConfig({
   baseStyle: {
     fontWeight: 'semibold',
-    fontSize: 'text-md',
+    fontSize: 'text-sm',
     lineHeight: 'text-sm',
     marginBottom: '2',
   },
@@ -113,7 +113,7 @@ export const InputLabelTheme = defineStyleConfig({
 export const InputHelpTextTheme = defineStyleConfig({
   baseStyle: {
     fontWeight: 'regular',
-    fontSize: 'text-sm',
+    fontSize: 'text-xs',
     lineHeight: 'text-sm',
     color: 'var(--chakra-colors-gray-400) !important',
     mt: 'var(--chakra-space-1-5) !important',

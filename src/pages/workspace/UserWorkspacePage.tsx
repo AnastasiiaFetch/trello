@@ -1,6 +1,6 @@
 import { VStack, Text, Box, GridItem, HStack, Flex } from '@chakra-ui/react';
 import WorkspaceWrapper from '../../components/workspace/WorkspaceWrapper';
-import { BoardsMenuItem, BoardsMenuWrapper } from '../../components/common';
+import { BoardsMenuItem, BoardsMenuWrapper } from '../../components/common/BoardsMenu';
 import useBoardsStore from '../../store/boardsState';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMemo } from 'react';
@@ -27,16 +27,7 @@ const UserWorkspacePage = () => {
   const workspace = useMemo(() => (workspaceId ? getWorkspace(workspaceId) : null), [workspaceId]);
   return (
     <WorkspaceWrapper>
-      <VStack
-        w="100%"
-        height="fit-content"
-        maxH="100%"
-        align="center"
-        justify="start"
-        gap={4}
-        py="4rem"
-        overflow="auto"
-      >
+      <VStack w="100%" py="2rem" height="100%" align="center" justify="start" gap={4}>
         <HStack gap={4} w="60%" justify="space-between">
           <Flex gap={3}>
             <Avatar size="md" borderRadius="md" name={`${workspace?.name}` || ''} />
@@ -67,19 +58,12 @@ const UserWorkspacePage = () => {
             </Flex>
           </Button>
         </HStack>
-        <HStack w="60%" align="start">
+        <HStack w="60%" maxW="60%" wordBreak="break-word" align="start" textOverflow="ellipsis">
           <Text fontSize="text-xs">{workspace?.description}</Text>
         </HStack>
       </VStack>
-      <VStack
-        w="100%"
-        height="100%"
-        align="start"
-        justify="start"
-        px="4rem"
-        py="2rem"
-        overflow="auto"
-      >
+
+      <VStack w="100%" height="100%" align="start" justify="start" px="4rem" py="2rem">
         <HStack w="100%" align="center" justify="space-between">
           <Text fontSize="text-lg" fontWeight="semibold">
             Дошки

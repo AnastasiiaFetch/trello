@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import useBoardsStore from '../../store/boardsState';
 import { Box, GridItem, HStack, Text, VStack } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { BoardsMenuItem, BoardsMenuWrapper } from '../common';
+import { BoardsMenuItem, BoardsMenuWrapper } from '../common/BoardsMenu';
 
 const SideNavItem = ({ itemId }: { itemId: string | null }) => {
   const { getBoards } = useBoardsStore();
