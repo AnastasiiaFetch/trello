@@ -1,4 +1,4 @@
-import { Flex, GridItem, Text } from '@chakra-ui/react';
+import { Flex, GridItem, Text, useDisclosure } from '@chakra-ui/react';
 import TrelloLogo from '../../elements/icons/TrelloLogo';
 import { CustomSelectProps } from '../../types/select';
 import Board from '../../elements/icons/Board';
@@ -14,10 +14,12 @@ import { equals } from 'ramda';
 import Avatar from '../../elements/avatar/Avatar';
 import { useNavigate } from 'react-router-dom';
 import CustomSelect from '../../elements/custom-select/CustomSelect';
+import CreateBoardModal from '../common/modals/CrateBoardModal';
 
 const TrelloHeader = () => {
   const { workspaces: userWorkspaces } = useWorkspacesStore();
   const { boards: userBoards } = useBoardsStore();
+  const boardModal = useDisclosure();
   const navigate = useNavigate();
 
   const [headerSelects, setHeaderSelects] = useState<CustomSelectProps[]>([]);
@@ -62,7 +64,7 @@ const TrelloHeader = () => {
           {
             contentTitle: 'Створити дошку',
             leftIcon: Board,
-            onClick: () => {},
+            onClick: () => boardModal.onOpen(),
             content:
               'Дошка зроблена з карток, що згруповані в списки. Використовуйте її для управління проектами, відстеження інформації або організації інших процесів.',
           },
@@ -87,42 +89,45 @@ const TrelloHeader = () => {
   }, [userWorkspaces, userBoards]);
 
   return (
-    <Flex alignItems="center" justify="space-between">
-      <Flex gap={8} alignItems="center">
-        <Flex
-          align="center"
-          justify="center"
-          gap={1}
-          cursor="pointer"
-          onClick={() => navigate('/auth/main')}
-        >
-          <TrelloLogo size={35} />
-          <Text fontSize="display-sm" fontWeight="bold">
-            Trello
-          </Text>
+    <>
+      <Flex alignItems="center" justify="space-between">
+        <Flex gap={8} alignItems="center">
+          <Flex
+            align="center"
+            justify="center"
+            gap={1}
+            cursor="pointer"
+            onClick={() => navigate('/auth/main')}
+          >
+            <TrelloLogo size={35} />
+            <Text fontSize="display-sm" fontWeight="bold">
+              Trello
+            </Text>
+          </Flex>
+          {headerSelects.map(({ title, mode, elements }, index) => (
+            <CustomSelect key={`${title}-${index}`} title={title}>
+              <>
+                {elements.length > 0 ? (
+                  elements.map((element, elementIndex) => (
+                    <GridItem key={`${title}-item-${elementIndex}`} maxW="100%" overflowX="hidden">
+                      {mode === 'create' && <ExpandedSelectItem {...element} />}
+                      {mode === 'selected-boards' && <BoardSelectItem {...element} />}
+                      {mode === 'work-spaces' && (
+                        <BasicSelectItem {...element} fontSize="text-sm" fontWeight="semibold" />
+                      )}
+                    </GridItem>
+                  ))
+                ) : (
+                  <Text textAlign="center">Цей список поки порожній...</Text>
+                )}
+              </>
+            </CustomSelect>
+          ))}
         </Flex>
-        {headerSelects.map(({ title, mode, elements }, index) => (
-          <CustomSelect key={`${title}-${index}`} title={title}>
-            <>
-              {elements.length > 0 ? (
-                elements.map((element, elementIndex) => (
-                  <GridItem key={`${title}-item-${elementIndex}`} maxW="100%" overflowX="hidden">
-                    {mode === 'create' && <ExpandedSelectItem {...element} />}
-                    {mode === 'selected-boards' && <BoardSelectItem {...element} />}
-                    {mode === 'work-spaces' && (
-                      <BasicSelectItem {...element} fontSize="text-sm" fontWeight="semibold" />
-                    )}
-                  </GridItem>
-                ))
-              ) : (
-                <Text textAlign="center">Цей список поки порожній...</Text>
-              )}
-            </>
-          </CustomSelect>
-        ))}
       </Flex>
-      <Flex></Flex>
-    </Flex>
+
+      <CreateBoardModal isOpen={boardModal.isOpen} onClose={boardModal.onClose} />
+    </>
   );
 };
 

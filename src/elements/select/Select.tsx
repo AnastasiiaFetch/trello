@@ -44,6 +44,7 @@ export interface SelectProps {
 const Select: React.FC<SelectProps> = (props: SelectProps, ref) => {
   const {
     value,
+    placeholder = '',
     onChange = () => {},
     size = 'xs',
     label = '',
@@ -96,7 +97,7 @@ const Select: React.FC<SelectProps> = (props: SelectProps, ref) => {
   };
 
   const [inputValue, setInputValue] = useState('');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [_, setIsMenuOpen] = useState(false);
 
   const onMenuOpen = () => setIsMenuOpen(true);
   const onMenuClose = () => setIsMenuOpen(false);
@@ -138,6 +139,7 @@ const Select: React.FC<SelectProps> = (props: SelectProps, ref) => {
           onKeyDown={handleOnKeyPress}
           value={value}
           size={size}
+          placeholder={placeholder}
           onMenuOpen={onMenuOpen}
           onMenuClose={onMenuClose}
           isInvalid={isError}

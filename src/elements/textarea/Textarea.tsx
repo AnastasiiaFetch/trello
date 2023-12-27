@@ -57,6 +57,7 @@ export const Textarea: React.FC<TextareaProps> = forwardRef((props, ref) => {
           variant="default"
           w="100%"
           minRows={5}
+          px="2.5"
           resize="none"
           overflowY="auto"
           boxShadow={'xs'}

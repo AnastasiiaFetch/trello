@@ -14,21 +14,21 @@ const Fonts = () => {
         }
 
         ::-webkit-scrollbar {
-	        width: 10px;
-          height: 10px;
+	        width: 6px;
+          height: 6px;
         }
 
         ::-webkit-scrollbar-thumb {
-	        background-color: #e8e8e8;
+	        background-color: #EEEEEE;
 	        border-radius: 4px;
         }
 
         ::-webkit-scrollbar-track {
-	        background-color: #f8f9fa;
+	        background-color: #FAFAFA;
           border-radius: 4px;
         }
 
-        scrollbar-color: #e8e8e8 #f8f9fa;
+        scrollbar-color: #EEEEEE #FAFAFA;
         scrollbar-width: thin;
 
       `}

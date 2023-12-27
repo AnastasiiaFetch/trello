@@ -32,3 +32,16 @@ export const registerSchema = yup.object({
 });
 
 export type RegisterSchema = yup.InferType<typeof registerSchema>;
+
+export const createBoardSchema = yup.object({
+  name: yup.string().required("Це обов'язкове поле"),
+  workspace: yup.object({
+    value: yup.string(),
+    label: yup.string(),
+    id: yup.string(),
+  }),
+  description: yup.string(),
+  color: yup.string(),
+});
+
+export type CreateBoardSchema = yup.InferType<typeof createBoardSchema>;

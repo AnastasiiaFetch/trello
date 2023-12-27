@@ -7,7 +7,6 @@ import { useMemo, useState } from 'react';
 import Avatar from '../../elements/avatar/Avatar';
 import SideNavItemWrapper from '../../components/main/SideNavItemWrapper';
 import SideNavItem from '../../components/main/SideNavItem';
-import CreateBoardModal from '../../components/common/modals/CrateBoardModal';
 
 const MainPage = () => {
   const { darkColor } = useMainColor();
@@ -55,7 +54,6 @@ const MainPage = () => {
             ))}
         </GridItem>
       </Grid>
-      {/* <CreateBoardModal isOpen={true} onClose={() => {}} /> */}
     </>
   );
 };

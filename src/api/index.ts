@@ -113,7 +113,7 @@ export const getBoard = (id: string) => {
       workspaceId: '1',
       isSelected: true,
       createdAt: '2023-01-15T10:30:00',
-      color: '#3498db',
+      color: '#EF7565',
       lists: [
         {
           id: 'list1',
