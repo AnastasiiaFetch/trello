@@ -1,0 +1,171 @@
+import {
+  Box,
+  Flex,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+import { Controller, useForm } from 'react-hook-form';
+import CustomModalHeader from './ModalHeader';
+import Button from '../../../elements/button/Button';
+import { useMainColor } from '../../../composable/useMainColor';
+import Input from '../../../elements/input/Input';
+import Select from '../../../elements/select/Select';
+import { Textarea } from '../../../elements/textarea/Textarea';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { CreateWorkspaceSchema, createWorkspaceSchema } from '../../../utils/schemas';
+
+type CrateWorkspaceModalProps = { isOpen: boolean; onClose: () => void };
+
+const workspaceTypes = [
+  'Малий бізнес',
+  'Маркетинг',
+  'Розробка та IT',
+  'Освіта',
+  'CRM для відділу продажів',
+  'Інше',
+];
+
+const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({ isOpen, onClose }) => {
+  const { darkColor } = useMainColor();
+
+  const workspaceTypeOptions = [...workspaceTypes.map(type => ({ value: type, label: type }))];
+
+  const {
+    control,
+    getValues,
+    setValue,
+    handleSubmit,
+    register,
+    formState: { errors },
+    reset,
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(createWorkspaceSchema),
+    values: {
+      name: '',
+      workspaceType: workspaceTypeOptions?.[0],
+      description: '',
+    },
+  });
+
+  const handleInputValueChange = (input: 'name' | 'workspaceType' | 'description', value: any) => {
+    setValue(input, value);
+  };
+
+  const onSubmit = (data: CreateWorkspaceSchema) => {
+    console.log(data);
+    // onClose()
+  };
+
+  const handleModalClose = () => {
+    reset({
+      name: '',
+      workspaceType: workspaceTypeOptions?.[0],
+      description: '',
+    });
+    onClose();
+  };
+  return (
+    <Modal isOpen={isOpen} onClose={handleModalClose} size="xl">
+      <ModalOverlay />
+      <ModalContent w="90%" h="fit-content" position="relative">
+        <CustomModalHeader title={'Створення робочої області'} />
+        <ModalCloseButton />
+        <form onSubmit={e => e.preventDefault()}>
+          <ModalBody>
+            <Flex gap={6} flexDir="column">
+              <VStack align="start" w="100%">
+                <Input
+                  placeholder={"Компанія 'Nike'"}
+                  label={'Назва робочої області'}
+                  {...register('name')}
+                  isError={!!errors?.name}
+                  helpText={errors?.name?.message}
+                />
+                <Text fontSize="text-xs" color="gray.400">
+                  Це може бути назва вашої команди, компанії або організації
+                </Text>
+              </VStack>
+              <Controller
+                name="workspaceType"
+                control={control}
+                render={({ field: { value }, name, ref }: any) => {
+                  return (
+                    <Select
+                      isSearchable={false}
+                      size={'xs'}
+                      ref={ref}
+                      name={name}
+                      options={workspaceTypeOptions}
+                      label={'Тип робочої області'}
+                      value={workspaceTypeOptions?.find(
+                        workspaceType => workspaceType.value === value.value
+                      )}
+                      onChange={(workspaceType: (typeof workspaceTypeOptions)[0]) => {
+                        return handleInputValueChange('workspaceType', workspaceType);
+                      }}
+                      isError={!!errors?.workspaceType}
+                      helpText={errors?.workspaceType?.message}
+                    />
+                  );
+                }}
+              />
+              <Controller
+                name="description"
+                control={control}
+                render={({ field: { value }, name, ref }: any) => {
+                  return (
+                    <VStack w="100%" align="start">
+                      <Flex position="relative" w="100%">
+                        <Textarea
+                          ref={ref}
+                          name={name}
+                          label={'Опис робочої області'}
+                          placeholder={'Додайте опис для цієї робочої області...'}
+                          value={value}
+                          maxLength={350}
+                          onChange={(
+                            event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+                          ) => {
+                            const value = event.target.value;
+                            handleInputValueChange('description', value);
+                          }}
+                          isError={!!errors?.description}
+                          helpText={errors?.description?.message}
+                        />
+                        <Box position="absolute" bottom={2} right={4} color="gray.400">
+                          <Text fontSize="text-xs">{`${
+                            getValues('description')?.length || 0
+                          }/350`}</Text>
+                        </Box>
+                      </Flex>
+                      <Text fontSize="text-xs" color="gray.400">
+                        Запросіть учасників до дошки, стисло описавши вашу робочу область
+                      </Text>
+                    </VStack>
+                  );
+                }}
+              />
+            </Flex>
+          </ModalBody>
+
+          <ModalFooter mt={2} mb={4}>
+            <Button size="md" onClick={handleSubmit(onSubmit)}>
+              <Text color={darkColor} fontSize="text-sm">
+                Створити
+              </Text>
+            </Button>
+          </ModalFooter>
+        </form>
+      </ModalContent>
+    </Modal>
+  );
+};
+
+export default CreateWorkspaceModal;

@@ -1,4 +1,4 @@
-import { VStack, Text, Box, GridItem, HStack, Flex } from '@chakra-ui/react';
+import { VStack, Text, Box, GridItem, HStack, Flex, useDisclosure } from '@chakra-ui/react';
 import WorkspaceWrapper from '../../components/workspace/WorkspaceWrapper';
 import { BoardsMenuItem, BoardsMenuWrapper } from '../../components/common/BoardsMenu';
 import useBoardsStore from '../../store/boardsState';
@@ -12,12 +12,14 @@ import Edit from '../../elements/icons/Edit';
 import Input from '../../elements/input/Input';
 import Search from '../../elements/icons/Search';
 import UserPlus from '../../elements/icons/UserPlus';
+import CreateBoardModal from '../../components/common/modals/CreateBoardModal';
 
 const UserWorkspacePage = () => {
   const { workspaceId } = useParams();
   const navigate = useNavigate();
 
   const { getBoards } = useBoardsStore();
+  const boardModal = useDisclosure();
   const { getWorkspace } = useWorkspacesStore();
 
   const handleOnBoardClick = (boardId: string, workspaceId: string) =>
@@ -81,7 +83,7 @@ const UserWorkspacePage = () => {
 
         <BoardsMenuWrapper templateColumns="repeat(auto-fill, minmax(20vw, 1fr))">
           <GridItem w="100%">
-            <BoardsMenuItem isDefault onClick={() => {}} />
+            <BoardsMenuItem isDefault onClick={() => boardModal.onOpen()} />
           </GridItem>
           {boards &&
             boards?.map(board => {
@@ -98,6 +100,8 @@ const UserWorkspacePage = () => {
             })}
         </BoardsMenuWrapper>
       </VStack>
+
+      <CreateBoardModal isOpen={boardModal.isOpen} onClose={boardModal.onClose} />
     </WorkspaceWrapper>
   );
 };

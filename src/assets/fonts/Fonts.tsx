@@ -19,7 +19,7 @@ const Fonts = () => {
         }
 
         ::-webkit-scrollbar-thumb {
-	        background-color: #EEEEEE;
+	        background-color: #DADADA;
 	        border-radius: 4px;
         }
 

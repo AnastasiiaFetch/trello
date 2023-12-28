@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, Text } from '@chakra-ui/react';
 import Star from '../../../elements/icons/Star';
 import { useState } from 'react';
 
@@ -25,11 +25,13 @@ export const BoardsMenuItem: React.FC<{
       whiteSpace="break-spaces"
       overflow="auto"
       p={2}
+      as={Button}
       onClick={onClick}
       borderRadius="md"
       position="relative"
       cursor="pointer"
       _hover={{
+        borderColor: 'transparent',
         WebkitBoxShadow: '5px 5px 10px 0px rgba(161,161,161,1)',
         MozBoxShadow: '5px 5px 10px 0px rgba(161,161,161,1)',
         boxShadow: '5px 5px 10px 0px rgba(161,161,161,1)',

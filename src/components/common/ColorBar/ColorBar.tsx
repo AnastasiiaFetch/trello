@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from '../../../elements/button/Button';
 import HorizontalDots from '../../../elements/icons/HorizontalDots';
 import ToolTip from '../../../elements/tooltip';
+import { useMainColor } from '../../../composable/useMainColor';
 
 interface ColorBarProps {
   isFullView: boolean;
@@ -50,6 +51,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
     ];
   });
 
+  const { darkColor } = useMainColor();
   const handleColorSelected = (id: number) => {
     const updatedButtons = colors.map(button => {
       if (button.id === id) {
@@ -117,7 +119,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
                 onClick={setView}
               >
                 <ToolTip label={'Більше'}>
-                  <HorizontalDots />
+                  <HorizontalDots color={darkColor} />
                 </ToolTip>
               </Button>
             </GridItem>

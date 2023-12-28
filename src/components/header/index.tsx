@@ -14,7 +14,7 @@ import { equals } from 'ramda';
 import Avatar from '../../elements/avatar/Avatar';
 import { useNavigate } from 'react-router-dom';
 import CustomSelect from '../../elements/custom-select/CustomSelect';
-import CreateBoardModal from '../common/modals/CrateBoardModal';
+import CreateBoardModal from '../common/modals/CreateBoardModal';
 
 const TrelloHeader = () => {
   const { workspaces: userWorkspaces } = useWorkspacesStore();
@@ -124,6 +124,7 @@ const TrelloHeader = () => {
             </CustomSelect>
           ))}
         </Flex>
+        <Flex>//nav</Flex>
       </Flex>
 
       <CreateBoardModal isOpen={boardModal.isOpen} onClose={boardModal.onClose} />

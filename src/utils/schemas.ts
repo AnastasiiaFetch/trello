@@ -45,3 +45,14 @@ export const createBoardSchema = yup.object({
 });
 
 export type CreateBoardSchema = yup.InferType<typeof createBoardSchema>;
+
+export const createWorkspaceSchema = yup.object({
+  name: yup.string().required("Це обов'язкове поле"),
+  workspaceType: yup.object({
+    value: yup.string(),
+    label: yup.string(),
+  }),
+  description: yup.string(),
+});
+
+export type CreateWorkspaceSchema = yup.InferType<typeof createWorkspaceSchema>;
