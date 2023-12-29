@@ -1,0 +1,35 @@
+
+  const accessElements = [
+    {
+      contentTitle: 'Приватна',
+      leftIcon: Lock,
+      onClick: () => {},
+      content: 'Цю дошку можуть переглядати та редагувати лише її учасники.',
+    },
+    {
+      contentTitle: 'Робоча область',
+      leftIcon: Users,
+      onClick: () => {},
+      content: `Цю дошку можуть переглядати та редагувати всі учасники робочої області "${
+        workSpace || ''
+      }".`,
+    },
+    {
+      contentTitle: 'Загальний доступ',
+      leftIcon: Globe,
+      onClick: () => {},
+      content: 'Цю дошку може переглядати будь-хто, але лише учасники дошки можуть редагувати її.',
+    },
+  ];
+
+      <CustomSelect
+              title={
+                <ToolTip label="Налаштувати доступ">
+                  <Access color={textColor} size="18" />
+                </ToolTip>
+              }
+            >
+              {accessElements.map((element, index) => (
+                <ExpandedSelectItem key={index} {...element} />
+              ))}
+            </CustomSelect>

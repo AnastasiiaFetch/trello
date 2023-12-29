@@ -1,4 +1,4 @@
-import { Flex, GridItem, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, GridItem, Text, useDisclosure } from '@chakra-ui/react';
 import TrelloLogo from '../../elements/icons/TrelloLogo';
 import { CustomSelectProps } from '../../types/select';
 import Board from '../../elements/icons/Board';
@@ -15,11 +15,17 @@ import Avatar from '../../elements/avatar/Avatar';
 import { useNavigate } from 'react-router-dom';
 import CustomSelect from '../../elements/custom-select/CustomSelect';
 import CreateBoardModal from '../common/modals/CreateBoardModal';
+import CreateWorkspaceModal from '../common/modals/CreateWorkspaceModal';
+import useUserStore from '../../store/userState';
+import Input from '../../elements/input/Input';
+import Search from '../../elements/icons/Search';
 
 const TrelloHeader = () => {
   const { workspaces: userWorkspaces } = useWorkspacesStore();
+  const { currentUser } = useUserStore();
   const { boards: userBoards } = useBoardsStore();
   const boardModal = useDisclosure();
+  const workspaceModal = useDisclosure();
   const navigate = useNavigate();
 
   const [headerSelects, setHeaderSelects] = useState<CustomSelectProps[]>([]);
@@ -77,7 +83,7 @@ const TrelloHeader = () => {
           {
             contentTitle: 'Створити робочу область',
             leftIcon: Users,
-            onClick: () => {},
+            onClick: () => workspaceModal.onOpen(),
             content:
               'Робоча область — це група дощок і людей. Використовуйте її, щоб організувати роботу вашої команди, компанії або інше.',
           },
@@ -90,7 +96,7 @@ const TrelloHeader = () => {
 
   return (
     <>
-      <Flex alignItems="center" justify="space-between">
+      <Flex alignItems="center" justify="space-between" w="100%">
         <Flex gap={8} alignItems="center">
           <Flex
             align="center"
@@ -124,10 +130,25 @@ const TrelloHeader = () => {
             </CustomSelect>
           ))}
         </Flex>
-        <Flex>//nav</Flex>
+        <Flex gap={4}>
+          <Box w="100%">
+            <Input
+              size="xs"
+              placeholder="Пошук"
+              backgroundColor="transparent"
+              color="currentcolor"
+              w="100%"
+              _focus={{ color: 'currentColor' }}
+              _placeholder={{ color: 'currentColor' }}
+              rightElement={<Search size="20" />}
+            />
+          </Box>
+          <Avatar size="sm" name={`${currentUser?.firstName} ${currentUser?.lastName}` || ''} />
+        </Flex>
       </Flex>
 
       <CreateBoardModal isOpen={boardModal.isOpen} onClose={boardModal.onClose} />
+      <CreateWorkspaceModal isOpen={workspaceModal.isOpen} onClose={workspaceModal.onClose} />
     </>
   );
 };

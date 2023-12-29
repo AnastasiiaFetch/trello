@@ -31,8 +31,8 @@ const colorPalette = [
   '#D3EE02',
   '#02EE2E',
   '#00FFF8',
-  '#0402EE',
-  '#6002EE',
+  '#6580F4',
+  '#9765F4',
 ];
 
 const ColorBar: React.FC<ColorBarProps> = ({

@@ -1,9 +1,8 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import Star from '../icons/Star';
 import { CustomSelectItemProps } from '../../types/select';
 import HorizontalDots from '../icons/HorizontalDots';
 import SelectItemWrapper from './SelectItemWrapper';
-import { useState } from 'react';
+import StarButton from '../button/StarButton';
 
 type BoardSelectItemProps = CustomSelectItemProps & {
   mode?: 'sidebar' | 'nav';
@@ -18,7 +17,6 @@ const BoardSelectItem: React.FC<BoardSelectItemProps> = ({
   isSelected = false,
   ...rest
 }) => {
-  const [hovered, setHovered] = useState<boolean>(false);
   return (
     <SelectItemWrapper
       borderRadius={mode === 'sidebar' ? 'none' : 'md'}
@@ -78,28 +76,18 @@ const BoardSelectItem: React.FC<BoardSelectItemProps> = ({
           <HorizontalDots size={18} />
         </Box>
       )}
-      <Box
-        bgColor="transparent"
+      <StarButton
+        isSelected={isSelected}
+        mode={mode}
+        className="additional_btn"
         display={isSelected ? 'flex' : 'none'}
         alignItems="center"
         justifyContent="center"
-        height="100%"
-        className="additional_btn"
         position="relative"
         right={0}
         top={0}
-        onClick={e => {
-          e.stopPropagation();
-        }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        <Star
-          size={18}
-          color={mode === 'nav' ? '#ECC94B' : 'currentColor'}
-          isFilled={isSelected ? !hovered : hovered}
-        />
-      </Box>
+        height="100%"
+      />
     </SelectItemWrapper>
   );
 };

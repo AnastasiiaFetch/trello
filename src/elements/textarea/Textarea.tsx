@@ -23,6 +23,7 @@ export interface TextareaProps extends ChakraTextareaProps {
   isReadOnly?: boolean;
   isRequired?: boolean;
   helpText?: string;
+  minRows?: number;
   ref?: React.MutableRefObject<HTMLTextAreaElement | null>;
   containerProps?: any;
 }
@@ -34,6 +35,7 @@ export const Textarea: React.FC<TextareaProps> = forwardRef((props, ref) => {
     label,
     helpText,
     isError,
+    minRows = 5,
     containerProps = {},
     ...rest
   } = props;
@@ -56,7 +58,7 @@ export const Textarea: React.FC<TextareaProps> = forwardRef((props, ref) => {
           bg="main.light"
           variant="default"
           w="100%"
-          minRows={5}
+          minRows={minRows}
           px="2.5"
           resize="none"
           overflowY="auto"

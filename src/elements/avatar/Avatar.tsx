@@ -9,7 +9,7 @@ import { JSXElementConstructor, ReactElement } from 'react';
 import { useMainColor } from '../../composable/useMainColor';
 
 export interface ButtonProps extends ChakraAvatarProps {
-  size: 'sm' | 'md';
+  size: 'xs' | 'sm' | 'md';
   borderRadius?: 'md' | 'full';
   icon?: ReactElement<any, string | JSXElementConstructor<any>> | undefined;
 }
@@ -24,7 +24,6 @@ const Avatar: React.FC<ButtonProps> = (props: ButtonProps) => {
     <Box as="span" display="inline-flex" cursor="pointer">
       <ChakraAvatar
         __css={styles}
-        border="2px solid #FAFAFA"
         size={size}
         bg={darkColor}
         {...rest}

@@ -10,6 +10,7 @@ import BoardHeader from '../../components/board/BoardHeader';
 import useColorStore from '../../store/colorState';
 import { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
+import CreateItem from '../../components/common/CreateItem';
 
 const UserBoardPage = () => {
   const { boardId } = useParams();
@@ -121,6 +122,21 @@ const UserBoardPage = () => {
               {boardItems?.map(boardItem => {
                 return <List key={boardItem.id} item={boardItem} />;
               })}
+              <CreateItem
+                textareaProps={{
+                  backgroundColor: 'list.background',
+                  maxWidth: '20rem',
+                  minWidth: '20rem',
+                  boxShadow: '0px 1px 1px #091E4240, 0px 0px 1px #091E424F',
+                }}
+                buttonCustomProps={{
+                  height: 'fit-content',
+                  maxWidth: 'fit-content',
+                  minWidth: 'fit-content',
+                }}
+                onValueSave={value => console.log(value)}
+                buttonText={'Створити новий список'}
+              />
             </DragDropContext>
           </BoardContentWrapper>
         </BoardWrapper>

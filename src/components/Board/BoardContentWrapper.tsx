@@ -13,10 +13,10 @@ const BoardContentWrapper: React.FC<BoardContentWrapper> = ({ children, ...rest 
         top={0}
         bottom={0}
         left={0}
-        px={2}
-        py={4}
+        px={6}
+        py={6}
         mb={4}
-        gap={4}
+        gap={6}
         position="absolute"
         userSelect="none"
         whiteSpace="nowrap"
@@ -35,8 +35,8 @@ const BoardContentWrapper: React.FC<BoardContentWrapper> = ({ children, ...rest 
           '&::-webkit-scrollbar-track': {
             backgroundColor: 'rgba(0, 0, 0, 0.1)',
             borderRadius: '4px',
-            marginInlineStart: '1rem',
-            marginInlineEnd: '1rem',
+            marginInlineStart: '1.5rem',
+            marginInlineEnd: '1.5rem',
           },
         }}
       >

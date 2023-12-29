@@ -9,10 +9,8 @@ const ListContentWrapper: React.FC<ListContentWrapperProps> = ({ children, ...re
   return (
     <Flex
       flexDir="column"
-      my={0}
-      mx={1}
-      py={0}
-      px={1}
+      my={2}
+      pr={1}
       height="100%"
       overflowX="hidden"
       overflowY="auto"

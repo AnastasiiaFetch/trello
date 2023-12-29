@@ -15,7 +15,7 @@ const ListWrapper: React.FC<ListWrapperProps> = ({ children, ...rest }) => {
       maxHeight="100%"
       flexDirection="column"
       boxShadow="0px 1px 1px #091E4240, 0px 0px 1px #091E424F"
-      pb={1}
+      p={4}
       overflowY="auto"
       borderRadius="xl"
       position="relative"

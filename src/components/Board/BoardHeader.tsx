@@ -1,49 +1,19 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Editable, EditableInput, EditablePreview, Flex, Text } from '@chakra-ui/react';
 import { useMainColor } from '../../composable/useMainColor';
-import Star from '../../elements/icons/Star';
-import CustomSelect from '../../elements/custom-select/CustomSelect';
-import ExpandedSelectItem from '../../elements/custom-select/ExpandedSelectItem';
-import Users from '../../elements/icons/Users';
 import Button from '../../elements/button/Button';
-import Lock from '../../elements/icons/Lock';
-import Globe from '../../elements/icons/Globe';
 import { Board } from '../../types/board';
-import useWorkspacesStore from '../../store/workspacesState';
-import Access from '../../elements/icons/Access';
 import ToolTip from '../../elements/tooltip';
 import useUserStore from '../../store/userState';
 import Avatar from '../../elements/avatar/Avatar';
 import Filter from '../../elements/icons/Filter';
 import HorizontalDots from '../../elements/icons/HorizontalDots';
 import UserPlus from '../../elements/icons/UserPlus';
+import StarButton from '../../elements/button/StarButton';
+import EditableElement from '../../elements/editable-input/EditableElement';
 
 const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
-  const { getWorkspace } = useWorkspacesStore();
   const { currentUser } = useUserStore();
-  const workSpace = getWorkspace(workspaceId)?.name;
 
-  const accessElements = [
-    {
-      contentTitle: 'Приватна',
-      leftIcon: Lock,
-      onClick: () => {},
-      content: 'Цю дошку можуть переглядати та редагувати лише її учасники.',
-    },
-    {
-      contentTitle: 'Робоча область',
-      leftIcon: Users,
-      onClick: () => {},
-      content: `Цю дошку можуть переглядати та редагувати всі учасники робочої області "${
-        workSpace || ''
-      }".`,
-    },
-    {
-      contentTitle: 'Загальний доступ',
-      leftIcon: Globe,
-      onClick: () => {},
-      content: 'Цю дошку може переглядати будь-хто, але лише учасники дошки можуть редагувати її.',
-    },
-  ];
   const { textColor, colorWithNoOpacity, darkColor } = useMainColor();
   return (
     <Box
@@ -58,7 +28,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
         height="auto"
         position="relative"
         flexWrap="wrap"
-        gap={2}
+        gap={4}
         px={8}
         py={2}
         w="100%"
@@ -68,36 +38,17 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
           alignItems="center"
           minHeight="2rem"
           flexWrap="nowrap"
-          maxW="100%"
+          maxW="40%"
           gap={4}
+          color={textColor}
         >
-          <Text
-            fontWeight="bold"
-            overflow="hidden"
-            textOverflow="ellipsis"
-            whiteSpace="nowrap"
+          <EditableElement
             color={textColor}
-          >
-            {name?.length > 40 ? name?.slice(0, 40) + '...' : name}
-          </Text>
-          <Flex gap={1}>
-            <Button variant="secondary" borderRadius="md" size="md">
-              <ToolTip label={isSelected ? 'Видалити з важливого' : 'Додати до важливого'}>
-                <Star color={textColor} isFilled={isSelected} size="18" />
-              </ToolTip>
-            </Button>
-            <CustomSelect
-              title={
-                <ToolTip label="Налаштувати доступ">
-                  <Access color={textColor} size="18" />
-                </ToolTip>
-              }
-            >
-              {accessElements.map((element, index) => (
-                <ExpandedSelectItem key={index} {...element} />
-              ))}
-            </CustomSelect>
-          </Flex>
+            value={name}
+            onChange={value => console.log(value)}
+            fontWeight="bold"
+          />
+          <StarButton isSelected={isSelected} height="100%" />
         </Flex>
         <Flex
           position="relative"
@@ -114,7 +65,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
               </Flex>
             </ToolTip>
           </Button>
-          <Avatar size="sm" name={`${currentUser?.firstName} ${currentUser?.lastName}` || ''} />
+
           <Button variant="primary" borderRadius="md" size="md" px={4}>
             <Flex gap={2} px={1} align="center">
               <UserPlus color={darkColor} size="20" />
@@ -123,6 +74,9 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
               </Text>
             </Flex>
           </Button>
+
+          <Avatar size="xs" name={`${currentUser?.firstName} ${currentUser?.lastName}` || ''} />
+
           <Button variant="secondary" borderRadius="md" size="md" w="fit-content">
             <HorizontalDots color={textColor} size="18" />
           </Button>

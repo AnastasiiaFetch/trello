@@ -1,6 +1,5 @@
 import { Box, Button, Flex, Grid, Text } from '@chakra-ui/react';
-import Star from '../../../elements/icons/Star';
-import { useState } from 'react';
+import StarButton from '../../../elements/button/StarButton';
 
 export const BoardsMenuItem: React.FC<{
   title?: string;
@@ -15,8 +14,6 @@ export const BoardsMenuItem: React.FC<{
   onClick = () => {},
   isDefault = false,
 }) => {
-  const [hovered, setHovered] = useState<boolean>(false);
-  const handleStarButtonClick = () => {};
   return (
     <Flex
       bg={bg || 'gray.200'}
@@ -48,18 +45,13 @@ export const BoardsMenuItem: React.FC<{
           <Text fontWeight="bold" fontSize="text-sm">
             {title.length > 30 ? title.slice(0, 30) + '...' : title}
           </Text>
-          <Box
+          <StarButton
+            mode={'nav'}
+            isSelected={isSelected}
             position="absolute"
             right={2}
             bottom={2}
-            onClick={e => {
-              e.stopPropagation();
-            }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-          >
-            <Star size={20} isFilled={isSelected ? !hovered : hovered} />
-          </Box>
+          />
         </>
       )}
     </Flex>
