@@ -96,7 +96,7 @@ const TrelloHeader = () => {
 
   return (
     <>
-      <Flex alignItems="center" justify="space-between" w="100%">
+      <Flex alignItems="center" justify="space-between" gap={4} w="100%">
         <Flex gap={8} alignItems="center">
           <Flex
             align="center"

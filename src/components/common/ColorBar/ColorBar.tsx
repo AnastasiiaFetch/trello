@@ -14,25 +14,25 @@ interface ColorBarProps {
 
 const colorPalette = [
   '#FFFFFF',
-  '#F0F0F0',
   '#EFF5FA',
+  '#F0F0F0',
+  '#838FB5',
   '#5BA4CF',
-  '#99D18F',
+  '#8ECDFE',
+  '#00FFF8',
+  '#9765F4',
   '#FDC788',
   '#EC9488',
-  '#F3E260',
+  '#FDF694',
   '#D5A6E6',
   '#FFB0E1',
   '#90ECC1',
-  '#838FB5',
-  '#B00020',
+  '#53C95D',
+  '#99D18F',
+  '#B61019',
   '#EE7102',
-  '#EEE702',
+  '#FAEE3E',
   '#D3EE02',
-  '#02EE2E',
-  '#00FFF8',
-  '#6580F4',
-  '#9765F4',
 ];
 
 const ColorBar: React.FC<ColorBarProps> = ({
@@ -69,7 +69,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
     <>
       {isFullView ? (
         <>
-          <Grid gap={2} templateColumns="repeat(4, 1fr)" w="100%">
+          <Grid gap={2} templateColumns="repeat(5, 1fr)" w="100%">
             {colors.map(({ id, color, isSelected }) => {
               return (
                 <GridItem key={id}>

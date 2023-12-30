@@ -31,6 +31,7 @@ const MainPage = () => {
       <Helmet>
         <title>Trello | Головна</title>
       </Helmet>
+
       <Grid
         py="4rem"
         px="4rem"

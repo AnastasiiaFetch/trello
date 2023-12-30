@@ -19,8 +19,9 @@ import Select from '../../../elements/select/Select';
 import { Textarea } from '../../../elements/textarea/Textarea';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreateWorkspaceSchema, createWorkspaceSchema } from '../../../utils/schemas';
+import { Workspace } from '../../../types/workspace';
 
-type CrateWorkspaceModalProps = { isOpen: boolean; onClose: () => void };
+type CrateWorkspaceModalProps = { isOpen: boolean; onClose: () => void; initialData?: Workspace };
 
 const workspaceTypes = [
   'Малий бізнес',
@@ -31,10 +32,17 @@ const workspaceTypes = [
   'Інше',
 ];
 
-const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({ isOpen, onClose }) => {
+const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({
+  isOpen,
+  onClose,
+  initialData = null,
+}) => {
   const { darkColor } = useMainColor();
 
   const workspaceTypeOptions = [...workspaceTypes.map(type => ({ value: type, label: type }))];
+  const currentWorkspaceOption = initialData
+    ? workspaceTypeOptions.find(option => option.value === initialData?.workspaceType)
+    : null;
 
   const {
     control,
@@ -48,9 +56,9 @@ const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({ isOpen, onCl
     mode: 'onChange',
     resolver: yupResolver(createWorkspaceSchema),
     values: {
-      name: '',
-      workspaceType: workspaceTypeOptions?.[0],
-      description: '',
+      name: initialData?.name || '',
+      workspaceType: currentWorkspaceOption || workspaceTypeOptions?.[0],
+      description: initialData?.description || '',
     },
   });
 
@@ -65,9 +73,9 @@ const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({ isOpen, onCl
 
   const handleModalClose = () => {
     reset({
-      name: '',
-      workspaceType: workspaceTypeOptions?.[0],
-      description: '',
+      name: initialData?.name || '',
+      workspaceType: currentWorkspaceOption || workspaceTypeOptions?.[0],
+      description: initialData?.description || '',
     });
     onClose();
   };
@@ -75,7 +83,9 @@ const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({ isOpen, onCl
     <Modal isOpen={isOpen} onClose={handleModalClose} size="xl">
       <ModalOverlay />
       <ModalContent w="90%" h="fit-content" position="relative">
-        <CustomModalHeader title={'Створення робочої області'} />
+        <CustomModalHeader
+          title={initialData ? 'Редагування робочої області' : 'Створення робочої області'}
+        />
         <ModalCloseButton />
         <form onSubmit={e => e.preventDefault()}>
           <ModalBody>
@@ -158,7 +168,7 @@ const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({ isOpen, onCl
           <ModalFooter mt={2} mb={4}>
             <Button size="md" onClick={handleSubmit(onSubmit)}>
               <Text color={darkColor} fontSize="text-sm">
-                Створити
+                {initialData ? 'Зберегти' : 'Створити'}
               </Text>
             </Button>
           </ModalFooter>

@@ -19,7 +19,7 @@ const theme = extendTheme({
     body: `Inter, Avenir, Helvetica, Arial, sans-serif`,
   },
   colors: {
-    basic: '#eff5fa',
+    basic: '#EFF5FA',
     main: {
       light: lightColor,
       dark: darkColor,

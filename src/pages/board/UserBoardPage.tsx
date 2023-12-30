@@ -11,9 +11,11 @@ import useColorStore from '../../store/colorState';
 import { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import CreateItem from '../../components/common/CreateItem';
+import { Helmet } from 'react-helmet-async';
 
 const UserBoardPage = () => {
   const { boardId } = useParams();
+
   const { data: board = null, isLoading } = useQuery({
     queryFn: () => getBoard(boardId as string),
     queryKey: ['get-board', boardId],
@@ -114,6 +116,10 @@ const UserBoardPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{`Trello | ${board?.name}`}</title>
+      </Helmet>
+
       {board && !isLoading ? (
         <BoardWrapper>
           <BoardHeader {...(board as Board)} />

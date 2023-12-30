@@ -26,11 +26,12 @@ const Router = () => {
           <Route element={<WorkSpaceLayout />}>
             <Route path="/w/:workspaceId" element={<UserWorkspacePage />} />
             <Route path="/:workspaceId/b/:boardId" element={<UserBoardPage />} />
+            <Route path="/:workspaceId/b/:boardId/:cardId" element={<UserBoardPage />} />
           </Route>
         </Route>
 
-        <Route path="/" element={<Navigate to="/sign-in" />} />
         <Route path="*" element={<>not found page</>} />
+        <Route path="/" element={<Navigate to="/sign-in" />} />
       </Routes>
     </BrowserRouter>
   );

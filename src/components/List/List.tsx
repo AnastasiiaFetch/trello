@@ -1,4 +1,4 @@
-import { Box, HStack, chakra, Text } from '@chakra-ui/react';
+import { Box, HStack, chakra, Text, useDisclosure } from '@chakra-ui/react';
 import ListContentWrapper from './ListContentWrapper';
 import ListWrapper from './ListWrapper';
 import { BoardItem } from '../../types/board';
@@ -9,12 +9,24 @@ import IconButton from '../../elements/button/IconButton';
 import Edit01 from '../../elements/icons/Edit01';
 import EditableElement from '../../elements/editable-input/EditableElement';
 import CreateItem from '../common/CreateItem';
+import CardModal from '../card/CardModal';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface ListProps {
   item: BoardItem;
 }
 const List: React.FC<ListProps> = ({ item }) => {
   const { darkColor } = useMainColor();
+  const cardModal = useDisclosure();
+
+  const { workspaceId, boardId } = useParams();
+  const navigate = useNavigate();
+
+  const handleCardClick = (cardId: string) => {
+    navigate(`/${workspaceId}/b/${boardId}/${cardId}`);
+    cardModal.onOpen();
+  };
+
   return (
     <Box alignSelf="flex-start" flexShrink={0} height="100%" whiteSpace="nowrap">
       <ListWrapper>
@@ -68,6 +80,7 @@ const List: React.FC<ListProps> = ({ item }) => {
                             ...provided.draggableProps.style,
                             cursor: 'pointer',
                           }}
+                          onClick={() => handleCardClick(item.id)}
                         >
                           <chakra.div
                             padding="1rem"
@@ -108,6 +121,8 @@ const List: React.FC<ListProps> = ({ item }) => {
 
         <CreateItem onValueSave={value => console.log(value)} buttonText={'Додати картку'} />
       </ListWrapper>
+
+      <CardModal isOpen={cardModal.isOpen} onClose={cardModal.onClose} />
     </Box>
   );
 };
