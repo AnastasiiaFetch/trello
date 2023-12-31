@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DropzoneContext } from './DropzoneContext';
+import { DropzoneContext } from './FileUploadWrapper';
 import { DropzoneContextProps } from '../../types/file';
 import Button from '../../elements/button/Button';
 import { Box, Text } from '@chakra-ui/react';
