@@ -5,7 +5,7 @@ interface EditableElementProps {
   onChange: (value: string) => void;
   [key: string]: any;
 }
-const EditableElement: React.FC<EditableElementProps> = ({ value, onChange, ...rest }) => {
+const EditableInputElement: React.FC<EditableElementProps> = ({ value, onChange, ...rest }) => {
   return (
     <Editable
       defaultValue={value}
@@ -16,6 +16,7 @@ const EditableElement: React.FC<EditableElementProps> = ({ value, onChange, ...r
       __css={{
         '& > .custom_editable_input:focus-visible': {
           boxShadow: 'none',
+          flex: '1',
           outline: '2px solid',
           outlineColor: 'rgba(0, 0, 0, 0.1)',
           paddingLeft: '0.5rem',
@@ -36,4 +37,4 @@ const EditableElement: React.FC<EditableElementProps> = ({ value, onChange, ...r
   );
 };
 
-export default EditableElement;
+export default EditableInputElement;

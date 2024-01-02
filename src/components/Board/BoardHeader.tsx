@@ -1,4 +1,4 @@
-import { Box, Editable, EditableInput, EditablePreview, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { useMainColor } from '../../composable/useMainColor';
 import Button from '../../elements/button/Button';
 import { Board } from '../../types/board';
@@ -9,7 +9,7 @@ import Filter from '../../elements/icons/Filter';
 import HorizontalDots from '../../elements/icons/HorizontalDots';
 import UserPlus from '../../elements/icons/UserPlus';
 import StarButton from '../../elements/button/StarButton';
-import EditableElement from '../../elements/editable-input/EditableElement';
+import EditableInputElement from '../../elements/editable/EditableInputElement';
 
 const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
   const { currentUser } = useUserStore();
@@ -42,7 +42,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
           gap={4}
           color={textColor}
         >
-          <EditableElement
+          <EditableInputElement
             color={textColor}
             value={name}
             onChange={value => console.log(value)}

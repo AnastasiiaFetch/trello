@@ -4,7 +4,7 @@ import { DropzoneContextProps } from '../../types/file';
 
 const FilesPreview = () => {
   const { files } = useContext(DropzoneContext) as DropzoneContextProps;
-  console.log(files);
+  // console.log(files);
   return <>fgdfgfdgdfg</>;
 };
 

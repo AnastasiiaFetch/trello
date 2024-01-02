@@ -7,10 +7,13 @@ import { useMainColor } from '../../composable/useMainColor';
 import HorizontalDots from '../../elements/icons/HorizontalDots';
 import IconButton from '../../elements/button/IconButton';
 import Edit01 from '../../elements/icons/Edit01';
-import EditableElement from '../../elements/editable-input/EditableElement';
+import EditableInputElement from '../../elements/editable/EditableInputElement';
 import CreateItem from '../common/CreateItem';
 import CardModal from '../card/CardModal';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getCard } from '../../api';
+import { Card } from '../../types/card';
 
 interface ListProps {
   item: BoardItem;
@@ -19,8 +22,15 @@ const List: React.FC<ListProps> = ({ item }) => {
   const { darkColor } = useMainColor();
   const cardModal = useDisclosure();
 
-  const { workspaceId, boardId } = useParams();
+  const { workspaceId, boardId, cardId } = useParams();
   const navigate = useNavigate();
+
+  const { data: card = null, isLoading } = useQuery({
+    queryFn: () => getCard(cardId as string),
+    queryKey: ['get-card', cardId],
+    select: data => data.data,
+    enabled: !!cardId,
+  });
 
   const handleCardClick = (cardId: string) => {
     navigate(`/${workspaceId}/b/${boardId}/${cardId}`);
@@ -30,16 +40,16 @@ const List: React.FC<ListProps> = ({ item }) => {
   return (
     <Box alignSelf="flex-start" flexShrink={0} height="100%" whiteSpace="nowrap">
       <ListWrapper>
-        <HStack justify="space-between" w="100%" align="center" p={1}>
-          <EditableElement
-            fontSize="text-sm"
-            w="85%"
-            maxW="85%"
-            fontWeight="semibold"
-            value={item.name}
-            onChange={value => console.log(value)}
-            color={darkColor}
-          />
+        <HStack justify="space-between" w="100%" maxW="100%" align="center" p={1}>
+          <Box w="85%">
+            <EditableInputElement
+              fontSize="text-sm"
+              fontWeight="semibold"
+              value={item.title}
+              onChange={value => console.log(value)}
+              color={darkColor}
+            />
+          </Box>
 
           <IconButton
             size="sm"
@@ -122,7 +132,9 @@ const List: React.FC<ListProps> = ({ item }) => {
         <CreateItem onValueSave={value => console.log(value)} buttonText={'Додати картку'} />
       </ListWrapper>
 
-      <CardModal isOpen={cardModal.isOpen} onClose={cardModal.onClose} />
+      {!isLoading && (
+        <CardModal isOpen={cardModal.isOpen} onClose={cardModal.onClose} card={card as Card} />
+      )}
     </Box>
   );
 };

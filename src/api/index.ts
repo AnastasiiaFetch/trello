@@ -108,7 +108,7 @@ export const getAllBoards = () => {
 export const getBoard = (id: string) => {
   return {
     data: {
-      id: '1',
+      id: id,
       name: 'Основна дошка',
       description: 'Основна дошка для головного проекту',
       workspaceId: '1',
@@ -169,6 +169,17 @@ export const getBoard = (id: string) => {
           order: 3,
         },
       ],
+    },
+  };
+};
+
+export const getCard = (id: string) => {
+  return {
+    data: {
+      id: id,
+      title: 'Прикладна задача',
+      description:
+        '<p>це опис дууууууууууууууууууууууууууууууууже довгий</p><p><strong>це опис</strong></p><p><em>це опис італіка</em></p><p><strong style="color: rgb(230, 0, 0);"><em>це опис іншого кольору</em></strong></p>',
     },
   };
 };

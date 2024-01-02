@@ -1,18 +1,5 @@
-export interface List {
-  id: string;
-  title: string;
-  boardId: string;
-}
-
-export interface Card {
-  id: string;
-  title: string;
-  description: string;
-  assignedTo: string;
-  dueDate: string;
-  listId: string;
-  order: number;
-}
+import { Card } from './card';
+import { List } from './list';
 
 export interface Board {
   id: string;
@@ -26,8 +13,6 @@ export interface Board {
   cards: Card[] | null;
 }
 
-export interface BoardItem {
-  id: string;
-  name: string;
+export type BoardItem = List & {
   cards: Card[] | null;
-}
+};

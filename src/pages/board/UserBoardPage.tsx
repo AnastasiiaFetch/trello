@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useParams } from 'react-router-dom';
-import { Board, BoardItem, Card } from '../../types/board';
+import { Board, BoardItem } from '../../types/board';
 import { getBoard } from '../../api';
 import BoardWrapper from '../../components/board/BoardWrapper';
 import BoardContentWrapper from '../../components/board/BoardContentWrapper';
@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import CreateItem from '../../components/common/CreateItem';
 import { Helmet } from 'react-helmet-async';
+import { Card } from '../../types/card';
 
 const UserBoardPage = () => {
   const { boardId } = useParams();
@@ -42,14 +43,13 @@ const UserBoardPage = () => {
           if (!acc[card.listId]) {
             acc[card.listId] = [];
           }
-          acc[card.listId].push(card);
+          acc[card.listId].push(card as Card);
           return acc;
         }, {} as Record<string, Card[]>)
       : null;
 
     const initialColumns = lists.map(list => ({
-      id: list.id,
-      name: list.title,
+      ...list,
       cards: cardsByList ? cardsByList[list.id] : null,
     }));
 
@@ -120,7 +120,7 @@ const UserBoardPage = () => {
         <title>{`Trello | ${board?.name}`}</title>
       </Helmet>
 
-      {board && !isLoading ? (
+      {board && !isLoading && (
         <BoardWrapper>
           <BoardHeader {...(board as Board)} />
           <BoardContentWrapper>
@@ -146,8 +146,6 @@ const UserBoardPage = () => {
             </DragDropContext>
           </BoardContentWrapper>
         </BoardWrapper>
-      ) : (
-        <></>
       )}
     </>
   );

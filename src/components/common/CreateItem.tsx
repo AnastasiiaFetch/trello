@@ -76,7 +76,7 @@ const CreateItem: React.FC<CreateItemProps> = ({
           w="fit-content"
           backgroundColor={isGenerationMode ? 'blue.200' : 'list.background'}
           onClick={handleAddButtonClick}
-          _hover={{ bgColor: 'rgba(0, 0, 0, 0.1)' }}
+          _hover={{ bgColor: isGenerationMode ? 'blue.300' : 'rgba(0, 0, 0, 0.1)' }}
           {...buttonCustomProps}
         >
           <HStack gap={2}>
