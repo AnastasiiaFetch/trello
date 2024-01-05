@@ -7,15 +7,20 @@ import {
   PopoverTrigger,
   Portal,
 } from '@chakra-ui/react';
+import React from 'react';
 
-const InfoPopover = ({
-  children,
-  trigger,
-  placement = 'top',
-}: {
+interface InfoPopoverProps {
   children: React.ReactNode;
-  trigger: 'click' | 'hover';
+  triggerElement: any;
+  trigger?: 'click' | 'hover';
   placement?: PlacementWithLogical;
+}
+
+const InfoPopover: React.FC<InfoPopoverProps> = ({
+  children,
+  trigger = 'hover',
+  triggerElement,
+  placement = 'bottom',
 }) => {
   return (
     <Popover
@@ -25,14 +30,13 @@ const InfoPopover = ({
       closeDelay={50}
       strategy="absolute"
     >
-      <PopoverTrigger>
-        <>Trigger</>
-        {/* <InfoCircle color="var(--chakra-colors-gray-600)" size="18" /> */}
-      </PopoverTrigger>
+      <PopoverTrigger>{triggerElement}</PopoverTrigger>
       <Portal>
-        <PopoverContent zIndex="10">
+        <PopoverContent zIndex="10" w="fit-content">
           <PopoverArrow />
-          <PopoverBody fontSize="text-sm">{children}</PopoverBody>
+          <PopoverBody p={0} fontSize="text-xs">
+            {children}
+          </PopoverBody>
         </PopoverContent>
       </Portal>
     </Popover>

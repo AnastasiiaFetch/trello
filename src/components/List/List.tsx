@@ -14,6 +14,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getCard } from '../../api';
 import { Card } from '../../types/card';
+import ToolTip from '../../elements/tooltip';
+import InfoPopover from '../../elements/popover/InfoPopover';
+import EyeOpen from '../../elements/icons/EyeOpen';
 
 interface ListProps {
   item: BoardItem;
@@ -104,19 +107,15 @@ const List: React.FC<ListProps> = ({ item }) => {
                             <chakra.div
                               display={'none'}
                               position="absolute"
-                              top="4"
-                              right="2"
+                              top="3"
+                              right="3"
                               className="edit_btn"
                             >
-                              <IconButton
-                                size="sm"
-                                aria-label="edit_btn"
-                                variant="secondary"
-                                rounded="full"
-                                backgroundColor="#FFFFFF"
-                                _hover={{ backgroundColor: 'gray.200' }}
-                                icon={<Edit01 size="13" color={darkColor} />}
-                              />
+                              <ToolTip label="Натисніть на картку для перегляду">
+                                <Box bgColor="gray.200" rounded="full" p={1.5}>
+                                  <EyeOpen size="13" color={darkColor} />
+                                </Box>
+                              </ToolTip>
                             </chakra.div>
                           </chakra.div>
                         </chakra.div>

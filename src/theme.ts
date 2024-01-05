@@ -24,6 +24,7 @@ const theme = extendTheme({
       light: lightColor,
       dark: darkColor,
     },
+    modal: { background: '#f1f2f4', text: darkColor },
     list: { background: '#f1f2f4', text: darkColor, subtle: '#44546F', subtlest: '#626F86' },
   },
   fontSizes: {

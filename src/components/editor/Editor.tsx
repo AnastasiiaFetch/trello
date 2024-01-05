@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import './style/Editor.css';
 
 interface EditorProps {
   value: string;
@@ -11,7 +12,7 @@ const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
     toolbar: [
       [{ size: ['small', false, 'large', 'huge'] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }, { align: [] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { align: [] }],
       [
         {
           color: [
@@ -79,16 +80,10 @@ const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
     <ReactQuill
       theme="snow"
       value={value}
+      placeholder={'Додайте опис картки'}
       modules={modules}
       formats={formats}
       onChange={value => onChange(value)}
-      style={{
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'break-all',
-        height: 'fit-content',
-        minHeight: '5rem',
-        width: '100%',
-      }}
     />
   );
 };

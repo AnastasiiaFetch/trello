@@ -17,7 +17,7 @@ const EditableInputElement: React.FC<EditableElementProps> = ({ value, onChange,
         '& > .custom_editable_input:focus-visible': {
           boxShadow: 'none',
           flex: '1',
-          outline: '2px solid',
+          outline: '1px solid',
           outlineColor: 'rgba(0, 0, 0, 0.1)',
           paddingLeft: '0.5rem',
           paddingRight: '0.5rem',
@@ -32,7 +32,7 @@ const EditableInputElement: React.FC<EditableElementProps> = ({ value, onChange,
         whiteSpace="nowrap"
         {...rest}
       />
-      <EditableInput className="custom_editable_input" />
+      <EditableInput style={{ width: '100%' }} className="custom_editable_input" />
     </Editable>
   );
 };

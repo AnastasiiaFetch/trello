@@ -114,7 +114,7 @@ export const getBoard = (id: string) => {
       workspaceId: '1',
       isSelected: true,
       createdAt: '2023-01-15T10:30:00',
-      color: '#FAEE3E',
+      color: 'white',
       lists: [
         {
           id: 'list1',
@@ -177,9 +177,21 @@ export const getCard = (id: string) => {
   return {
     data: {
       id: id,
-      title: 'Прикладна задача',
+      title: 'How to use this list',
+      checklists: [
+        {
+          key: 'List',
+          items: [
+            {
+              value: 'Task1',
+              isChecked: true,
+              id: 'dbd465bc-5f75-4e1b-89cd-65967f3e9afa',
+            },
+          ],
+        },
+      ],
       description:
-        '<p>це опис дууууууууууууууууууууууууууууууууже довгий</p><p><strong>це опис</strong></p><p><em>це опис італіка</em></p><p><strong style="color: rgb(230, 0, 0);"><em>це опис іншого кольору</em></strong></p>',
+        "<p>For each meeting, there will be someone's face on the \"meeting lead\" card. They're in charge of wrangling any last minute attendees (messaging them if they're not there), running the meeting, making sure we cover everything on the cards, keeping us all on topic, and tabling conversations for auxiliary/follow up meetings if they run long.</p>",
     },
   };
 };

@@ -39,7 +39,7 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
           minHeight="2rem"
           flexWrap="nowrap"
           maxW="40%"
-          gap={4}
+          gap={6}
           color={textColor}
         >
           <EditableInputElement
@@ -58,27 +58,35 @@ const BoardHeader: React.FC<Board> = ({ name, isSelected, workspaceId }) => {
           marginLeft="auto"
           gap={4}
         >
-          <Button variant="secondary" borderRadius="md" size="md" onClick={() => {}}>
+          <Button
+            variant="secondary"
+            borderRadius="md"
+            size="md"
+            onClick={() => {}}
+            leftIcon={<Filter color={textColor} size="18" />}
+          >
             <ToolTip label="Фільтрувати картки">
-              <Flex align="center" justify="center" gap={1}>
-                <Filter color={textColor} size="18" /> <Text fontSize="text-sm">Фільтри</Text>
-              </Flex>
+              <Text fontSize="text-sm">Фільтри</Text>
             </ToolTip>
           </Button>
 
-          <Button variant="primary" borderRadius="md" size="md" px={4}>
-            <Flex gap={2} px={1} align="center">
-              <UserPlus color={darkColor} size="20" />
-              <Text color={darkColor} fontSize="text-sm">
-                Поділитися
-              </Text>
-            </Flex>
+          <Button
+            variant="primary"
+            borderRadius="md"
+            size="md"
+            leftIcon={<UserPlus color={darkColor} size="18" />}
+          >
+            <Text color={darkColor} fontSize="text-sm">
+              Поділитися
+            </Text>
           </Button>
 
           <Avatar size="xs" name={`${currentUser?.firstName} ${currentUser?.lastName}` || ''} />
 
           <Button variant="secondary" borderRadius="md" size="md" w="fit-content">
-            <HorizontalDots color={textColor} size="18" />
+            <Text>
+              <HorizontalDots color={textColor} size="18" />
+            </Text>
           </Button>
         </Flex>
       </Flex>

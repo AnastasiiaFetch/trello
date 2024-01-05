@@ -1,103 +1,8 @@
 import { useEffect, useState, createContext, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { DropzoneContextProps, TrelloFile } from '../../types/file';
-import { Box, VStack } from '@chakra-ui/react';
-
-// const FileUpload: React.FC<FileUploadProps> = ({
-//   initialFiles,
-//   onChange = () => {},
-//   maxFiles = 5,
-//   uploadHandler,
-//   onSuccessUpload,
-//   isDisabled: isDisabledProp = false,
-// }) => {
-// const [files, setFiles] = useState<any[]>([]);
-
-// useEffect(() => {
-//   if (!initialFiles || initialFiles.length === 0) {
-//     setFiles([]);
-//   } else {
-//     const initialFilesState = initialFiles.map((file: string | TrelloFile) => {
-//       if (typeof file === 'string') {
-//         return {
-//           id: undefined,
-//           preview: file,
-//         };
-//       }
-//       return {
-//         ...file,
-//         preview: file.url,
-//       };
-//     });
-//     setFiles(initialFilesState);
-//   }
-// }, [initialFiles]);
-
-// const isDisabled = isDisabledProp || maxFiles === files.length;
-
-// const onDrop = async (acceptedFiles: File[]) => {
-//   if (isDisabled) {
-//     return;
-//   }
-
-//   const accepted = acceptedFiles.filter(
-//     acceptedFile => !files.find(file => file.name === acceptedFile.name)
-//   );
-
-//   const newFileLength = files.length + accepted.length;
-//   let toSlice = 0;
-//   if (newFileLength > maxFiles) {
-//     toSlice = newFileLength - maxFiles;
-//   }
-//   const toAssign = accepted.slice(0, accepted.length - toSlice);
-
-//   const newFiles = [
-//     ...files,
-//     ...toAssign.map((file: File) => Object.assign(file, { preview: URL.createObjectURL(file) })),
-//   ];
-
-//   setFiles(newFiles);
-//   onChange(newFiles);
-//   if (uploadHandler && onSuccessUpload) {
-//     try {
-//       const res = await uploadHandler(accepted[0]);
-//       onSuccessUpload(res as TrelloFile);
-//     } catch (e) {
-//       console.log('e', e);
-//     }
-//   }
-// };
-
-// const accept: any = {
-//   'image/*': ['.jpg', '.jpeg', '.png'],
-//   'video/*': ['.gif', '.mp4', '.mov', '.MOV', '.avi', '.mkv', '.flv'],
-// };
-
-// const options = {
-//   onDrop,
-//   accept,
-//   maxFiles,
-//   disabled: isDisabled,
-// };
-
-// useEffect(() => {
-//   return () => files.forEach(file => URL.revokeObjectURL(file.preview));
-// }, []);
-
-// const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
-//   return (
-//     <Box {...getRootProps()}>
-//       //container
-//     </Box>
-
-// <Button size="sm" width="fit-content">
-//     <Text fontSize="text-xs">Вкладення</Text>
-//   </Button>
-//   <input type="button" {...getInputProps()} disabled={false} />
-//   );
-// };
-
-// export default FileUpload;
+import { Box, Text, VStack } from '@chakra-ui/react';
+import File from '../../elements/icons/File';
 
 interface FileUploadWrapperProps {
   children: React.ReactNode;
@@ -107,6 +12,8 @@ interface FileUploadWrapperProps {
   maxFiles?: number;
   uploadHandler?: (files: any) => Promise<TrelloFile | TrelloFile[]>;
   onSuccessUpload?: (file: TrelloFile) => void;
+  deleteHandler?: (names?: string[]) => void;
+  onSuccessfulDelete?: () => void;
 }
 
 export const DropzoneContext = createContext<DropzoneContextProps | null>(null);
@@ -119,6 +26,8 @@ export const FileUploadWrapper: React.FC<FileUploadWrapperProps> = ({
   maxFiles = 5,
   uploadHandler,
   onSuccessUpload,
+  deleteHandler,
+  onSuccessfulDelete,
 }) => {
   const [files, setFiles] = useState<any[]>([]);
 
@@ -130,11 +39,13 @@ export const FileUploadWrapper: React.FC<FileUploadWrapperProps> = ({
         if (typeof file === 'string') {
           return {
             id: undefined,
+            isWrap: false,
             preview: file,
           };
         }
         return {
           ...file,
+          isWrap: false,
           preview: file.url,
         };
       });
@@ -162,7 +73,9 @@ export const FileUploadWrapper: React.FC<FileUploadWrapperProps> = ({
 
     const newFiles = [
       ...files,
-      ...toAssign.map((file: File) => Object.assign(file, { preview: URL.createObjectURL(file) })),
+      ...toAssign.map((file: File) =>
+        Object.assign(file, { preview: URL.createObjectURL(file), isWrap: false })
+      ),
     ];
 
     setFiles(newFiles);
@@ -196,6 +109,20 @@ export const FileUploadWrapper: React.FC<FileUploadWrapperProps> = ({
     return () => files.forEach(file => URL.revokeObjectURL(file.preview));
   }, []);
 
+  const onFileDelete = async (file: File) => {
+    const changedFiles = files.filter((f: File) => f.name !== file.name);
+    setFiles(changedFiles);
+    onChange(changedFiles);
+    if (deleteHandler && onSuccessfulDelete) {
+      try {
+        await deleteHandler([file.name]);
+        onSuccessfulDelete();
+      } catch (e) {
+        console.log('e', e);
+      }
+    }
+  };
+
   const dropzoneProps = useDropzone(options);
   const contextProps = useMemo(() => ({ files, dropzoneProps }), [files]);
 
@@ -206,7 +133,8 @@ export const FileUploadWrapper: React.FC<FileUploadWrapperProps> = ({
         <Box
           zIndex={100000}
           position="absolute"
-          bgColor="red"
+          bgColor={'modal.background'}
+          color={'modal.text'}
           display={dropzoneProps.isDragActive ? 'block' : 'none'}
           h="100%"
           w="100%"
@@ -214,7 +142,12 @@ export const FileUploadWrapper: React.FC<FileUploadWrapperProps> = ({
           right={0}
           top={0}
           bottom={0}
-        ></Box>
+        >
+          <VStack gap={4} h="100%" w="100%" justify="center" align="center">
+            <File size="35" />
+            <Text fontWeight="semibold">Перетягніть файли для завантаження</Text>
+          </VStack>
+        </Box>
       </Box>
     </DropzoneContext.Provider>
   );
