@@ -1,24 +1,25 @@
 import { Box, Flex, Text, useDisclosure, useMediaQuery } from '@chakra-ui/react';
-import { useMainColor } from '../../composable/useMainColor';
-import Button from '../../elements/button/Button';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { deleteBoard } from '../../api';
 import { Board } from '../../types/board';
+import { useMainColor } from '../../composable/useMainColor';
+
+import Button from '../../elements/button/Button';
 import Avatar from '../../elements/avatar/Avatar';
 import HorizontalDots from '../../elements/icons/HorizontalDots';
 import StarButton from '../../elements/button/StarButton';
 import EditableInputElement from '../../elements/editable/EditableInputElement';
-import useBoard from '../../composable/useBoard';
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { deleteBoard } from '../../api';
-import useBoards from '../../composable/useBoards';
 import { BasicPopover } from '../../elements/popover/BasicPopover';
 import UserPlus from '../../elements/icons/UserPlus';
+
+import useBoard from '../../composable/useBoard';
+import useBoards from '../../composable/useBoards';
 import InviteMemberModal from '../common/modals/InviteMemberModal';
 
-import BoardSidebar from './BoardSidebar';
-import { BoardMemberModal } from './BoardMemberModal';
+import { BoardSidebar, BoardMemberModal } from '.';
 
-const BoardHeader: React.FC<{ board: Board }> = ({ board }) => {
+export const BoardHeader: React.FC<{ board: Board }> = ({ board }) => {
   const { textColor, colorWithNoOpacity } = useMainColor();
   const { updateBoard } = useBoard(board.id);
   const { refetchBoards } = useBoards();
@@ -169,5 +170,3 @@ const BoardHeader: React.FC<{ board: Board }> = ({ board }) => {
     </>
   );
 };
-
-export default BoardHeader;

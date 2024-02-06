@@ -5,7 +5,7 @@ interface BoardContentWrapper {
   [key: string]: any;
 }
 
-const BoardContentWrapper: React.FC<BoardContentWrapper> = ({ children, ...rest }) => {
+export const BoardContentWrapper: React.FC<BoardContentWrapper> = ({ children, ...rest }) => {
   return (
     <Box position="relative" flexGrow={1} {...rest}>
       <Flex
@@ -45,5 +45,3 @@ const BoardContentWrapper: React.FC<BoardContentWrapper> = ({ children, ...rest 
     </Box>
   );
 };
-
-export default BoardContentWrapper;

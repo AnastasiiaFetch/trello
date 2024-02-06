@@ -1,19 +1,20 @@
 import { useParams } from 'react-router-dom';
-import BoardWrapper from '../../components/Board/BoardWrapper';
-import BoardHeader from '../../components/Board/BoardHeader';
-import BoardContentWrapper from '../../components/Board/BoardContentWrapper';
-import { List } from '../../components/List/List';
-import { BoardItem } from '../../types/board';
-import useColorStore from '../../store/colorState';
+import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import CreateItem from '../../components/common/CreateItem';
-import { Helmet } from 'react-helmet-async';
+
 import { Card } from '../../types/card';
+import { BoardItem } from '../../types/board';
 import { List as ListType } from '../../types/list';
+
+import { BoardWrapper, BoardHeader, BoardContentWrapper } from '../../components/Board';
+import { List } from '../../components/List';
+
+import { updateCard } from '../../api';
+import useColorStore from '../../store/colorState';
+import CreateItem from '../../components/common/CreateItem';
 import useBoard from '../../composable/useBoard';
 import useList from '../../composable/useList';
-import { updateCard } from '../../api';
 
 const UserBoardPage = () => {
   const { setColor } = useColorStore();

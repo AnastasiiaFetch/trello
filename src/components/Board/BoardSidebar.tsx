@@ -13,26 +13,30 @@ import {
   useBoolean,
   useDisclosure,
 } from '@chakra-ui/react';
+
 import { Controller, useForm } from 'react-hook-form';
-import EditableInputElement from '../../elements/editable/EditableInputElement';
+import { useMemo, useRef, useState } from 'react';
+
+import { Board } from '../../types/board';
+import { createTextPlaceholder } from '../../utils/parseDOMElement';
+
 import InfoCircle from '../../elements/icons/InfoCircle';
+import ChevronLeft from '../../elements/icons/ChevronLeft';
+import Tag from '../../elements/icons/Tag';
+import Trash from '../../elements/icons/Trash';
+import X from '../../elements/icons/X';
+import Emoji from '../../elements/icons/Emoji';
+
+import EditableInputElement from '../../elements/editable/EditableInputElement';
+import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
 import ToolTip from '../../elements/tooltip';
 import Button from '../../elements/button/Button';
 import IconButton from '../../elements/button/IconButton';
-import X from '../../elements/icons/X';
-import { createTextPlaceholder } from '../../utils/parseDOMElement';
-import BasicSelectItem from '../../elements/custom-select/BasicSelectItem';
-import Tag from '../../elements/icons/Tag';
-import Trash from '../../elements/icons/Trash';
-import LabelsBar from '../common/LabelsBar/LabelsBar';
-import { useMemo, useRef, useState } from 'react';
-import ChevronLeft from '../../elements/icons/ChevronLeft';
-import ColorBar from '../common/ColorBar/ColorBar';
-import { Board } from '../../types/board';
 import { Textarea } from '../../elements/textarea/Textarea';
 import CopyButton from '../../elements/button/CopyButton';
 import { EmojiPopover } from '../common/modals/EmojiPopover';
-import Emoji from '../../elements/icons/Emoji';
+import LabelsBar from '../common/LabelsBar/LabelsBar';
+import ColorBar from '../common/ColorBar/ColorBar';
 
 interface BoardSidebarProps {
   isOpen: boolean;
@@ -42,7 +46,7 @@ interface BoardSidebarProps {
   handleDelete: () => void;
 }
 
-const BoardSidebar: React.FC<BoardSidebarProps> = ({
+export const BoardSidebar: React.FC<BoardSidebarProps> = ({
   isOpen,
   onClose,
   board,
@@ -378,5 +382,3 @@ const BoardSidebar: React.FC<BoardSidebarProps> = ({
     </Drawer>
   );
 };
-
-export default BoardSidebar;

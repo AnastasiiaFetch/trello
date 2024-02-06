@@ -1,6 +1,6 @@
 import { Box, HStack, Text, VStack } from '@chakra-ui/react';
-import Avatar from '../../elements/avatar/Avatar';
 import { Board } from '../../types/board';
+import Avatar from '../../elements/avatar/Avatar';
 
 interface BoardMemberModalProps {
   board: Board;
