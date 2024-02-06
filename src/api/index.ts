@@ -36,6 +36,7 @@ const generateHeaders = () => {
   const token = localStorage.getItem('userToken');
   return {
     Authorization: `Bearer ${token}`,
+    'Access-Control-Allow-Private-Network': true,
   };
 };
 
