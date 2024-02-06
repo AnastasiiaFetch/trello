@@ -11,13 +11,12 @@ import useBoardsStore from '../../store/boardsState';
 import useUserStore from '../../store/userState';
 
 import { UserModal, CreateBoardModal, CreateWorkspaceModal } from '../common/modals';
-import TrelloHeaderNavItemFactory from './TrelloHeaderNavItemFactory';
-import TrelloMobileHeaderNav from './TrelloMobileHeaderNav';
+import { TrelloMobileHeaderNav, TrelloHeaderNavItemFactory } from '.';
 
 import TrelloLogo from '../../elements/icons/TrelloLogo';
 import { useHeaderSelects } from '../../composable/useHeaderSelects';
 
-const TrelloHeader = () => {
+export const TrelloHeader = () => {
   const { currentUser } = useUserStore();
   const navigate = useNavigate();
 
@@ -103,5 +102,3 @@ const TrelloHeader = () => {
     </nav>
   );
 };
-
-export default TrelloHeader;

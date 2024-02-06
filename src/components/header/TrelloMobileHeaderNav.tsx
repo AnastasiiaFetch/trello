@@ -12,15 +12,18 @@ import {
   useDisclosure,
   Text,
 } from '@chakra-ui/react';
-import { CustomSelectProps } from '../../types/select';
+
+import { TrelloHeaderNavItemFactory } from '.';
+
 import Button from '../../elements/button/Button';
 import Plus from '../../elements/icons/Plus';
-import TrelloHeaderNavItemFactory from './TrelloHeaderNavItemFactory';
+import { CustomSelectProps } from '../../types/select';
 
 interface TrelloMobileHeaderNavProps {
   items: CustomSelectProps[];
 }
-const TrelloMobileHeaderNav: React.FC<TrelloMobileHeaderNavProps> = ({ items }) => {
+
+export const TrelloMobileHeaderNav: React.FC<TrelloMobileHeaderNavProps> = ({ items }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -79,5 +82,3 @@ const TrelloMobileHeaderNav: React.FC<TrelloMobileHeaderNavProps> = ({ items }) 
     </>
   );
 };
-
-export default TrelloMobileHeaderNav;

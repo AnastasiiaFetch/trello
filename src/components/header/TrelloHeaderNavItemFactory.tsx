@@ -8,7 +8,7 @@ interface TrelloHeaderNavItemFactoryProps {
   element: CustomSelectItemProps;
 }
 
-const TrelloHeaderNavItemFactory: React.FC<TrelloHeaderNavItemFactoryProps> = ({
+export const TrelloHeaderNavItemFactory: React.FC<TrelloHeaderNavItemFactoryProps> = ({
   type,
   element,
 }) => {
@@ -23,5 +23,3 @@ const TrelloHeaderNavItemFactory: React.FC<TrelloHeaderNavItemFactoryProps> = ({
       return <>Unknown item type</>;
   }
 };
-
-export default TrelloHeaderNavItemFactory;
