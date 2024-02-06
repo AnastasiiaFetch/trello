@@ -8,16 +8,19 @@ import {
   useMediaQuery,
   Button,
 } from '@chakra-ui/react';
-import useUserStore from '../../store/userState';
-import Avatar from '../../elements/avatar/Avatar';
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import ChevronRight from '../../elements/icons/ChevronRight';
+
+import Avatar from '../../elements/avatar/Avatar';
 import IconButton from '../../elements/button/IconButton';
 import ToolTip from '../../elements/tooltip';
 import Plus from '../../elements/icons/Plus';
-import CreateWorkspaceModal from '../common/modals/CreateWorkspaceModal';
+import ChevronRight from '../../elements/icons/ChevronRight';
+import useUserStore from '../../store/userState';
+
 import { TITLE_DESKTOP_LENGTH, TITLE_MOBILE_LENGTH, TITLE_TABLET_LENGTH } from '../../constants';
-import { useNavigate } from 'react-router-dom';
+
+import { CreateWorkspaceModal } from '../common/modals';
 
 interface SideNavProps {
   items: { id: string; icon: React.ReactElement; title: string }[] | [];

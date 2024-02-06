@@ -8,28 +8,34 @@ import {
   useDisclosure,
   useMediaQuery,
 } from '@chakra-ui/react';
-import WorkspaceWrapper from '../../components/workspace/WorkspaceWrapper';
-import { BoardsMenuItem, BoardsMenuWrapper } from '../../components/common/BoardsMenu';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
+
+import {
+  DeleteConfirmationModal,
+  CreateWorkspaceModal,
+  CreateBoardModal,
+} from '../../components/common/modals';
+import WorkspaceWrapper from '../../components/workspace/WorkspaceWrapper';
+import { BoardsMenuItem, BoardsMenuWrapper } from '../../components/common/BoardsMenu';
 import Avatar from '../../elements/avatar/Avatar';
 import Button from '../../elements/button/Button';
-import Edit from '../../elements/icons/Edit';
 import Input from '../../elements/input/Input';
+import Edit from '../../elements/icons/Edit';
 import Search from '../../elements/icons/Search';
-import CreateBoardModal from '../../components/common/modals/CreateBoardModal';
-import { Helmet } from 'react-helmet-async';
-import { useMainColor } from '../../composable/useMainColor';
-import CreateWorkspaceModal from '../../components/common/modals/CreateWorkspaceModal';
-import { Workspace } from '../../types/workspace';
-import useBoards from '../../composable/useBoards';
-import useFilters from '../../composable/useFilters';
-import { Board } from '../../types/board';
-import useWorkspace from '../../composable/useWorkspace';
 import Trash from '../../elements/icons/Trash';
-import { deleteWorkspace } from '../../api';
+
+import useBoards from '../../composable/useBoards';
+import useWorkspace from '../../composable/useWorkspace';
 import useWorkspaces from '../../composable/useWorkspaces';
-import DeleteConfirmationModal from '../../components/common/modals/DeleteConfirmationModal';
+import { useMainColor } from '../../composable/useMainColor';
+import useFilters from '../../composable/useFilters';
+
+import { Workspace } from '../../types/workspace';
+import { Board } from '../../types/board';
+
+import { deleteWorkspace } from '../../api';
 
 const UserWorkspacePage = () => {
   const { workspaceId } = useParams();

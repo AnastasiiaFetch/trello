@@ -16,6 +16,7 @@ interface EmojiPopoverProps {
   onEmojiClick: (emoji: string) => void;
   ref?: any;
 }
+
 export const EmojiPopover: React.FC<EmojiPopoverProps> = props => {
   const { isOpen, onClose, onEmojiClick, trigger } = props;
   const [isLargerThanMd] = useMediaQuery('(min-width: 48em)');

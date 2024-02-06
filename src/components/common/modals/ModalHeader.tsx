@@ -4,7 +4,8 @@ interface CustomModalHeaderProps {
   title: string;
   subtitle?: string;
 }
-const CustomModalHeader: React.FC<CustomModalHeaderProps> = ({ title, subtitle }) => {
+
+export const CustomModalHeader: React.FC<CustomModalHeaderProps> = ({ title, subtitle }) => {
   return (
     <ModalHeader>
       <Text fontSize="text-md" textAlign="center">
@@ -20,5 +21,3 @@ const CustomModalHeader: React.FC<CustomModalHeaderProps> = ({ title, subtitle }
     </ModalHeader>
   );
 };
-
-export default CustomModalHeader;

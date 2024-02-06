@@ -8,9 +8,10 @@ import {
   chakra,
   useMediaQuery,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+
 import Button from '../../elements/button/Button';
 import ArrowRight from '../../elements/icons/ArrowRight';
-import { useNavigate } from 'react-router-dom';
 
 interface ErrorPageWrapperProps {
   errorIcon: any;

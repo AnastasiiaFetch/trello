@@ -1,6 +1,6 @@
 import { Center, ModalBody, ModalCloseButton, Text } from '@chakra-ui/react';
 
-const NoContentModalBody = ({ text }: { text: string }) => {
+export const NoContentModalBody = ({ text }: { text: string }) => {
   return (
     <>
       <ModalCloseButton />
@@ -12,5 +12,3 @@ const NoContentModalBody = ({ text }: { text: string }) => {
     </>
   );
 };
-
-export default NoContentModalBody;

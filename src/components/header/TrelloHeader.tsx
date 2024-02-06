@@ -1,19 +1,21 @@
 import { Box, Flex, GridItem, Text, useDisclosure, useMediaQuery } from '@chakra-ui/react';
-import TrelloLogo from '../../elements/icons/TrelloLogo';
+import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
+
+import CustomSelect from '../../elements/custom-select/CustomSelect';
+import Avatar from '../../elements/avatar/Avatar';
+import { BasicPopover } from '../../elements/popover/BasicPopover';
+
 import useWorkspacesStore from '../../store/workspacesState';
 import useBoardsStore from '../../store/boardsState';
-import Avatar from '../../elements/avatar/Avatar';
-import { useNavigate } from 'react-router-dom';
-import CustomSelect from '../../elements/custom-select/CustomSelect';
-import CreateBoardModal from '../common/modals/CreateBoardModal';
-import CreateWorkspaceModal from '../common/modals/CreateWorkspaceModal';
 import useUserStore from '../../store/userState';
+
+import { UserModal, CreateBoardModal, CreateWorkspaceModal } from '../common/modals';
 import TrelloHeaderNavItemFactory from './TrelloHeaderNavItemFactory';
 import TrelloMobileHeaderNav from './TrelloMobileHeaderNav';
+
+import TrelloLogo from '../../elements/icons/TrelloLogo';
 import { useHeaderSelects } from '../../composable/useHeaderSelects';
-import { BasicPopover } from '../../elements/popover/BasicPopover';
-import UserModal from '../common/modals/UserModal';
-import { useRef } from 'react';
 
 const TrelloHeader = () => {
   const { currentUser } = useUserStore();

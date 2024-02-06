@@ -1,9 +1,9 @@
 import { Button, Text, VStack } from '@chakra-ui/react';
-import Input from '../../../elements/input/Input';
 import { useState } from 'react';
+import Input from '../../../elements/input/Input';
 import { inviteUser } from '../../../api';
 
-const InviteMemberModal = () => {
+export const InviteMemberModal = () => {
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -47,5 +47,3 @@ const InviteMemberModal = () => {
     </VStack>
   );
 };
-
-export default InviteMemberModal;

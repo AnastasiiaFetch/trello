@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import { Box, GridItem, HStack, Text, VStack, useDisclosure } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+
 import { BoardsMenuItem, BoardsMenuWrapper } from '../common/BoardsMenu';
-import CreateBoardModal from '../common/modals/CreateBoardModal';
+import { CreateBoardModal } from '../common/modals';
 import useBoards from '../../composable/useBoards';
 
 const SideNavItem = ({ itemId }: { itemId: string | null }) => {

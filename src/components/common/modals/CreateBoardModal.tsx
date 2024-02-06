@@ -13,24 +13,25 @@ import {
   Center,
   useDisclosure,
 } from '@chakra-ui/react';
-import CustomModalHeader from './ModalHeader';
+
 import { Controller, useForm } from 'react-hook-form';
-import Select from '../../../elements/select/Select';
-import Input from '../../../elements/input/Input';
 import { useMemo, useRef, useState } from 'react';
-import { Textarea } from '../../../elements/textarea/Textarea';
-import CopyButton from '../../../elements/button/CopyButton';
-import { EmojiPopover } from './EmojiPopover';
-import Emoji from '../../../elements/icons/Emoji';
-import ColorBar from '../ColorBar/ColorBar';
-import ChevronLeft from '../../../elements/icons/ChevronLeft';
-import Button from '../../../elements/button/Button';
-import trelloBoard from '../../../assets/images/trelloBoards.svg';
+import { useParams } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ModalHeader, NoContentModalBody, EmojiPopover } from '.';
+
+import { Textarea } from '../../../elements/textarea/Textarea';
+import Select from '../../../elements/select/Select';
+import Button from '../../../elements/button/Button';
+import Input from '../../../elements/input/Input';
+import CopyButton from '../../../elements/button/CopyButton';
+import ColorBar from '../ColorBar/ColorBar';
+
+import Emoji from '../../../elements/icons/Emoji';
+import ChevronLeft from '../../../elements/icons/ChevronLeft';
+import trelloBoard from '../../../assets/images/trelloBoards.svg';
 import { CreateBoardSchema, createBoardSchema } from '../../../utils/schemas';
 import { useMainColor } from '../../../composable/useMainColor';
-import NoContentModalBody from './NoContentModalBody';
-import { useParams } from 'react-router-dom';
 import useWorkspaces from '../../../composable/useWorkspaces';
 import useBoards from '../../../composable/useBoards';
 
@@ -38,7 +39,7 @@ type CreateBoardModalProps = { isOpen: boolean; onClose: () => void };
 type MenuViewType = 'main-menu' | 'background-menu';
 type WorkspaceOptionType = { value: string; label: string; id: string };
 
-const CreateBoardModal: React.FC<CreateBoardModalProps> = ({ isOpen, onClose }) => {
+export const CreateBoardModal: React.FC<CreateBoardModalProps> = ({ isOpen, onClose }) => {
   const { workspaces, workspacesIsLoading } = useWorkspaces();
   const { createBoard } = useBoards();
   const { darkColor } = useMainColor();
@@ -159,7 +160,7 @@ const CreateBoardModal: React.FC<CreateBoardModalProps> = ({ isOpen, onClose }) 
                 </Button>
               </Box>
             )}
-            <CustomModalHeader title={menuView === 'main-menu' ? 'Створення дошки' : 'Фон дошки'} />
+            <ModalHeader title={menuView === 'main-menu' ? 'Створення дошки' : 'Фон дошки'} />
             <ModalCloseButton />
             <form onSubmit={e => e.preventDefault()}>
               <ModalBody>
@@ -319,5 +320,3 @@ const CreateBoardModal: React.FC<CreateBoardModalProps> = ({ isOpen, onClose }) 
     </Modal>
   );
 };
-
-export default CreateBoardModal;

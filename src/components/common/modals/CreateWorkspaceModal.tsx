@@ -12,19 +12,21 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { Controller, useForm } from 'react-hook-form';
-import CustomModalHeader from './ModalHeader';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useMutation } from '@tanstack/react-query';
+
+import { ModalHeader } from '.';
 import Button from '../../../elements/button/Button';
-import { useMainColor } from '../../../composable/useMainColor';
 import Input from '../../../elements/input/Input';
 import Select from '../../../elements/select/Select';
 import { Textarea } from '../../../elements/textarea/Textarea';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { CreateWorkspaceSchema, createWorkspaceSchema } from '../../../utils/schemas';
-import { Workspace } from '../../../types/workspace';
+import { useMainColor } from '../../../composable/useMainColor';
 import useWorkspaces from '../../../composable/useWorkspaces';
-import { useMutation } from '@tanstack/react-query';
-import { updateWorkspace } from '../../../api';
+
+import { CreateWorkspaceSchema, createWorkspaceSchema } from '../../../utils/schemas';
 import { showToast } from '../../../utils/toasts';
+import { updateWorkspace } from '../../../api';
+import { Workspace } from '../../../types/workspace';
 
 type CrateWorkspaceModalProps = {
   isOpen: boolean;
@@ -42,7 +44,7 @@ const workspaceTypes = [
   'Інше',
 ];
 
-const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({
+export const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({
   isOpen,
   onClose,
   initialData = null,
@@ -116,7 +118,7 @@ const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({
     <Modal isOpen={isOpen} onClose={handleModalClose} size="xl">
       <ModalOverlay />
       <ModalContent pt={'1.5rem'} w="90%" h="fit-content" position="relative">
-        <CustomModalHeader
+        <ModalHeader
           title={initialData ? 'Редагування робочої області' : 'Створення робочої області'}
         />
         <ModalCloseButton />
@@ -210,5 +212,3 @@ const CreateWorkspaceModal: React.FC<CrateWorkspaceModalProps> = ({
     </Modal>
   );
 };
-
-export default CreateWorkspaceModal;

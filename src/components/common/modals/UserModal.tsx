@@ -1,12 +1,14 @@
 import { VStack, Text, Divider, Flex, HStack } from '@chakra-ui/react';
+import { useReducer, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Button from '../../../elements/button/Button';
-import { useMainColor } from '../../../composable/useMainColor';
+import Input from '../../../elements/input/Input';
 import Edit from '../../../elements/icons/Edit';
 import useUserStore from '../../../store/userState';
 import LogOut from '../../../elements/icons/LogOut';
-import { useNavigate } from 'react-router-dom';
-import { useReducer, useState } from 'react';
-import Input from '../../../elements/input/Input';
+
+import { useMainColor } from '../../../composable/useMainColor';
 import useUser from '../../../composable/useUser';
 import useColorStore from '../../../store/colorState';
 import theme from '../../../theme';
@@ -35,7 +37,7 @@ const reducer = (state: State, action: ActionType) => {
   }
 };
 
-const UserModal = () => {
+export const UserModal = () => {
   const { darkColor } = useMainColor();
   const { setColor } = useColorStore();
   const { currentUser, setUserToken } = useUserStore();
@@ -183,5 +185,3 @@ const UserModal = () => {
     </VStack>
   );
 };
-
-export default UserModal;

@@ -60,7 +60,7 @@ export const ListActionBar: React.FC<ListActionBarProps> = ({
           )}
           {flag ? (
             <VStack gap={4}>
-              <Text textAlign={'center'} fontSize={'text-sm'}>
+              <Text textAlign={'center'} fontSize={'text-xs'} fontWeight={'semibold'}>
                 Ви дійсно хочете видалити цей список ?
               </Text>
               <HStack gap={2}>

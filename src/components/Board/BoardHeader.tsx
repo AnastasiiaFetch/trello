@@ -15,9 +15,9 @@ import UserPlus from '../../elements/icons/UserPlus';
 
 import useBoard from '../../composable/useBoard';
 import useBoards from '../../composable/useBoards';
-import InviteMemberModal from '../common/modals/InviteMemberModal';
 
 import { BoardSidebar, BoardMemberModal } from '.';
+import { InviteMemberModal } from '../common/modals';
 
 export const BoardHeader: React.FC<{ board: Board }> = ({ board }) => {
   const { textColor, colorWithNoOpacity } = useMainColor();
