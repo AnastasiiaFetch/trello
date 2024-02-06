@@ -13,16 +13,16 @@ api.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          window.location.href = '/trello/sign-in';
+          window.location.href = '/sign-in';
           break;
         case 400:
-          window.location.href = '/trello/400';
+          window.location.href = '/400';
           break;
         case 404:
-          window.location.href = '/trello/404';
+          window.location.href = '/auth/main';
           break;
         case 500:
-          window.location.href = '/trello/500';
+          window.location.href = '/500';
           break;
         default:
           break;
