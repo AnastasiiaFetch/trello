@@ -1,27 +1,65 @@
-# React + TypeScript + Vite
+# Trello 2.0
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Trello-inspired website, adapted for different devices, offers a user-friendly platform for
+organizing tasks and projects.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React:** React was chosen as the primary frontend library due to its flexibility, performance,
+  and vast ecosystem of reusable components. Its component-based architecture allows for modular
+  development, facilitating scalability and maintainability of the project.
 
-## Expanding the ESLint configuration
+- **TypeScript:** TypeScript was integrated into the project to leverage its static typing
+  capabilities. By adding types to JavaScript, TypeScript enhances code quality, improves developer
+  productivity, and reduces the likelihood of runtime errors, thereby ensuring a more robust and
+  reliable application.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Zustand:** Zustand, a minimalistic state management library for React, was selected to manage
+  application state. Its simplicity and ease of use make it ideal for small to medium-sized
+  projects, providing a convenient alternative to more complex state management solutions like
+  Redux.
 
-- Configure the top-level `parserOptions` property like this:
+- **Chakra UI:** Chakra UI was utilized for building the user interface components of the
+  application. Its customizable and accessible component library offers a rich set of UI primitives,
+  enabling rapid development of visually appealing and responsive user interfaces while maintaining
+  consistent design patterns.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- **React Query:** React Query was incorporated to handle data fetching and caching in the
+  application. Its declarative approach to data fetching simplifies complex asynchronous operations,
+  optimizes network requests through caching, and seamlessly integrates with React components,
+  streamlining the development of data-driven interfaces.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Additionally, the project utilizes the REST API to handle asynchronous HTTP requests with Axios. Yup
+is used for form validation, offering a simple and efficient way to define and validate data
+schemas. React Hook Form is included to manage form state and validation logic, enhancing the user
+experience when interacting with forms in the application.
+
+## Getting Started
+
+To run the project locally, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/AnastasiiaFetch/trello.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd trello
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The website will be accessible at `http://localhost:5173`.
