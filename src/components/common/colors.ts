@@ -1,0 +1,48 @@
+export const boardsColorPalette = [
+  '#F0F0F0',
+  '#838FB5',
+  '#ECDCC9',
+  '#B8E1FF',
+  '#D8D8D8',
+  '#FDC788',
+  '#EC9488',
+  '#FDF694',
+  '#D5A6E6',
+  '#FFB0E1',
+  '#90ECC1',
+  '#53C95D',
+  '#99D18F',
+  '#FAEE3E',
+  '#D3EE02',
+  '#E3D8F1',
+  '#DABECA',
+  '#9D96B8',
+  '#8FBC94',
+  '#FFE9F3',
+  '#8ECDFE',
+  '#E8DCB9',
+  '#B37BA4',
+  '#E8AEB7',
+  '#565254',
+];
+
+export const labelsColorPalette = [
+  ['#F43811', '#2083F5', '#F5D818', '#33F520', '#CF2FF5'],
+  ['#FF5C5C', '#5C5CFF', '#EBB65C', '#62B257', '#BF4AB9'],
+  ['#FF7070', '#7070FF', '#EDBE6E', '#7CBF73', '#C559BF'],
+  ['#FF8585', '#8585FF', '#EFC680', '#96CC8F', '#CA68C5'],
+  ['#FF9999', '#9999FF', '#F2CF92', '#A3D29D', '#CF77CB'],
+];
+
+export const cardWrapperColorPalette = [
+  '#4BCE97',
+  '#F5CD47',
+  '#FEA362',
+  '#F87168',
+  '#9F8FEF',
+  '#579DFF',
+  '#6CC3E0',
+  '#94C748',
+  '#E774BB',
+  '#8590A2',
+];

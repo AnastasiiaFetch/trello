@@ -1,0 +1,211 @@
+import React, { useState } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+
+const lists = [
+  {
+    id: 'list1',
+    title: 'To Do',
+    boardId: '1',
+  },
+  {
+    id: 'list2',
+    title: 'In Progress',
+    boardId: '1',
+  },
+  {
+    id: 'list3',
+    title: 'Done',
+    boardId: '1',
+  },
+];
+
+const cards = [
+  {
+    id: 'card1',
+    title: 'Task 1',
+    description: 'Complete task 1 by the end of the week.',
+    assignedTo: 'John Doe',
+    dueDate: '2023-11-30',
+    listId: 'list1',
+  },
+  {
+    id: 'card2',
+    title: 'Task 2',
+    description: 'Review documentation for Task 2.',
+    assignedTo: 'Jane Smith',
+    dueDate: '2023-12-05',
+    listId: 'list1',
+  },
+  {
+    id: 'card3',
+    title: 'Task 3',
+    description: 'Implement feature X in the application.',
+    assignedTo: 'Alex Johnson',
+    dueDate: '2023-12-10',
+    listId: 'list2',
+  },
+  {
+    id: 'card4',
+    title: 'Task 4',
+    description: 'Prepare final report for Project A.',
+    assignedTo: 'Emily Brown',
+    dueDate: '2023-12-15',
+    listId: 'list3',
+  },
+  {
+    id: 'card5',
+    title: 'Task 5',
+    description: 'Prioritize tasks for the upcoming sprint.',
+    assignedTo: 'Bob Wilson',
+    dueDate: '2023-12-08',
+    listId: 'list4',
+  },
+];
+
+const initialColumns = lists.map(list => ({
+  id: list.id,
+  name: list.title,
+  items: cards.filter(card => card.listId === list.id),
+}));
+
+// ... (your imports)
+
+// ... (imports)
+
+const App = () => {
+  const [columns, setColumns] = useState(initialColumns);
+
+  const onDragStart = () => {
+    document.body.style.transition = 'background-color 0.2s ease';
+  };
+
+  const onDragUpdate = update => {
+    const { destination } = update;
+    const opacity = destination
+      ? destination.index /
+        Object.keys(columns.find(col => col.id === destination.droppableId)?.items || []).length
+      : 0;
+    document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
+  };
+
+  const onDragEnd = result => {
+    document.body.style.transition = 'none';
+    document.body.style.backgroundColor = 'inherit';
+
+    if (!result.destination) return;
+
+    const { source, destination } = result;
+
+    if (source.droppableId !== destination.droppableId) {
+      const sourceColumn = columns.find(col => col.id === source.droppableId);
+      const destColumn = columns.find(col => col.id === destination.droppableId);
+      const sourceItems = [...sourceColumn.items];
+      const destItems = [...destColumn.items];
+      const [removed] = sourceItems.splice(source.index, 1);
+      destItems.splice(destination.index, 0, removed);
+
+      setColumns(prevColumns => {
+        return prevColumns.map(col => {
+          if (col.id === source.droppableId) {
+            return {
+              ...col,
+              items: sourceItems,
+            };
+          }
+          if (col.id === destination.droppableId) {
+            return {
+              ...col,
+              items: destItems,
+            };
+          }
+          return col;
+        });
+      });
+    } else {
+      const column = columns.find(col => col.id === source.droppableId);
+      const copiedItems = [...column.items];
+      const [removed] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removed);
+
+      setColumns(prevColumns => {
+        return prevColumns.map(col => {
+          if (col.id === source.droppableId) {
+            return {
+              ...col,
+              items: copiedItems,
+            };
+          }
+          return col;
+        });
+      });
+    }
+  };
+
+  return (
+    <div>
+      <h1 style={{ textAlign: 'center' }}>Jira Board</h1>
+      <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+        <DragDropContext
+          onDragStart={onDragStart}
+          onDragUpdate={onDragUpdate}
+          onDragEnd={result => onDragEnd(result, columns, setColumns)}
+        >
+          {columns.map(column => (
+            <div
+              key={column.id}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <h2>{column.name}</h2>
+              <div style={{ margin: 8 }}>
+                <Droppable droppableId={column.id} key={column.id}>
+                  {(provided, snapshot) => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      style={{
+                        background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
+                        padding: 4,
+                        width: 250,
+                        minHeight: 500,
+                      }}
+                    >
+                      {column.items.map((item, index) => (
+                        <Draggable key={item.id} draggableId={item.id} index={index}>
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={{
+                                userSelect: 'none',
+                                padding: 16,
+                                margin: '0 0 8px 0',
+                                minHeight: '50px',
+                                backgroundColor: snapshot.isDragging ? '#263B4A' : '#456C86',
+                                color: 'white',
+                                ...provided.draggableProps.style,
+                              }}
+                            >
+                              {item.title}
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </div>
+            </div>
+          ))}
+        </DragDropContext>
+      </div>
+    </div>
+  );
+};
+
+export default App;
