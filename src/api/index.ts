@@ -19,7 +19,7 @@ api.interceptors.response.use(
           window.location.href = '/400';
           break;
         case 404:
-          window.location.href = '/auth/main';
+          window.location.href = '/404';
           break;
         case 500:
           window.location.href = '/500';
@@ -36,7 +36,6 @@ const generateHeaders = () => {
   const token = localStorage.getItem('userToken');
   return {
     Authorization: `Bearer ${token}`,
-    'Access-Control-Allow-Private-Network': true,
   };
 };
 
