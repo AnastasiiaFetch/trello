@@ -16,34 +16,41 @@ import {
   chakra,
 } from '@chakra-ui/react';
 
+import { useMemo } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { FileUploadWrapper } from '../fileUpload/FileUploadWrapper';
 import FileUpload from '../fileUpload/FileUpload';
 import FilesPreview from '../fileUpload/FilesPreview';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Card, Checklist } from '../../types/card';
+
 import Editor from '../editor/Editor';
-import Button from '../../elements/button/Button';
-import IconButton from '../../elements/button/IconButton';
+import { Card, Checklist } from '../../types/card';
+import { parseDescription, parseValue } from '../../utils/parseDOMElement';
+
 import X from '../../elements/icons/X';
 import EyeOpen from '../../elements/icons/EyeOpen';
 import TextIcon from '../../elements/icons/TextIcon';
 import Tag from '../../elements/icons/Tag';
 import CheckSquare from '../../elements/icons/CheckSquare';
 import Picture from '../../elements/icons/Picture';
-import { parseDescription, parseValue } from '../../utils/parseDOMElement';
 import Attachments from '../../elements/icons/Attachments';
+import Trash from '../../elements/icons/Trash';
+
 import CardSection from './CardSection';
+import Button from '../../elements/button/Button';
+import IconButton from '../../elements/button/IconButton';
 import { ButtonPopover } from '../../elements/popover/ButtonPopover';
 import CheckList from './checklist/CheckList';
-import Trash from '../../elements/icons/Trash';
-import CreateCheckListModalBody from './modals/CreateCheckListModalBody';
+
 import useCard from '../../composable/useCard';
-import CreateLabelModalBody from './modals/CreateLabelModalBody';
-import { useMemo } from 'react';
 import { deleteCard, deleteCardFile, uploadCardFiles } from '../../api';
-import CreateWrapperModal from './modals/CreateWrapperModal';
-import DeleteCardModal from './modals/DeleteCardModal';
+import {
+  DeleteCardModal,
+  CreateWrapperModal,
+  CreateLabelModalBody,
+  CreateCheckListModalBody,
+} from './modals';
 import EditableInputElement from '../../elements/editable/EditableInputElement';
 
 type CreateBoardModalProps = { isOpen: boolean; onClose: () => void; card: Card };

@@ -1,13 +1,17 @@
 import { Text } from '@chakra-ui/react';
+import { useState } from 'react';
+
 import Button from '../../../elements/button/Button';
 import Input from '../../../elements/input/Input';
-import { useState } from 'react';
-import ModalBodyWrapper from './ModalBodyWrapper';
+import { ModalBodyWrapper } from '.';
 
 interface CreateCheckListModalBodyProps {
   onValueSave: (value: string) => void;
 }
-const CreateCheckListModalBody: React.FC<CreateCheckListModalBodyProps> = ({ onValueSave }) => {
+
+export const CreateCheckListModalBody: React.FC<CreateCheckListModalBodyProps> = ({
+  onValueSave,
+}) => {
   const [inputValue, setInputValue] = useState('');
 
   return (
@@ -37,5 +41,3 @@ const CreateCheckListModalBody: React.FC<CreateCheckListModalBodyProps> = ({ onV
     </ModalBodyWrapper>
   );
 };
-
-export default CreateCheckListModalBody;

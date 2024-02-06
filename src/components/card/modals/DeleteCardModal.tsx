@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react';
-import ModalBodyWrapper from './ModalBodyWrapper';
+import { ModalBodyWrapper } from '.';
 import Button from '../../../elements/button/Button';
 
 interface DeleteCardModalProps {
@@ -7,7 +7,7 @@ interface DeleteCardModalProps {
   title: string;
 }
 
-const DeleteCardModal: React.FC<DeleteCardModalProps> = ({ onSuccess, title }) => {
+export const DeleteCardModal: React.FC<DeleteCardModalProps> = ({ onSuccess, title }) => {
   return (
     <ModalBodyWrapper>
       <Text fontWeight={'semibold'}>Видалення картки</Text>
@@ -31,5 +31,3 @@ const DeleteCardModal: React.FC<DeleteCardModalProps> = ({ onSuccess, title }) =
     </ModalBodyWrapper>
   );
 };
-
-export default DeleteCardModal;

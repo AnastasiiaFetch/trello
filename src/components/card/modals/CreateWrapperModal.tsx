@@ -1,7 +1,7 @@
 import { Input as ChakraInput, Grid, GridItem, Text, VStack, chakra } from '@chakra-ui/react';
-import ModalBodyWrapper from './ModalBodyWrapper';
-import { cardWrapperColorPalette } from '../../common/colors';
 import { useMemo } from 'react';
+import { ModalBodyWrapper } from '.';
+import { cardWrapperColorPalette } from '../../common/colors';
 import { TrelloFile } from '../../../types/file';
 import { Card } from '../../../types/card';
 import { updateCardWrapper } from '../../../api';
@@ -30,7 +30,7 @@ type FileItemType = {
 
 type WrapperItemsType = ColorItemType | FileItemType;
 
-const CreateWrapperModal: React.FC<CreateWrapperModalProps> = ({
+export const CreateWrapperModal: React.FC<CreateWrapperModalProps> = ({
   onValueSave,
   files = [],
   card = null,
@@ -136,5 +136,3 @@ const CreateWrapperModal: React.FC<CreateWrapperModalProps> = ({
     </ModalBodyWrapper>
   );
 };
-
-export default CreateWrapperModal;

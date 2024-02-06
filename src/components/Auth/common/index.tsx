@@ -1,6 +1,7 @@
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
-import Input from '../../../elements/input/Input';
 import { VStack } from '@chakra-ui/react';
+
+import Input from '../../../elements/input/Input';
 import PasswordInput from '../../../elements/input/PasswordInput';
 import { RegisterSchema } from '../../../utils/schemas';
 

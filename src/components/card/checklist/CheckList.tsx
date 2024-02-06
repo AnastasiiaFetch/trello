@@ -1,10 +1,10 @@
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { ChecklistItem } from '../../../types/card';
 import { Checkbox, HStack, Text, VStack } from '@chakra-ui/react';
 import EditableInputElement from '../../../elements/editable/EditableInputElement';
 import Button from '../../../elements/button/Button';
 import IconButton from '../../../elements/button/IconButton';
 import Trash from '../../../elements/icons/Trash';
+import { ChecklistItem } from '../../../types/card';
 
 interface CheckListProps {
   items: ChecklistItem[];

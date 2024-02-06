@@ -1,18 +1,20 @@
 import { Box, Flex, VStack, Text, chakra, HStack, useToast, useMediaQuery } from '@chakra-ui/react';
-import TrelloLogo from '../../elements/icons/TrelloLogo';
-import { useForm } from 'react-hook-form';
 import { cloneElement, useEffect, useState } from 'react';
-import Button from '../../elements/button/Button';
-import { EmailInput, PasswordInputs, PersonalInformationInputs } from './common';
-import { SubmitButton } from '../../elements/button/SubmitButton';
-import { RegisterSchema, registerSchema } from '../../utils/schemas';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import TrelloLogo from '../../elements/icons/TrelloLogo';
+import Button from '../../elements/button/Button';
+import { SubmitButton } from '../../elements/button/SubmitButton';
+
+import { EmailInput, PasswordInputs, PersonalInformationInputs } from './common';
+import { useMainColor } from '../../composable/useMainColor';
+import { RegisterSchema, registerSchema } from '../../utils/schemas';
 import { isEmptyObject } from '../../utils/isEmptyObject';
 import { showToast } from '../../utils/toasts';
-import { useMutation } from '@tanstack/react-query';
 import { registerUser } from '../../api';
-import { useMainColor } from '../../composable/useMainColor';
 
 interface StepperProps {
   currentStep: (typeof steps)[0];
