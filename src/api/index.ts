@@ -2,7 +2,7 @@ import axios from 'axios';
 import { LoginSchema, RegisterSchema } from '../utils/schemas';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'https://trello-v2-api.onrender.com/api',
 });
 
 api.interceptors.response.use(
