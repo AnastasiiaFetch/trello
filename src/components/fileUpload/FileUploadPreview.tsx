@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react';
-import VideoFilePreview from './VideoFilePreview';
+import { VideoFilePreview } from '.';
 import { PHOTO_FORMATS, VIDEO_FORMATS } from './constants';
 
-const FileUploadPreview: React.FC<{
+export const FileUploadPreview: React.FC<{
   file: any;
   onClick: () => void;
 }> = ({ file, onClick }) => {
@@ -40,5 +40,3 @@ const FileUploadPreview: React.FC<{
     </Box>
   );
 };
-
-export default FileUploadPreview;

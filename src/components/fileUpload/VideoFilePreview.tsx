@@ -1,6 +1,6 @@
 import { Box, Center } from '@chakra-ui/react';
 
-const VideoFilePreview: React.FC<{
+export const VideoFilePreview: React.FC<{
   src: string;
   type: string;
   controls?: boolean;
@@ -25,5 +25,3 @@ const VideoFilePreview: React.FC<{
     </Box>
   </Center>
 );
-
-export default VideoFilePreview;

@@ -15,15 +15,11 @@ import {
   Flex,
   chakra,
 } from '@chakra-ui/react';
-
 import { useMemo } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { FileUploadWrapper } from '../fileUpload/FileUploadWrapper';
-import FileUpload from '../fileUpload/FileUpload';
-import FilesPreview from '../fileUpload/FilesPreview';
-
+import { FilesPreview, FileUploadWrapper, FileUpload } from '../fileUpload';
 import Editor from '../editor/Editor';
 import { Card, Checklist } from '../../types/card';
 import { parseDescription, parseValue } from '../../utils/parseDOMElement';

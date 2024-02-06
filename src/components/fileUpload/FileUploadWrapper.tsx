@@ -1,9 +1,10 @@
 import { useEffect, useState, createContext, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { DropzoneContextProps, TrelloFile } from '../../types/file';
 import { Box, Text, VStack } from '@chakra-ui/react';
-import File from '../../elements/icons/File';
 import { AxiosResponse } from 'axios';
+
+import { DropzoneContextProps, TrelloFile } from '../../types/file';
+import File from '../../elements/icons/File';
 
 interface FileUploadWrapperProps {
   children: React.ReactNode;

@@ -1,22 +1,20 @@
 import { useContext, useState } from 'react';
-import { DropzoneContext } from './FileUploadWrapper';
+import { Box, chakra, HStack, Text, VStack } from '@chakra-ui/react';
+import { PhotoSlider } from 'react-photo-view';
+
+import { FileUploadPreview, VideoFilePreview, ImageNavigationButton, DropzoneContext } from '.';
 import { DropzoneContextProps } from '../../types/file';
 
-import { PhotoSlider } from 'react-photo-view';
-import { Box, chakra, HStack, Text, VStack } from '@chakra-ui/react';
 import ChevronRight from '../../elements/icons/ChevronRight';
 import ChevronLeft from '../../elements/icons/ChevronLeft';
 import X from '../../elements/icons/X';
-import formatBytes from '../../utils/formatBytes';
 import Button from '../../elements/button/Button';
-import ImageNavigationButton from './ImageNavigationButton';
-import VideoFilePreview from './VideoFilePreview';
-import FileUploadPreview from './FileUploadPreview';
-import { VIDEO_FORMATS } from './constants';
 
+import { VIDEO_FORMATS } from './constants';
+import formatBytes from '../../utils/formatBytes';
 import 'react-photo-view/dist/react-photo-view.css';
 
-const FilesPreview = () => {
+export const FilesPreview = () => {
   const { files, onFileDelete } = useContext(DropzoneContext) as DropzoneContextProps;
 
   const [visible, setVisible] = useState(false);
@@ -151,5 +149,3 @@ const FilesPreview = () => {
     </VStack>
   );
 };
-
-export default FilesPreview;

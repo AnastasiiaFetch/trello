@@ -1,12 +1,14 @@
 import { useContext } from 'react';
-import { DropzoneContext } from './FileUploadWrapper';
+import { Box, Text } from '@chakra-ui/react';
+
+import { DropzoneContext } from '.';
 import { DropzoneContextProps } from '../../types/file';
 import Button from '../../elements/button/Button';
-import { Box, Text } from '@chakra-ui/react';
+
 import Attachments from '../../elements/icons/Attachments';
 import { useMainColor } from '../../composable/useMainColor';
 
-const FileUpload = () => {
+export const FileUpload = () => {
   const { dropzoneProps } = useContext(DropzoneContext) as DropzoneContextProps;
   const { darkColor } = useMainColor();
   return (
@@ -36,5 +38,3 @@ const FileUpload = () => {
     </Box>
   );
 };
-
-export default FileUpload;

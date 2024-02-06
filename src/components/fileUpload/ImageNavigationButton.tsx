@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 
-const ImageNavigationButton: React.FC<{
+export const ImageNavigationButton: React.FC<{
   style: React.CSSProperties;
   onClick: () => void;
   icon: React.ReactElement;
@@ -21,5 +21,3 @@ const ImageNavigationButton: React.FC<{
     {icon}
   </Box>
 );
-
-export default ImageNavigationButton;
