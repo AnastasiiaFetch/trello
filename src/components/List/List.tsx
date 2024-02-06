@@ -1,13 +1,15 @@
 import { Box, HStack, chakra, Text, useDisclosure, Flex } from '@chakra-ui/react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 import { BoardItem } from '../../types/board';
-import { Draggable, Droppable } from 'react-beautiful-dnd';
+import { Card } from '../../types/card';
+
 import { useMainColor } from '../../composable/useMainColor';
+import { ListWrapper, ListActionBar, ListContentWrapper } from '.';
 import EditableInputElement from '../../elements/editable/EditableInputElement';
 import CreateItem from '../common/CreateItem';
 import CardModal from '../card/CardModal';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Card } from '../../types/card';
 import ToolTip from '../../elements/tooltip';
 import EyeOpen from '../../elements/icons/EyeOpen';
 import { useMemo, useState } from 'react';
@@ -15,9 +17,6 @@ import useList from '../../composable/useList';
 import useCard from '../../composable/useCard';
 import Tag from '../../elements/icons/Tag';
 import Attachments from '../../elements/icons/Attachments';
-import { ListActionBar } from './ListActionBar';
-import { ListContentWrapper } from './ListContentWrapper';
-import { ListWrapper } from './ListWrapper';
 
 interface ListProps {
   item: BoardItem;
